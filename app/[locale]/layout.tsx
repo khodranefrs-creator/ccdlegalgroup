@@ -109,7 +109,7 @@ export default async function RootLayout({
               name: siteConfig.legalName,
               alternateName: siteConfig.name,
               legalName: siteConfig.legalName,
-              slogan: siteConfig.tagline,
+              slogan: siteConfig.positioning,
               founder: {
                 "@type": "Person",
                 name: siteConfig.founder,

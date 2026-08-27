@@ -4,22 +4,20 @@ import { useEffect, useRef, useState } from "react";
 
 type RevealProps = {
   children: React.ReactNode;
-  /** delay in ms */
   delay?: number;
-  /** direction of entrance */
-  from?: "up" | "left" | "right" | "none";
   className?: string;
   as?: React.ElementType;
 };
 
 /**
- * Elegant scroll-reveal. Uses IntersectionObserver and only applies once.
- * Respects prefers-reduced-motion (renders visible immediately).
+ * Near-invisible entrance: a short opacity fade only (no movement).
+ * In most layouts we simply render content without a reveal; this is only
+ * used where a subtle entrance is genuinely preferable. Respects
+ * prefers-reduced-motion (renders visible immediately).
  */
 export default function Reveal({
   children,
   delay = 0,
-  from = "up",
   className = "",
   as: Tag = "div",
 }: RevealProps) {
@@ -42,27 +40,16 @@ export default function Reveal({
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
     );
 
     observer.observe(node);
     return () => observer.disconnect();
   }, [visible]);
 
-  const hiddenTransform =
-    from === "up"
-      ? "translateY(28px)"
-      : from === "left"
-      ? "translateX(-28px)"
-      : from === "right"
-      ? "translateX(28px)"
-      : "none";
-
   const style: React.CSSProperties = {
     opacity: visible ? 1 : 0,
-    transform: visible ? "none" : hiddenTransform,
-    transition: `opacity 1s var(--ease-out-expo) ${delay}ms, transform 1s var(--ease-out-expo) ${delay}ms`,
-    willChange: "opacity, transform",
+    transition: `opacity 0.5s var(--ease-out-soft) ${delay}ms`,
   };
 
   return (

@@ -46,16 +46,13 @@ export default function Hero({
   return (
     <section className="bg-paper">
       <div className="mx-auto max-w-[1360px] px-gutter pt-[calc(var(--header-h)+2.5rem)] md:pt-[calc(var(--header-h)+4.5rem)]">
-        <div className="border-b border-line pb-4">
-          <p className="eyebrow">{t.eyebrow}</p>
-        </div>
-
-        {/* Substantial composition */}
-        <div className="grid grid-cols-12 gap-x-6 gap-y-12 py-10 md:py-14 lg:gap-x-10 lg:py-16">
-          {/* Statement + contact */}
+        <div className="grid grid-cols-12 gap-x-8 gap-y-12 py-10 md:py-14 lg:gap-x-12">
+          {/* Statement */}
           <div className="col-span-12 lg:col-span-7">
-            <h1 className="font-display text-[clamp(2.6rem,5.4vw,4.8rem)] leading-[1.04] font-semibold tracking-[-0.01em]">
-              {t.headline1} {t.headline2}
+            <p className="eyebrow">{t.eyebrow}</p>
+            <h1 className="mt-5 font-display text-[clamp(2.6rem,5.4vw,4.8rem)] leading-[1.03] font-semibold tracking-[-0.01em]">
+              {t.headline1}
+              <span className="text-slate-2"> {t.headline2}</span>
             </h1>
             <p className="mt-7 max-w-xl text-base leading-relaxed text-slate md:text-lg">
               {t.body}
@@ -64,32 +61,28 @@ export default function Hero({
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 href={`${prefix}/expertise`}
-                className="group inline-flex items-center gap-3 bg-ink px-7 py-4 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-paper transition-colors duration-300 hover:bg-burgundy"
+                className="inline-flex items-center bg-ink px-7 py-4 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-paper transition-colors duration-200 hover:bg-burgundy"
               >
                 {t.ctaPrimary}
-                <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
-                  →
-                </span>
               </Link>
               <Link
                 href={`${prefix}/contact`}
-                className="inline-flex items-center gap-2 border border-line-strong px-7 py-4 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-300 hover:border-ink"
+                className="inline-flex items-center border border-line-strong px-7 py-4 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink transition-colors duration-200 hover:border-ink"
               >
                 {t.ctaSecondary}
               </Link>
             </div>
 
-            {/* Practice index — immediate capability signal */}
+            {/* Practice index — plain hairline list, no bullets */}
             <div className="mt-12 border-t border-line pt-6">
               <p className="eyebrow">{madrid.eyebrow}</p>
-              <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+              <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
                 {practices.map((p) => (
                   <li key={p.id}>
                     <Link
                       href={`${prefix}/expertise#${p.id}`}
-                      className="group flex items-baseline gap-2 text-[0.9rem] leading-snug transition-colors hover:text-burgundy"
+                      className="text-[0.92rem] leading-snug text-ink transition-colors hover:text-burgundy"
                     >
-                      <span className="h-1 w-1 self-center bg-slate-2 transition-colors group-hover:bg-burgundy" aria-hidden="true" />
                       {p.name}
                     </Link>
                   </li>
@@ -98,13 +91,11 @@ export default function Hero({
             </div>
           </div>
 
-          {/* Photography + office details */}
+          {/* Photography + office detail */}
           <div className="col-span-12 lg:col-span-5">
             <MediaField
               src={imagesConfig.heroArchitecture}
               alt="Arquitectura — sede de CCD Legal Group en Madrid"
-              caption={`${madrid.eyebrow} · ${t.location}`}
-              priority
               sizes="(min-width: 1024px) 38vw, 100vw"
               className="aspect-[4/5] w-full"
             />

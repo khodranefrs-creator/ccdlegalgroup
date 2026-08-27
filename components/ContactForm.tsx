@@ -102,10 +102,9 @@ export default function ContactForm({
         <button
           type="submit"
           disabled={submitting}
-          className={`group inline-flex items-center justify-center gap-3 self-start px-7 py-4 text-[0.7rem] font-semibold uppercase tracking-[0.12em] transition-colors duration-300 disabled:opacity-60 ${ctaBtn}`}
+          className={`inline-flex items-center justify-center self-start px-7 py-4 text-[0.68rem] font-semibold uppercase tracking-[0.14em] transition-colors duration-200 disabled:opacity-60 ${ctaBtn}`}
         >
           {dict.submit}
-          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
         </button>
         <p
           className={`max-w-xl border-t pt-3 text-xs leading-relaxed ${

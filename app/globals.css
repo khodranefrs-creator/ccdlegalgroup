@@ -27,7 +27,9 @@
   --color-ash: #a8adb3;             /* faint text on light / on dark */
   --color-burgundy: #6d1f2c;        /* restrained accent — single moments */
   --color-burgundy-2: #832634;      /* lifted accent */
-  --color-pale: #f2f0ec;            /* warm-neutral image backing (sparing) */
+
+  /* Semantic ink-on-light mirrors for dense dark panels */
+  --color-ink-2: #182128;
 
   /* --- Rules (neutral hairlines, no decorative case-file imagery) --- */
   --color-line: rgba(13, 20, 25, 0.10);          /* rule on light */
@@ -43,14 +45,9 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* --- Motion --- */
-  --animate-fade-up: fade-up 0.8s var(--ease-out-expo) both;
-  --animate-fade-in: fade-in 1s var(--ease-out-soft) both;
+  /* --- Motion (near-invisible, confident) --- */
+  --animate-fade-in: fade-in 0.6s var(--ease-out-soft) both;
 
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
   @keyframes fade-in {
     from { opacity: 0; }
     to   { opacity: 1; }
@@ -96,12 +93,19 @@ h1, h2, h3, h4 {
 
 /* Uppercase label / metadata eyebrow — institutional, not decorative */
 .eyebrow {
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-size: 0.66rem;
+  font-size: 0.62rem;
   font-weight: 600;
   font-family: var(--font-sans);
   color: var(--color-slate-2);
+}
+
+/* Compact sans section title — used where a quieter heading is needed */
+.sans-title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 /* Tabular numerals for directories and detail rows */

@@ -17,7 +17,6 @@ export const siteConfig = {
   name: "CCD Legal Group",
   legalName: "Cutilla Díaz & Cons Abogados",
   positioning: "Legal & Business Advisory | Madrid",
-  tagline: "Counsel built around the matter.",
   founder: "Carolina Cutilla Díaz",
   founderRoles: ["Abogada", "Criminóloga", "Founder"],
   city: "Madrid",

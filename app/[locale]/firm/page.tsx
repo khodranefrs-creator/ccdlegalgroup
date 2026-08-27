@@ -1,7 +1,6 @@
 import { getDictionary } from "@/config/translations";
 import { siteConfig, type Locale } from "@/config/site";
 import PageHero from "@/components/PageHero";
-import SectionFirmIntro from "@/components/SectionFirmIntro";
 import SectionWhy from "@/components/SectionWhy";
 import SectionMadrid from "@/components/SectionMadrid";
 import SectionContact from "@/components/SectionContact";
@@ -39,7 +38,6 @@ export default async function FirmPage({
   return (
     <>
       <PageHero eyebrow={p.eyebrow} titleLines={p.titleLines} lead={p.lead} />
-      <SectionFirmIntro locale={lc} t={t.firmIntro} />
       <SectionWhy t={t.why} />
       <SectionMadrid locale={lc} t={t.madrid} />
       <SectionContact t={t.contact} form={t.form} />

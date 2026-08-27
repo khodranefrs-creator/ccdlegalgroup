@@ -224,9 +224,9 @@ export default function SiteHeader({
                 </p>
                 <Link
                   href={`${prefix}/expertise`}
-                  className="link-underline mt-6 inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.12em]"
+                  className="link-underline mt-6 inline-flex text-[0.7rem] font-semibold uppercase tracking-[0.14em]"
                 >
-                  {nav.practices} <span aria-hidden="true">→</span>
+                  {nav.practices}
                 </Link>
               </div>
               <div className="col-span-9 grid grid-cols-2 gap-x-10">
@@ -237,14 +237,8 @@ export default function SiteHeader({
                     className="group flex flex-col justify-center border-b border-line py-5 first:border-t"
                   >
                     <span className="flex items-baseline gap-3">
-                      <span className="font-display text-[1.35rem] leading-tight transition-colors duration-200 group-hover:text-burgundy">
+                      <span className="sans-title text-[1.15rem] leading-tight transition-colors duration-200 group-hover:text-burgundy">
                         {p.name}
-                      </span>
-                      <span
-                        className="text-lg opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
-                        aria-hidden="true"
-                      >
-                        →
                       </span>
                     </span>
                     <span className="mt-1 max-w-[52ch] text-[0.85rem] leading-relaxed text-slate">
@@ -275,7 +269,7 @@ export default function SiteHeader({
                       onClick={() => setMenuOpen(false)}
                       className="group flex items-center gap-3 py-5"
                     >
-                      <span className="font-display text-[1.7rem] leading-none transition-colors group-hover:text-paper/70">
+                      <span className="sans-title text-[1.6rem] leading-none text-paper transition-colors group-hover:text-paper/70">
                         {item.label}
                       </span>
                     </Link>
@@ -394,7 +388,7 @@ function SearchOverlay({
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder={nav.searchPlaceholder}
-              className="w-full bg-transparent font-display text-[clamp(1.4rem,4vw,2.4rem)] font-medium text-paper outline-none placeholder:text-paper/30"
+              className="w-full bg-transparent font-sans text-[clamp(1.4rem,4vw,2.2rem)] font-medium text-paper outline-none placeholder:text-paper/30"
             />
             <button
               type="button"
@@ -412,14 +406,14 @@ function SearchOverlay({
             <p className="text-sm text-paper/50">{nav.searchHint}</p>
           ) : results.length === 0 ? (
             <div>
-              <p className="font-display text-xl">{nav.searchNone}</p>
+              <p className="font-sans text-xl text-paper">{nav.searchNone}</p>
               <p className="mt-3 max-w-md text-sm text-paper/55">{nav.searchNoneBody}</p>
               <Link
                 href={`${prefix}/contact`}
                 onClick={onClose}
-                className="mt-6 inline-flex items-center gap-2 bg-paper px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-ink transition-colors hover:bg-paper/85"
+                className="mt-6 inline-flex items-center bg-paper px-5 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-ink transition-colors hover:bg-paper/85"
               >
-                {nav.contact} <span aria-hidden="true">→</span>
+                {nav.contact}
               </Link>
             </div>
           ) : (
@@ -436,20 +430,15 @@ function SearchOverlay({
                       className="group flex items-baseline justify-between gap-6"
                     >
                       <span className="min-w-0">
-                        <span className="block truncate font-display text-[1.15rem] transition-colors group-hover:text-paper/75">
+                        <span className="block truncate font-sans text-[1.1rem] text-paper transition-colors group-hover:text-paper/75">
                           {r.label}
                         </span>
                         {r.sublabel && (
                           <span className="mt-0.5 block truncate text-sm text-paper/50">{r.sublabel}</span>
                         )}
                       </span>
-                      <span className="flex shrink-0 items-center gap-3">
-                        <span className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-paper/40">
-                          {typeLabel(r.type)}
-                        </span>
-                        <span className="text-lg opacity-0 transition-opacity duration-200 group-hover:opacity-100" aria-hidden="true">
-                          →
-                        </span>
+                      <span className="shrink-0 text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-paper/40">
+                        {typeLabel(r.type)}
                       </span>
                     </Link>
                   </li>
