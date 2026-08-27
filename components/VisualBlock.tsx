@@ -3,16 +3,14 @@ import Image from "next/image";
 /**
  * MediaField — the firm's imagery primitive.
  *
- * A restrained, architectural framing for photography: a fine inner rule, a
- * small corner coordinate and a modest caption. No decorative overlays — the
- * photograph does the work. Every visible photo on the site uses this so
- * framing stays consistent.
+ * A restrained, institutional framing for photography: a neutral hairline and,
+ * optionally, a small caption at the base. No decorative overlays, no corner
+ * coordinates, no document devices — the photograph does the work.
  */
 export function MediaField({
   src,
   alt = "",
   caption,
-  corner,
   sizes = "100vw",
   priority = false,
   className = "",
@@ -21,19 +19,17 @@ export function MediaField({
 }: {
   src?: string | null;
   alt?: string;
-  /** Small caption below/inside the frame */
+  /** Small caption below the image */
   caption?: string;
-  /** Corner coordinate, e.g. "01" or "Madrid · 40.43N" */
-  corner?: string;
   sizes?: string;
   priority?: boolean;
   className?: string;
-  /** tone drives the inner rule + caption colour */
+  /** tone drives the hairline + caption colour */
   tone?: "light" | "dark";
   imgClassName?: string;
 }) {
-  const rule = tone === "dark" ? "border-navy-3" : "border-line";
-  const text = tone === "dark" ? "text-ivory/70" : "text-stone";
+  const rule = tone === "dark" ? "border-line-ink" : "border-line";
+  const text = tone === "dark" ? "text-paper/60" : "text-slate";
 
   return (
     <figure className={`relative overflow-hidden ${className}`}>
@@ -47,30 +43,19 @@ export function MediaField({
           className={`object-cover ${imgClassName}`}
         />
       ) : (
-        <div className="absolute inset-0 bg-ivory-3" />
+        <div className="absolute inset-0 bg-mist-2" />
       )}
 
-      {/* Fine inner rule */}
+      {/* Neutral hairline */}
       <div
         className={`pointer-events-none absolute inset-0 border ${rule}`}
         aria-hidden="true"
       />
 
-      {/* Corner coordinate */}
-      {corner && (
-        <span
-          className={`pointer-events-none absolute top-4 left-4 tabular text-[0.62rem] uppercase tracking-[0.18em] ${text}`}
-        >
-          {corner}
-        </span>
-      )}
-
       {/* Caption */}
       {caption && (
-        <div
-          className={`pointer-events-none absolute inset-x-0 bottom-0 border-t ${rule} px-4 py-2`}
-        >
-          <span className={`text-[0.62rem] uppercase tracking-[0.16em] ${text}`}>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 border-t border-line/60 bg-gradient-to-t from-black/25 to-transparent px-4 py-3">
+          <span className={`text-[0.66rem] uppercase tracking-[0.14em] ${text}`}>
             {caption}
           </span>
         </div>

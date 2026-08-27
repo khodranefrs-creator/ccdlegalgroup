@@ -1,123 +1,122 @@
 @import "tailwindcss";
 
 /* ============================================================
-   CCD LEGAL GROUP — Corporate Law Firm
-   "Counsel built around the matter."
-   Institutional · Architectural · Restrained · Information-dense
+   CCD LEGAL GROUP — Institutional corporate law firm
+   Serious legal practice · information-dense · restrained
    ============================================================ */
 
 @theme {
-  /* --- Typography --- */
-  --font-display: var(--font-newsreader), "Newsreader", Georgia, serif;
-  --font-sans: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  /* --- Typography ---
+     Display: Source Serif 4 — authoritative transitional serif.
+     UI: Inter — neutral, precise, highly legible corporate sans. */
+  --font-display: var(--font-source-serif), "Source Serif 4", Georgia, serif;
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* --- Palette (law firm: deep navy / warm white / restrained oxblood) --- */
-  --color-navy: #151b20;            /* deep near-black navy — primary ink */
-  --color-navy-2: #1d242b;          /* softened navy surface */
-  --color-navy-3: #2a333c;          /* elevated navy surface */
-  --color-ivory: #fbf9f5;           /* warm white — base */
-  --color-ivory-2: #f2eee6;         /* warm gray surface */
-  --color-ivory-3: #e7e2d8;         /* deeper field */
-  --color-oxblood: #7a2636;         /* restrained accent — used sparingly */
-  --color-oxblood-2: #8c3044;       /* lifted accent */
-  --color-stone: #666b71;           /* muted body text on light */
-  --color-stone-2: #979ca2;         /* muted text on dark / labels */
-  --color-mist: #eef0ef;            /* light steel field */
+  /* --- Palette ---
+     The site reads primarily as WHITE + DEEP NAVY.
+     One restrained crimson accent, used surgically (never as a
+     section-wide eyebrow or a decorative headline colour). */
+  --color-ink: #0d1419;             /* deep navy / near-black — primary */
+  --color-ink-2: #182128;           /* softened navy surface */
+  --color-ink-3: #233039;           /* elevated navy surface */
+  --color-paper: #fcfcfd;           /* cool white — base */
+  --color-mist: #f4f5f6;            /* very light cool gray field */
+  --color-mist-2: #ebecee;          /* slightly deeper neutral field */
+  --color-slate: #5b6269;           /* muted body text on light */
+  --color-slate-2: #8b9198;         /* muted text labels */
+  --color-ash: #a8adb3;             /* faint text on light / on dark */
+  --color-burgundy: #6d1f2c;        /* restrained accent — single moments */
+  --color-burgundy-2: #832634;      /* lifted accent */
+  --color-pale: #f2f0ec;            /* warm-neutral image backing (sparing) */
 
-  /* --- Rules --- */
-  --color-line: rgba(21, 27, 32, 0.14);        /* rule on light */
-  --color-line-strong: rgba(21, 27, 32, 0.32); /* stronger rule on light */
-  --color-line-navy: rgba(251, 249, 245, 0.16);/* rule on navy */
+  /* --- Rules (neutral hairlines, no decorative case-file imagery) --- */
+  --color-line: rgba(13, 20, 25, 0.10);          /* rule on light */
+  --color-line-strong: rgba(13, 20, 25, 0.28);   /* stronger rule on light */
+  --color-line-ink: rgba(252, 252, 253, 0.14);   /* rule on ink/navy */
 
-  /* --- Spacing rhythm --- */
+  /* --- Layout --- */
   --spacing-gutter: clamp(1.25rem, 4vw, 3.5rem);
-
-  /* --- Container width --- */
   --container-firm: 1360px;
+  --header-h: 72px;
 
   /* --- Easing --- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* --- Motion --- */
-  --animate-fade-up: fade-up 0.9s var(--ease-out-expo) both;
-  --animate-fade-in: fade-in 1.1s var(--ease-out-soft) both;
-  --animate-rule-in: rule-in 1.2s var(--ease-out-expo) both;
+  --animate-fade-up: fade-up 0.8s var(--ease-out-expo) both;
+  --animate-fade-in: fade-in 1s var(--ease-out-soft) both;
 
   @keyframes fade-up {
-    from { opacity: 0; transform: translateY(22px); }
+    from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
   @keyframes fade-in {
     from { opacity: 0; }
     to   { opacity: 1; }
   }
-  @keyframes rule-in {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
-  }
 }
 
 /* ---------- Base ---------- */
 
-:root {
-  --header-h: 76px;
-}
-
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + 12px);
+  scroll-padding-top: calc(var(--header-h) + 16px);
 }
 
 body {
-  background-color: var(--color-ivory);
-  color: var(--color-navy);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans);
-  font-feature-settings: "kern", "liga";
+  font-feature-settings: "kern", "liga", "cv11", "ss01";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 ::selection {
-  background: var(--color-oxblood);
-  color: var(--color-ivory);
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-oxblood);
+  outline: 2px solid var(--color-burgundy);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.005em;
 }
 
 /* ---------- Reusable primitives ---------- */
 
-/* Uppercase label / metadata eyebrow */
+/* Uppercase label / metadata eyebrow — institutional, not decorative */
 .eyebrow {
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 600;
   font-family: var(--font-sans);
+  color: var(--color-slate-2);
 }
 
-/* Tabular numerals for directories and metadata */
+/* Tabular numerals for directories and detail rows */
 .tabular {
   font-feature-settings: "tnum", "lnum";
 }
 
-/* Thin rule */
+/* Thin neutral rule */
 .hairline {
   height: 1px;
   background: currentColor;
-  opacity: 0.16;
+  opacity: 0.12;
 }
 
-/* Interactive underline link (mega-nav, inline links) */
+/* Interactive underline link (nav, inline links) */
 .link-underline {
   position: relative;
 }
@@ -137,27 +136,6 @@ h1, h2, h3, h4 {
 .link-underline:focus-visible::after {
   transform: scaleX(1);
   transform-origin: left;
-}
-
-/* Underline sweep that injects oxblood on hover (no bg change) */
-.group-sweep {
-  position: relative;
-}
-.group-sweep::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 1px;
-  width: 100%;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.45s var(--ease-out-soft);
-}
-.group:hover .group-sweep::after,
-.group:focus-within .group-sweep::after {
-  transform: scaleX(1);
 }
 
 /* ---------- Reduced motion ---------- */

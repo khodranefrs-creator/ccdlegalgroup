@@ -26,7 +26,7 @@ export default async function HomePage({
 
   return (
     <>
-      <Hero locale={lc} t={t.hero} />
+      <Hero locale={lc} t={t.hero} madrid={t.madrid} />
       <SectionFirmIntro locale={lc} t={t.firmIntro} />
       <PracticeDirectory locale={lc} t={t.practices} practices={services} />
       <SectionAdvisory locale={lc} t={t.advisory} />
@@ -34,7 +34,7 @@ export default async function HomePage({
       <SectionWhy t={t.why} />
       <SectionInsights locale={lc} t={t.insights} items={insights} />
       <SectionMadrid locale={lc} t={t.madrid} />
-      <SectionContact locale={lc} t={t.contact} form={t.form} />
+      <SectionContact t={t.contact} form={t.form} />
     </>
   );
 }

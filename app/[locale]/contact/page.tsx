@@ -37,7 +37,7 @@ export default async function ContactPage({
   return (
     <>
       <PageHero eyebrow={p.eyebrow} titleLines={p.titleLines} lead={p.lead} />
-      <SectionContact locale={lc} t={t.contact} form={t.form} />
+      <SectionContact t={t.contact} form={t.form} />
       <SectionMadrid locale={lc} t={t.madrid} />
     </>
   );

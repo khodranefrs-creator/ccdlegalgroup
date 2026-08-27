@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
+import { imagesConfig } from "@/config/images";
+import { MediaField } from "./VisualBlock";
 import { type Locale } from "@/config/site";
 
 type PeopleDict = {
@@ -31,80 +33,72 @@ export default function SectionPeople({
   const prefix = locale === "es" ? "" : `/${locale}`;
 
   return (
-    <section className="bg-ivory border-t border-line">
-      <div className="mx-auto max-w-[1360px] px-gutter py-20 md:py-28">
+    <section className="bg-mist border-y border-line">
+      <div className="mx-auto max-w-[1360px] px-gutter py-16 md:py-24">
         <Reveal>
-          <div className="grid grid-cols-12 gap-x-4 gap-y-8 md:gap-x-8">
-            <div className="col-span-12 md:col-span-5">
-              <p className="eyebrow text-oxblood">{t.eyebrow}</p>
-              <h2 className="mt-6 font-display text-[clamp(2.2rem,4.2vw,3.8rem)] leading-[1.02] font-medium">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-8 md:gap-x-10">
+            <div className="col-span-12 lg:col-span-4">
+              <p className="eyebrow">{t.eyebrow}</p>
+              <h2 className="mt-5 font-display text-[clamp(2.1rem,3.4vw,3.2rem)] leading-[1.05] font-semibold tracking-[-0.01em]">
                 {t.heading}{" "}
-                <span className="italic font-normal">{t.headingAccent}</span>
+                <span className="font-normal text-slate">{t.headingAccent}</span>
               </h2>
-              <p className="mt-6 max-w-sm text-base leading-relaxed text-navy/70">{t.sub}</p>
+              <p className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-slate">{t.sub}</p>
               <Link
                 href={`${prefix}/people`}
-                className="group-sweep mt-8 inline-flex items-baseline gap-3"
+                className="link-underline mt-8 inline-flex items-center gap-2 text-[0.74rem] font-semibold uppercase tracking-[0.12em]"
               >
-                <span className="text-[0.72rem] uppercase tracking-[0.16em] font-semibold">
-                  {t.eyebrow}
-                </span>
-                <span className="font-display text-lg transition-transform duration-300 group-hover:translate-x-1">→</span>
+                {t.eyebrow} <span aria-hidden="true">→</span>
               </Link>
             </div>
 
-            <div className="col-span-12 md:col-span-7 md:col-start-6 lg:col-start-7">
-              {/* Profile — typographic, no fake person photo */}
-              <Reveal delay={100} className="border border-line bg-ivory-2">
-                {/* header bar with monogram */}
-                <div className="flex items-center justify-between border-b border-line px-6 py-4">
-                  <span className="flex h-11 w-11 items-center justify-center border border-line bg-ivory">
-                    <span className="font-display text-lg font-semibold">CCD</span>
-                  </span>
-                  <div className="flex items-center gap-4">
-                    {[t.roleLabel1, t.roleLabel2, t.roleLabel3].map((r) => (
-                      <span key={r} className="text-[0.62rem] uppercase tracking-[0.16em] text-stone">
-                        {r}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+            {/* Lawyer directory entry — institutional, not a styled card */}
+            <div className="col-span-12 lg:col-span-8">
+              <div className="grid grid-cols-12 gap-x-6 gap-y-10 border-t border-line pt-8 md:gap-x-10">
+                <div className="col-span-12 md:col-span-7">
+                  <h3 className="font-display text-[clamp(1.9rem,3vw,2.8rem)] leading-tight font-semibold tracking-[-0.01em]">
+                    {t.name}
+                  </h3>
+                  <p className="mt-2 text-[0.85rem] font-medium uppercase tracking-[0.12em] text-slate">
+                    {t.role}
+                  </p>
 
-                <div className="grid grid-cols-1 gap-8 p-6 md:grid-cols-2 md:p-8">
-                  <div>
-                    <h3 className="font-display text-[clamp(1.8rem,3vw,2.6rem)] font-medium leading-tight">
-                      {t.name}
-                    </h3>
-                    <p className="mt-2 text-sm text-stone">{t.role}</p>
-                    <p className="mt-6 text-sm leading-relaxed text-navy/70">
-                      {t.bio}
-                    </p>
+                  <div className="mt-7 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
+                    <div>
+                      <p className="eyebrow">{t.practiceLabel}</p>
+                      <p className="mt-2 text-[0.95rem] leading-snug text-ink">{t.practiceValue}</p>
+                    </div>
+                    <div>
+                      <p className="eyebrow">{t.locationLabel}</p>
+                      <p className="mt-2 text-[0.95rem] text-ink">{t.locationValue}</p>
+                    </div>
                   </div>
-                  <div className="space-y-5 border-t border-line pt-6 md:border-t-0 md:pt-0 md:border-l md:pl-8">
-                    <div>
-                      <p className="eyebrow text-stone">{t.practiceLabel}</p>
-                      <p className="mt-2 text-sm text-navy">{t.practiceValue}</p>
-                    </div>
-                    <div>
-                      <p className="eyebrow text-stone">{t.locationLabel}</p>
-                      <p className="mt-2 text-sm text-navy">{t.locationValue}</p>
-                    </div>
+
+                  <div className="mt-8 border-t border-line pt-6">
+                    <p className="text-[0.95rem] leading-relaxed text-slate">{t.bio}</p>
                     <Link
                       href={`${prefix}/contact`}
-                      className="group inline-flex items-center gap-3 bg-navy px-6 py-3.5 text-[0.7rem] uppercase tracking-[0.16em] font-semibold text-ivory transition-colors duration-300 hover:bg-oxblood"
+                      className="group mt-6 inline-flex items-center gap-3 bg-ink px-6 py-3.5 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-paper transition-colors duration-300 hover:bg-burgundy"
                     >
-                      {t.cta} <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      {t.cta} <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
                     </Link>
                   </div>
                 </div>
-              </Reveal>
 
-              {/* Note re: verified profile */}
-              <Reveal delay={180}>
-                <p className="mt-4 text-[0.68rem] uppercase tracking-[0.16em] text-stone/80">
-                  {t.profileNote}
-                </p>
-              </Reveal>
+                {/* Architectural office image alongside the profile (no fake person) */}
+                <div className="col-span-12 md:col-span-5">
+                  <MediaField
+                    src={imagesConfig.stairInterior}
+                    alt="Despacho profesional — CCD Legal Group"
+                    caption={t.locationValue}
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                    className="aspect-[4/5] w-full"
+                  />
+                  <p className="mt-3 text-[0.72rem] uppercase leading-relaxed tracking-[0.12em] text-slate-2">
+                    {t.profileNote}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </Reveal>

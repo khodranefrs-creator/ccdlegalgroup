@@ -40,7 +40,7 @@ export default async function InsightsPage({
     <>
       <PageHero eyebrow={p.eyebrow} titleLines={p.titleLines} lead={p.lead} />
       <SectionInsights locale={lc} t={t.insights} items={items} />
-      <SectionContact locale={lc} t={t.contact} form={t.form} />
+      <SectionContact t={t.contact} form={t.form} />
     </>
   );
 }

@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { imagesConfig } from "@/config/images";
 import { MediaField } from "./VisualBlock";
-import { type Locale } from "@/config/site";
+import { siteConfig, type Locale } from "@/config/site";
+import { getServices } from "@/config/services";
 
 type HeroDict = {
   eyebrow: string;
   headline1: string;
+  headline2: string;
   headlineAccent: string;
   body: string;
   ctaPrimary: string;
@@ -14,86 +16,139 @@ type HeroDict = {
   scroll: string;
 };
 
+type MadridDict = {
+  eyebrow: string;
+  heading: string;
+  headingAccent: string;
+  body: string;
+  addressLabel: string;
+  street: string;
+  cityCountry: string;
+  phoneLabel: string;
+  emailLabel: string;
+  ctaContact: string;
+  ctaMap: string;
+  mapsUrl: string;
+};
+
 export default function Hero({
   locale,
   t,
+  madrid,
 }: {
   locale: Locale;
   t: HeroDict;
+  madrid: MadridDict;
 }) {
   const prefix = locale === "es" ? "" : `/${locale}`;
+  const practices = getServices(locale);
 
   return (
-    <section className="relative bg-ivory">
-      {/* rule above the fold */}
-      <div className="mx-auto max-w-[1360px] px-gutter pt-[calc(var(--header-h)+3rem)] md:pt-[calc(var(--header-h)+5.5rem)]">
-        {/* top metadata */}
-        <div className="flex items-center justify-between border-b border-line pb-4">
-          <p className="eyebrow text-stone">{t.eyebrow}</p>
-          <p className="tabular text-[0.68rem] uppercase tracking-[0.18em] text-stone/80">
-            {t.location}
-          </p>
+    <section className="bg-paper">
+      <div className="mx-auto max-w-[1360px] px-gutter pt-[calc(var(--header-h)+2.5rem)] md:pt-[calc(var(--header-h)+4.5rem)]">
+        <div className="border-b border-line pb-4">
+          <p className="eyebrow">{t.eyebrow}</p>
         </div>
 
-        {/* main composition */}
-        <div className="grid grid-cols-12 gap-x-4 gap-y-10 py-12 md:gap-x-8 md:py-16 lg:gap-y-0">
-          {/* Statement */}
-          <div className="col-span-12 lg:col-span-7 lg:pr-12">
-            <h1 className="font-display text-[clamp(2.6rem,6.2vw,5.6rem)] leading-[1.02] font-medium tracking-[-0.01em]">
-              {t.headline1}{" "}
-              <span className="italic font-normal text-oxblood">{t.headlineAccent}</span>
+        {/* Substantial composition */}
+        <div className="grid grid-cols-12 gap-x-6 gap-y-12 py-10 md:py-14 lg:gap-x-10 lg:py-16">
+          {/* Statement + contact */}
+          <div className="col-span-12 lg:col-span-7">
+            <h1 className="font-display text-[clamp(2.6rem,5.4vw,4.8rem)] leading-[1.04] font-semibold tracking-[-0.01em]">
+              {t.headline1} {t.headline2}
             </h1>
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-navy/70 md:text-lg">
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-slate md:text-lg">
               {t.body}
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-5">
+
+            <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
-                href={`${prefix}/contact`}
-                className="group inline-flex items-center gap-3 bg-navy px-7 py-4 text-[0.72rem] uppercase tracking-[0.16em] font-semibold text-ivory transition-colors duration-300 hover:bg-oxblood"
+                href={`${prefix}/expertise`}
+                className="group inline-flex items-center gap-3 bg-ink px-7 py-4 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-paper transition-colors duration-300 hover:bg-burgundy"
               >
                 {t.ctaPrimary}
-                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+                  →
+                </span>
               </Link>
               <Link
-                href={`${prefix}/firm`}
-                className="link-underline inline-flex items-center text-[0.72rem] uppercase tracking-[0.16em] font-semibold text-navy"
+                href={`${prefix}/contact`}
+                className="inline-flex items-center gap-2 border border-line-strong px-7 py-4 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-ink transition-colors duration-300 hover:border-ink"
               >
                 {t.ctaSecondary}
               </Link>
             </div>
+
+            {/* Practice index — immediate capability signal */}
+            <div className="mt-12 border-t border-line pt-6">
+              <p className="eyebrow">{madrid.eyebrow}</p>
+              <ul className="mt-4 grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+                {practices.map((p) => (
+                  <li key={p.id}>
+                    <Link
+                      href={`${prefix}/expertise#${p.id}`}
+                      className="group flex items-baseline gap-2 text-[0.9rem] leading-snug transition-colors hover:text-burgundy"
+                    >
+                      <span className="h-1 w-1 self-center bg-slate-2 transition-colors group-hover:bg-burgundy" aria-hidden="true" />
+                      {p.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Photograph */}
-          <div className="col-span-12 lg:col-span-5 flex flex-col justify-end">
+          {/* Photography + office details */}
+          <div className="col-span-12 lg:col-span-5">
             <MediaField
               src={imagesConfig.heroArchitecture}
-              alt="Arquitectura — Madrid, sede de CCD Legal Group"
-              corner="Madrid"
-              caption="Príncipe de Vergara 132 · Chamberí"
+              alt="Arquitectura — sede de CCD Legal Group en Madrid"
+              caption={`${madrid.eyebrow} · ${t.location}`}
               priority
-              sizes="(min-width: 1024px) 40vw, 100vw"
-              className="aspect-[4/5] w-full md:aspect-[5/6]"
+              sizes="(min-width: 1024px) 38vw, 100vw"
+              className="aspect-[4/5] w-full"
             />
+
+            <div className="mt-5 grid grid-cols-12 gap-y-4 border-t border-line pt-5">
+              <div className="col-span-12 sm:col-span-6">
+                <p className="eyebrow">{madrid.addressLabel}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink">
+                  {madrid.street}
+                  <br />
+                  {madrid.cityCountry}
+                </p>
+              </div>
+              <div className="col-span-12 sm:col-span-6">
+                <p className="eyebrow">{madrid.phoneLabel}</p>
+                <div className="mt-2 flex flex-col text-sm text-ink">
+                  {siteConfig.phones.map((ph) => (
+                    <a key={ph.tel} href={`tel:${ph.tel}`} className="link-underline w-fit">
+                      {ph.label}
+                    </a>
+                  ))}
+                  <a href={`mailto:${siteConfig.email}`} className="link-underline w-fit mt-0.5">
+                    {siteConfig.email}
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* bottom strip */}
+      {/* Bottom legal-locator strip */}
       <div className="border-t border-line">
-        <div className="mx-auto flex max-w-[1360px] items-center justify-between px-gutter py-4">
-          <div className="flex items-center gap-6 text-[0.66rem] uppercase tracking-[0.2em] text-stone/80">
-            <span>Civil</span>
-            <span className="h-3 w-px bg-line-strong" />
-            <span>Criminal</span>
-            <span className="h-3 w-px bg-line-strong" />
-            <span>Family</span>
-            <span className="h-3 w-px bg-line-strong" />
-            <span>Immigration</span>
-            <span className="h-3 w-px bg-line-strong" />
-            <span className="hidden sm:inline">Business</span>
-          </div>
-          <span className="tabular text-[0.66rem] uppercase tracking-[0.2em] text-stone/80">
-            {t.scroll} ↓
+        <div className="mx-auto flex max-w-[1360px] items-center justify-between px-gutter py-3.5">
+          <a
+            href={madrid.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-underline text-[0.7rem] font-semibold uppercase tracking-[0.14em]"
+          >
+            {madrid.ctaMap} <span aria-hidden="true">↗</span>
+          </a>
+          <span className="tabular text-[0.7rem] uppercase tracking-[0.14em] text-slate-2">
+            {siteConfig.name} · {siteConfig.city}
           </span>
         </div>
       </div>

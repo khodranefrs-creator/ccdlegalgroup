@@ -23,45 +23,42 @@ export default function SectionAdvisory({
   const prefix = locale === "es" ? "" : `/${locale}`;
 
   return (
-    <section className="bg-navy text-ivory border-t border-line-navy">
-      <div className="mx-auto max-w-[1360px] px-gutter py-20 md:py-32">
+    <section className="bg-ink text-paper border-b border-line-ink">
+      <div className="mx-auto max-w-[1360px] px-gutter py-16 md:py-24">
         <Reveal>
-          <div className="grid grid-cols-12 gap-x-4 gap-y-10 md:gap-x-8">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-12 md:gap-x-10">
             <div className="col-span-12 md:col-span-6 lg:col-span-5">
-              <p className="eyebrow text-ivory/50">{t.eyebrow}</p>
-              <h2 className="mt-6 font-display text-[clamp(2.2rem,4.2vw,3.8rem)] leading-[1.02] font-medium">
+              <p className="eyebrow text-paper/50">{t.eyebrow}</p>
+              <h2 className="mt-5 font-display text-[clamp(2.1rem,3.8vw,3.4rem)] leading-[1.05] font-semibold tracking-[-0.01em]">
                 {t.heading}{" "}
-                <span className="italic font-normal text-ivory/80">{t.headingAccent}</span>
+                <span className="font-normal text-paper/70">{t.headingAccent}</span>
               </h2>
-              <div className="mt-8 max-w-md space-y-5 text-[0.98rem] leading-relaxed text-ivory/70">
+              <div className="mt-7 max-w-md space-y-5 text-[0.98rem] leading-relaxed text-paper/70">
                 <p>{t.body1}</p>
                 <p>{t.body2}</p>
               </div>
               <Link
                 href={`${prefix}/contact`}
-                className="group-sweep mt-10 inline-flex items-baseline gap-3 text-ivory"
+                className="link-underline mt-9 inline-flex items-center gap-2 text-[0.74rem] font-semibold uppercase tracking-[0.12em] text-paper"
               >
-                <span className="text-[0.72rem] uppercase tracking-[0.16em] font-semibold">
-                  {t.cta}
-                </span>
-                <span className="font-display text-lg transition-transform duration-300 group-hover:translate-x-1">→</span>
+                {t.cta} <span aria-hidden="true">→</span>
               </Link>
             </div>
 
-            {/* Advisory points — ruled editorial grid */}
+            {/* Advisory points — rule-divided list */}
             <div className="col-span-12 md:col-span-6 lg:col-span-7 md:col-start-7 lg:col-start-8">
-              <div className="border-t border-line-navy">
+              <div className="border-t border-line-ink">
                 {t.points.map((p, i) => (
                   <Reveal
                     key={p.no}
-                    delay={i * 60}
-                    className="grid grid-cols-12 items-baseline gap-x-4 border-b border-line-navy py-5 md:py-6"
+                    delay={i * 50}
+                    className="grid grid-cols-12 items-baseline gap-x-4 border-b border-line-ink py-5 md:gap-x-6"
                   >
-                    <span className="col-span-2 tabular text-[0.7rem] text-ivory/40">{p.no}</span>
+                    <span className="col-span-2 tabular text-[0.72rem] text-paper/40">{p.no}</span>
                     <div className="col-span-10 md:col-span-4">
-                      <span className="font-display text-[1.25rem] font-light text-ivory">{p.title}</span>
+                      <span className="font-display text-[1.35rem] leading-tight text-paper">{p.title}</span>
                     </div>
-                    <p className="col-span-10 md:col-span-6 md:col-start-7 text-sm leading-relaxed text-ivory/60">
+                    <p className="col-span-10 md:col-span-6 md:col-start-7 text-[0.92rem] leading-relaxed text-paper/60">
                       {p.body}
                     </p>
                   </Reveal>

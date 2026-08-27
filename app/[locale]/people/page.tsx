@@ -40,7 +40,7 @@ export default async function PeoplePage({
       <PageHero eyebrow={p.eyebrow} titleLines={p.titleLines} lead={p.lead} />
       <SectionPeople locale={lc} t={t.people} />
       <SectionMadrid locale={lc} t={t.madrid} />
-      <SectionContact locale={lc} t={t.contact} form={t.form} />
+      <SectionContact t={t.contact} form={t.form} />
     </>
   );
 }

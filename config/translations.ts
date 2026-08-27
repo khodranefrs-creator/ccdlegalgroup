@@ -37,15 +37,28 @@ export const translations = {
 
     nav: {
       about: "El Despacho",
-      practices: "Áreas de Práctica",
+      practices: "Práctica",
       people: "Abogados",
       insights: "Perspectivas",
       contact: "Contacto",
-      cta: "Contactar",
+      cta: "Contacto",
       menu: "Menú",
       close: "Cerrar",
       city: "Madrid",
       back: "Volver",
+      search: "Buscar",
+      openSearch: "Abrir búsqueda",
+      closeSearch: "Cerrar búsqueda",
+      searchPlaceholder: "Buscar prácticas, abogados, perspectivas…",
+      searchHint: "Introduzca un término para buscar en el despacho.",
+      searchResults: "Resultados",
+      searchNone: "Sin resultados",
+      searchNoneBody: "No hemos encontrado coincidencias. Pruebe con otro término o contacte con el despacho.",
+      searchPractice: "Práctica",
+      searchPeople: "Personas",
+      searchInsight: "Perspectiva",
+      searchPage: "Página",
+      searchGo: "Abrir",
     },
 
     footer: {
@@ -75,23 +88,23 @@ export const translations = {
     hero: {
       eyebrow: "Abogados y Asesoría de Negocio — Madrid",
       headline1: "Consejo jurídico",
-      headline2: "para decisiones complejas.",
-      headlineAccent: "para decisiones complejas.",
-      body: "CCD Legal Group es un despacho boutique en Madrid que combina rigor legal con una perspectiva de negocio: claridad, discreción y estrategia en cada asunto.",
-      ctaPrimary: "Solicitar una consulta",
-      ctaSecondary: "Conocer el despacho",
-      location: "Príncipe de Vergara 132 · Madrid",
+      headline2: "para asuntos complejos.",
+      headlineAccent: "para asuntos complejos.",
+      body: "CCD Legal Group presta consejo y representación estratégica en derecho civil, penal, de familia, extranjería y asesoría de negocio. Un despacho en Madrid con atención directa y rigurosa a cada cliente.",
+      ctaPrimary: "Conocer las áreas de práctica",
+      ctaSecondary: "Contactar con el despacho",
+      location: "Príncipe de Vergara 132 · 28002 Madrid",
       scroll: "Descubrir",
     },
 
     firmIntro: {
       eyebrow: "El Despacho",
-      heading: "Consejo construido",
-      headingAccent: "alrededor de la materia.",
+      heading: "Acerca de",
+      headingAccent: "CCD Legal Group.",
       body1:
-        "CCD Legal Group es un despacho de abogados y asesoría de negocio con sede en Madrid. Prestamos consejo en asuntos de derecho civil, penal, de familia y extranjería, a la vez que acompañamos a personas y empresas en sus decisiones legales y de negocio más relevantes.",
+        "CCD Legal Group es un despacho de abogados y asesoría de negocio con sede en Madrid. Prestamos consejo jurídico y representación en asuntos de derecho civil, penal, de familia y extranjería, y acompañamos a personas, familias, profesionales y empresas en sus decisiones legales y de negocio.",
       body2:
-        "Trabajamos con pocos asuntos y mucha atención: cada cliente recibe un interlocutor directo, un análisis claro y una respuesta orientada a resultados.",
+        "Nuestra forma de trabajar combina el análisis jurídico con la visión estratégica y la atención cercana. Cada materia recibe un interlocutor directo y una respuesta clara y orientada a resultados.",
       metaTitle: "Madrid · España",
       meta1: "Legal",
       meta2: "Business",
@@ -103,15 +116,15 @@ export const translations = {
     practices: {
       eyebrow: "Áreas de Práctica",
       heading: "Áreas de práctica",
-      headingAccent: "representativas",
+      headingAccent: "principales",
       intro:
-        "Nuestro trabajo se organiza en cinco grandes áreas. Cada una responde a una necesidad real de nuestros clientes.",
+        "El trabajo del despacho se organiza en cinco áreas que responden a las necesidades reales de personas y empresas: civiles, penales, de familia, de extranjería y de negocio.",
       servicesLabel: "Ámbitos de actuación",
       consult: "Consultar un asunto",
-      explore: "Explorar",
+      explore: "Explorar esta área",
       slideLabel: "Práctica",
       note:
-        "Los ámbitos de actuación descritos son orientativos y pueden ajustarse a las circunstancias concretas de cada asunto.",
+        "Los ámbitos descritos son orientativos y pueden ajustarse a las circunstancias concretas de cada asunto.",
     },
 
     advisory: {
@@ -135,9 +148,9 @@ export const translations = {
 
     people: {
       eyebrow: "Abogados",
-      heading: "Las personas",
-      headingAccent: "detrás del consejo.",
-      sub: "Una firma boutique se define por la calidad de sus profesionales. Nuestra fundadora lidera cada asunto personalmente.",
+      heading: "Nuestro equipo",
+      headingAccent: "de abogados.",
+      sub: "Un despacho boutique se define por la calidad de sus profesionales. Conozca quién lidera CCD Legal Group.",
       name: "Carolina Cutilla Díaz",
       role: "Abogada · Criminóloga · Fundadora",
       roleLabel1: "Abogada",
@@ -151,25 +164,25 @@ export const translations = {
         "Carolina Cutilla Díaz es abogada y criminóloga, fundadora de CCD Legal Group. Dirige el despacho con un enfoque en el consejo directo, el rigor técnico y la comprensión profunda de cada cliente.",
       bio2:
         "Su recorrido combina el ejercicio del derecho con la mirada criminológica, lo que aporta una lectura distinta de los conflictos y de la estrategia procesal.",
-      cta: "Solicitar una consulta",
+      cta: "Contactar con el despacho",
       profileNote:
         "Perfil profesional. Los datos de formación y colegiación se actualizarán de forma verificada.",
     },
 
     why: {
       eyebrow: "Por qué CCD",
-      heading: "Un despacho",
-      headingAccent: "pensado para el cliente.",
+      heading: "Cómo trabajamos",
+      headingAccent: "con cada cliente.",
       intro:
-        "La diferencia no está en el número de asuntos, sino en la calidad del consejo y en la relación que establecemos con cada cliente.",
-      note: "Sin cifras ni promesas vacías: el valor está en el trabajo.",
+        "La diferencia de un despacho no está en el número de asuntos, sino en la calidad del consejo y en la relación que establece con cada cliente. Estos son los principios que guían nuestra práctica.",
+      note: "Valores del despacho. No publicamos cifras ni resultados que no estén verificados.",
       items: [
-        { no: "01", title: "Consejo directo", body: "Habla siempre con el abogado, no con un intermediario." },
-        { no: "02", title: "Perspectiva de negocio", body: "Comprendemos lo que está en juego más allá de lo jurídico." },
-        { no: "03", title: "Atención personal", body: "Pocos asuntos, trato cercano y seguimiento continuo." },
-        { no: "04", title: "Pensamiento estratégico", body: "Anticipamos escenarios y planificamos la decisión." },
-        { no: "05", title: "Confidencialidad", body: "Discreción absoluta en todo lo que nos confías." },
-        { no: "06", title: "Perspectiva internacional", body: "Sensibilidad para clientes y asuntos transfronterizos." },
+        { no: "01", title: "Consejo personalizado", body: "Cada asunto recibe una estrategia a medida, adaptada al cliente y a sus objetivos reales." },
+        { no: "02", title: "Enfoque estratégico", body: "Anticipamos escenarios y planificamos la decisión antes de actuar." },
+        { no: "03", title: "Consejo multidisciplinar", body: "Coordinamos las distintas ramas del derecho para ofrecer una solución integral." },
+        { no: "04", title: "Comprensión del negocio", body: "Entendemos lo que está en juego más allá de lo jurídico para cuidar también los intereses comerciales." },
+        { no: "05", title: "Acceso directo", body: "El cliente habla siempre con el abogado, sin intermediarios ni esperas." },
+        { no: "06", title: "Confidencialidad", body: "Discreción absoluta en toda la información que nos confía." },
       ],
     },
 
@@ -207,10 +220,10 @@ export const translations = {
 
     contact: {
       eyebrow: "Contacto",
-      heading1: "Hablemos",
-      heading2: "de su asunto.",
+      heading1: "Contacte con",
+      heading2: "CCD Legal Group.",
       body:
-        "Puede escribirnos mediante el formulario o contactar directamente con el despacho. Respondemos con la máxima confidencialidad.",
+        "Cuéntenos su asunto. Puede escribirnos mediante el formulario o contactar directamente con el despacho; responderemos con la máxima confidencialidad.",
       callLabel: "Teléfono",
       emailLabel: "Email",
       locationLabel: "Oficina",
@@ -218,25 +231,27 @@ export const translations = {
       directLabel: "Contacto directo",
       cta: "Contactar con CCD Legal Group",
       ctaSecondary: "despacho@abogadoscutilladiaz.es",
-      formTitle: "Solicitar una consulta",
+      formTitle: "Envíe su consulta",
       note: "Sus datos se tratan de forma confidencial y únicamente para responder a su consulta.",
     },
 
     form: {
-      nameLabel: "Nombre",
+      nameLabel: "Nombre completo",
       emailLabel: "Email",
-      phoneLabel: "Teléfono (opcional)",
-      matterLabel: "Materia / consulta",
+      phoneLabel: "Teléfono",
+      matterLabel: "Tipo de asunto",
       messageLabel: "Mensaje",
-      submit: "Contactar con CCD Legal Group",
+      submit: "Enviar consulta",
       privacyNote: "Al enviar, acepta el tratamiento de sus datos conforme a nuestra política de privacidad.",
+      disclaimer:
+        "El envío de información a través de este formulario no crea una relación abogado-cliente. No facilite información confidencial hasta que no se haya constituido formalmente la relación profesional.",
     },
 
     firmPage: {
       eyebrow: "El Despacho",
-      titleLines: ["Consejo construido", "alrededor de la materia."],
+      titleLines: ["Acerca de", "CCD Legal Group."],
       lead:
-        "CCD Legal Group es un despacho de abogados y asesoría de negocio con sede en Madrid. Trabajamos con pocos asuntos y mucha atención.",
+        "CCD Legal Group es un despacho de abogados y asesoría de negocio con sede en Madrid. Prestamos consejo jurídico y representación, combinando el análisis legal con la visión estratégica y la atención cercana.",
       philosophyHeading: "Una forma de ejercer",
       philosophyHeadingAccent: "la abogacía",
       philosophyIntro:
@@ -247,40 +262,40 @@ export const translations = {
         { no: "03", title: "Discreción", body: "Confidencialidad y prudencia en toda relación profesional." },
         { no: "04", title: "Compromiso", body: "Asumimos cada asunto como propio y respondemos con celeridad." },
       ],
-      cta: "Hablar con el despacho",
+      cta: "Contactar con el despacho",
     },
 
     practicesPage: {
       eyebrow: "Áreas de Práctica",
-      titleLines: ["Áreas de práctica", "representativas"],
+      titleLines: ["Áreas de", "práctica principales."],
       lead:
-        "Nuestro trabajo se organiza en cinco áreas que responden a necesidades reales de personas y empresas en Madrid.",
+        "El trabajo del despacho se organiza en cinco áreas que responden a las necesidades reales de personas y empresas en Madrid.",
     },
 
     peoplePage: {
       eyebrow: "Abogados",
-      titleLines: ["Las personas", "detrás del consejo."],
+      titleLines: ["Nuestro equipo", "de abogados."],
       lead:
-        "Una firma boutique se define por la calidad de sus profesionales. Conozca quién lidera CCD Legal Group.",
+        "Un despacho se define por la calidad de sus profesionales. Conozca quién lidera CCD Legal Group.",
     },
 
     insightsPage: {
       eyebrow: "Perspectivas",
-      titleLines: ["Perspectivas", "del despacho"],
+      titleLines: ["Perspectivas", "del despacho."],
       lead:
         "Análisis y comentarios sobre derecho, criminología y negocio, escritos desde la práctica diaria.",
     },
 
     contactPage: {
       eyebrow: "Contacto",
-      titleLines: ["Hablemos de", "su asunto."],
+      titleLines: ["Contacte con", "CCD Legal Group."],
       lead:
-        "Complete el formulario o contacte directamente. Atendemos su consulta con la máxima confidencialidad.",
+        "Cuéntenos su asunto. Complete el formulario o contacte directamente; atendemos su consulta con la máxima confidencialidad.",
       directLabel: "Contacto directo",
       callLabel: "Teléfono",
       emailLabel: "Email",
       locationLabel: "Oficina",
-      mapTitle: "Encuéntranos en Madrid",
+      mapTitle: "Encuéntrenos en Madrid",
       mapAddress: "Príncipe de Vergara 132, 28002 Madrid",
     },
 
@@ -355,6 +370,19 @@ export const translations = {
       close: "Close",
       city: "Madrid",
       back: "Back",
+      search: "Search",
+      openSearch: "Open search",
+      closeSearch: "Close search",
+      searchPlaceholder: "Search practices, lawyers, insights…",
+      searchHint: "Enter a term to search across the firm.",
+      searchResults: "Results",
+      searchNone: "No results",
+      searchNoneBody: "We found no matches. Try another term or contact the firm.",
+      searchPractice: "Practice",
+      searchPeople: "People",
+      searchInsight: "Insight",
+      searchPage: "Page",
+      searchGo: "Open",
     },
 
     footer: {
@@ -384,23 +412,23 @@ export const translations = {
     hero: {
       eyebrow: "Legal & Business Advisory — Madrid",
       headline1: "Legal counsel",
-      headline2: "for complex decisions.",
-      headlineAccent: "for complex decisions.",
-      body: "CCD Legal Group is a boutique firm in Madrid combining legal rigour with a business perspective: clarity, discretion and strategy in every matter.",
-      ctaPrimary: "Request a consultation",
-      ctaSecondary: "About the firm",
-      location: "Príncipe de Vergara 132 · Madrid",
+      headline2: "for complex matters.",
+      headlineAccent: "for complex matters.",
+      body: "CCD Legal Group provides strategic legal representation across civil, criminal, family and immigration law, together with business and legal advisory. A Madrid firm offering direct, rigorous attention to every client.",
+      ctaPrimary: "Explore our practice areas",
+      ctaSecondary: "Contact the firm",
+      location: "Príncipe de Vergara 132 · 28002 Madrid",
       scroll: "Discover",
     },
 
     firmIntro: {
       eyebrow: "The Firm",
-      heading: "Counsel built",
-      headingAccent: "around the matter.",
+      heading: "About",
+      headingAccent: "CCD Legal Group.",
       body1:
-        "CCD Legal Group is a law and business advisory firm based in Madrid. We provide counsel across civil, criminal, family and immigration law while supporting people and businesses in their wider legal and business decisions.",
+        "CCD Legal Group is a law and business advisory firm based in Madrid. We provide legal counsel and representation across civil, criminal, family and immigration law, and support individuals, families, professionals and companies in their wider legal and business decisions.",
       body2:
-        "We take on a limited number of matters and give them undivided attention: every client works with a direct contact, a clear analysis and a response focused on outcomes.",
+        "Our approach combines legal analysis with strategic thinking and close client attention. Every matter is handled by a direct contact, with a clear analysis and a response focused on outcomes.",
       metaTitle: "Madrid · Spain",
       meta1: "Legal",
       meta2: "Business",
@@ -412,12 +440,12 @@ export const translations = {
     practices: {
       eyebrow: "Practice Areas",
       heading: "Practice areas",
-      headingAccent: "representative",
+      headingAccent: "principal",
       intro:
-        "Our work is organised across five principal areas, each responding to a real need of our clients.",
+        "Our work is organised across five principal areas responding to the real needs of individuals and companies: civil, criminal, family, immigration and business.",
       servicesLabel: "Areas of work",
       consult: "Consult a matter",
-      explore: "Explore",
+      explore: "Explore this area",
       slideLabel: "Practice",
       note:
         "The areas described are indicative and can be adjusted to the specific circumstances of each matter.",
@@ -444,9 +472,9 @@ export const translations = {
 
     people: {
       eyebrow: "People",
-      heading: "The people",
-      headingAccent: "behind the counsel.",
-      sub: "A boutique firm is defined by the calibre of its professionals. Our founder leads every matter personally.",
+      heading: "Our team",
+      headingAccent: "of lawyers.",
+      sub: "A boutique firm is defined by the calibre of its professionals. Meet who leads CCD Legal Group.",
       name: "Carolina Cutilla Díaz",
       role: "Lawyer · Criminologist · Founder",
       roleLabel1: "Lawyer",
@@ -460,25 +488,25 @@ export const translations = {
         "Carolina Cutilla Díaz is a lawyer and criminologist and the founder of CCD Legal Group. She leads the firm with a focus on direct counsel, technical rigour and a deep understanding of each client.",
       bio2:
         "Her career combines the practice of law with a criminological perspective, bringing a distinct reading of conflicts and of procedural strategy.",
-      cta: "Request a consultation",
+      cta: "Contact the firm",
       profileNote:
         "Professional profile. Verified details of education and bar membership will be added as they are confirmed.",
     },
 
     why: {
       eyebrow: "Why CCD",
-      heading: "A firm",
-      headingAccent: "designed for the client.",
+      heading: "How we work",
+      headingAccent: "with each client.",
       intro:
-        "The difference lies not in the number of matters, but in the quality of the counsel and the relationship we build with each client.",
-      note: "No figures, no empty promises — the value is in the work.",
+        "A firm's difference lies not in the number of matters but in the quality of the counsel and the relationship it builds with each client. These are the principles that guide our practice.",
+      note: "Firm values. We do not publish figures or outcomes that are not verified.",
       items: [
-        { no: "01", title: "Direct counsel", body: "You always speak with the lawyer, not an intermediary." },
-        { no: "02", title: "Business perspective", body: "We understand what is at stake beyond the legal." },
-        { no: "03", title: "Personal attention", body: "A limited number of matters and continuous follow-up." },
-        { no: "04", title: "Strategic thinking", body: "We anticipate scenarios and plan the decision." },
-        { no: "05", title: "Confidentiality", body: "Absolute discretion in all that you entrust to us." },
-        { no: "06", title: "International outlook", body: "Sensitivity for cross-border clients and matters." },
+        { no: "01", title: "Personalised counsel", body: "Every matter receives a tailored strategy, adapted to the client and to their real objectives." },
+        { no: "02", title: "Strategic approach", body: "We anticipate scenarios and plan the decision before acting." },
+        { no: "03", title: "Multidisciplinary advice", body: "We coordinate across the branches of law to deliver an integrated solution." },
+        { no: "04", title: "Business understanding", body: "We see beyond the legal to protect commercial interests as well." },
+        { no: "05", title: "Direct client access", body: "The client always speaks with the lawyer — no intermediaries, no waiting." },
+        { no: "06", title: "Confidentiality", body: "Absolute discretion in all information entrusted to us." },
       ],
     },
 
@@ -516,10 +544,10 @@ export const translations = {
 
     contact: {
       eyebrow: "Contact",
-      heading1: "Let's discuss",
-      heading2: "your matter.",
+      heading1: "Contact",
+      heading2: "CCD Legal Group.",
       body:
-        "You can write to us via the form or contact the firm directly. We respond with complete confidentiality.",
+        "Tell us about your legal matter. Complete the form or contact the firm directly; we respond with complete confidentiality.",
       callLabel: "Telephone",
       emailLabel: "Email",
       locationLabel: "Office",
@@ -527,25 +555,27 @@ export const translations = {
       directLabel: "Direct contact",
       cta: "Contact CCD Legal Group",
       ctaSecondary: "despacho@abogadoscutilladiaz.es",
-      formTitle: "Request a consultation",
+      formTitle: "Send your enquiry",
       note: "Your details are treated confidentially and used only to respond to your enquiry.",
     },
 
     form: {
-      nameLabel: "Name",
+      nameLabel: "Full name",
       emailLabel: "Email",
-      phoneLabel: "Phone (optional)",
-      matterLabel: "Matter / enquiry",
+      phoneLabel: "Phone",
+      matterLabel: "Matter type",
       messageLabel: "Message",
-      submit: "Contact CCD Legal Group",
+      submit: "Send enquiry",
       privacyNote: "By sending, you accept the processing of your data in accordance with our privacy policy.",
+      disclaimer:
+        "Submitting information through this form does not create an attorney-client relationship. Do not send confidential information until a professional relationship has been formally established.",
     },
 
     firmPage: {
       eyebrow: "The Firm",
-      titleLines: ["Counsel built", "around the matter."],
+      titleLines: ["About", "CCD Legal Group."],
       lead:
-        "CCD Legal Group is a law and business advisory firm based in Madrid. We take on a limited number of matters and give them undivided attention.",
+        "CCD Legal Group is a law and business advisory firm based in Madrid. We provide legal counsel and representation, combining legal analysis with strategic thinking and close client attention.",
       philosophyHeading: "A way of practising",
       philosophyHeadingAccent: "the law",
       philosophyIntro:
@@ -556,35 +586,35 @@ export const translations = {
         { no: "03", title: "Discretion", body: "Confidentiality and prudence in every professional relationship." },
         { no: "04", title: "Commitment", body: "We treat each matter as our own and respond with speed." },
       ],
-      cta: "Talk to the firm",
+      cta: "Contact the firm",
     },
 
     practicesPage: {
       eyebrow: "Practice Areas",
-      titleLines: ["Practice areas", "representative"],
+      titleLines: ["Principal", "practice areas."],
       lead:
         "Our work is organised across five areas that respond to the real needs of individuals and companies in Madrid.",
     },
 
     peoplePage: {
       eyebrow: "People",
-      titleLines: ["The people", "behind the counsel."],
+      titleLines: ["Our team", "of lawyers."],
       lead:
-        "A boutique firm is defined by the calibre of its professionals. Meet who leads CCD Legal Group.",
+        "A firm is defined by the calibre of its professionals. Meet who leads CCD Legal Group.",
     },
 
     insightsPage: {
       eyebrow: "Insights",
-      titleLines: ["Insights", "from the firm"],
+      titleLines: ["Insights", "from the firm."],
       lead:
         "Analysis and commentary on law, criminology and business, written from daily practice.",
     },
 
     contactPage: {
       eyebrow: "Contact",
-      titleLines: ["Let's discuss", "your matter."],
+      titleLines: ["Contact", "CCD Legal Group."],
       lead:
-        "Complete the form or contact us directly. We handle your enquiry with complete confidentiality.",
+        "Tell us about your legal matter. Complete the form or contact us directly; we handle your enquiry with complete confidentiality.",
       directLabel: "Direct contact",
       callLabel: "Telephone",
       emailLabel: "Email",

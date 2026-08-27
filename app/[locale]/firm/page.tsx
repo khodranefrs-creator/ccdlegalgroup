@@ -42,7 +42,7 @@ export default async function FirmPage({
       <SectionFirmIntro locale={lc} t={t.firmIntro} />
       <SectionWhy t={t.why} />
       <SectionMadrid locale={lc} t={t.madrid} />
-      <SectionContact locale={lc} t={t.contact} form={t.form} />
+      <SectionContact t={t.contact} form={t.form} />
     </>
   );
 }

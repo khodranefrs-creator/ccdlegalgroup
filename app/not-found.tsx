@@ -6,9 +6,10 @@ export default function NotFound() {
       <body
         style={{
           margin: 0,
-          background: "#151b20",
-          color: "#fbf9f5",
-          fontFamily: "ui-sans-serif, system-ui, sans-serif",
+          background: "#0d1419",
+          color: "#fcfcfd",
+          fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif",
+          WebkitFontSmoothing: "antialiased",
         }}
       >
         <div
@@ -18,36 +19,47 @@ export default function NotFound() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            gap: "1.5rem",
+            gap: "1.25rem",
             padding: "2rem",
             textAlign: "center",
           }}
         >
-          <p style={{ letterSpacing: "0.25em", textTransform: "uppercase", fontSize: "0.8rem", color: "#8c3044" }}>
-            Error 404
+          <p
+            style={{
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              fontSize: "0.72rem",
+              fontWeight: 600,
+              color: "#a8adb3",
+            }}
+          >
+            Error 404 · Page not found
           </p>
           <h1
             style={{
-              fontFamily: "Georgia, 'Times New Roman', serif",
-              fontWeight: 400,
-              fontSize: "clamp(2.5rem, 8vw, 5rem)",
-              lineHeight: 1,
+              fontFamily: "'Source Serif 4', Georgia, serif",
+              fontWeight: 600,
+              fontSize: "clamp(2.4rem, 8vw, 4.6rem)",
+              lineHeight: 1.06,
               margin: 0,
+              letterSpacing: "-0.01em",
             }}
           >
-            Materia no
+            La página no
             <br />
-            encontrada
+            se ha encontrado
           </h1>
           <Link
             href="/"
             style={{
-              marginTop: "1rem",
-              fontSize: "0.75rem",
-              letterSpacing: "0.18em",
+              marginTop: "1.25rem",
+              fontSize: "0.74rem",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
               fontWeight: 600,
-              color: "#8c3044",
+              color: "#fcfcfd",
+              borderBottom: "1px solid currentColor",
+              paddingBottom: "2px",
             }}
           >
             Volver al inicio →

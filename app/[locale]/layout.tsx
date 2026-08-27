@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Newsreader, Manrope } from "next/font/google";
+import { Source_Serif_4, Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 
@@ -12,21 +12,20 @@ export const locales = ["es", "en"] as const;
 export const defaultLocale: Locale = "es";
 
 export const viewport: Viewport = {
-  themeColor: "#151b20",
+  themeColor: "#0d1419",
   width: "device-width",
   initialScale: 1,
 };
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
@@ -93,9 +92,9 @@ export default async function RootLayout({
   return (
     <html
       lang={locale === "es" ? "es" : "en"}
-      className={`${newsreader.variable} ${manrope.variable} antialiased`}
+      className={`${sourceSerif.variable} ${inter.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col bg-ivory text-navy">
+      <body className="min-h-screen flex flex-col bg-paper text-ink">
         <SiteHeader locale={locale} nav={dict.nav} />
         <main className="flex-1">{children}</main>
         <SiteFooter locale={locale} footer={dict.footer} nav={dict.nav} />

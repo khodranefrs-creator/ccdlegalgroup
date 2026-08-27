@@ -42,7 +42,7 @@ export default async function PracticesPage({
       <PageHero eyebrow={p.eyebrow} titleLines={p.titleLines} lead={p.lead} />
       <PracticeDirectory locale={lc} t={t.practices} practices={services} />
       <SectionAdvisory locale={lc} t={t.advisory} />
-      <SectionContact locale={lc} t={t.contact} form={t.form} />
+      <SectionContact t={t.contact} form={t.form} />
     </>
   );
 }

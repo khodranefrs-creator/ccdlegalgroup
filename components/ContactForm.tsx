@@ -11,6 +11,7 @@ type FormDict = {
   messageLabel: string;
   submit: string;
   privacyNote: string;
+  disclaimer: string;
 };
 
 export default function ContactForm({
@@ -41,12 +42,10 @@ export default function ContactForm({
     window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
   }
 
-  const wrap = dark
-    ? "text-ivory caret-ivory"
-    : "text-navy caret-navy";
-  const label = dark ? "text-ivory/60" : "text-stone";
-  const border = dark ? "border-line-navy focus:border-oxblood-2" : "border-line focus:border-oxblood";
-  const placeholder = dark ? "placeholder:text-ivory/35" : "placeholder:text-stone/60";
+  const wrap = dark ? "text-paper caret-paper" : "text-ink caret-ink";
+  const label = dark ? "text-paper/60" : "text-slate";
+  const border = dark ? "border-line-ink focus:border-paper/80" : "border-line focus:border-ink";
+  const placeholder = dark ? "placeholder:text-paper/35" : "placeholder:text-slate/55";
 
   const field = `w-full border-b bg-transparent py-3 text-[0.95rem] outline-none transition-colors duration-300 ${wrap} ${border} ${placeholder}`;
 
@@ -69,6 +68,10 @@ export default function ContactForm({
       />
     </label>
   );
+
+  const ctaBtn = dark
+    ? "bg-paper text-ink hover:bg-paper/85"
+    : "bg-ink text-paper hover:bg-burgundy";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -99,13 +102,18 @@ export default function ContactForm({
         <button
           type="submit"
           disabled={submitting}
-          className="group inline-flex items-center justify-center gap-3 bg-oxblood px-7 py-4 text-[0.7rem] uppercase tracking-[0.16em] font-semibold text-ivory transition-colors duration-300 hover:bg-oxblood-2 disabled:opacity-60 self-start"
+          className={`group inline-flex items-center justify-center gap-3 self-start px-7 py-4 text-[0.7rem] font-semibold uppercase tracking-[0.12em] transition-colors duration-300 disabled:opacity-60 ${ctaBtn}`}
         >
           {dict.submit}
           <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
         </button>
-        <p className={`max-w-md text-xs leading-relaxed ${dark ? "text-ivory/40" : "text-stone"}`}>
+        <p
+          className={`max-w-xl border-t pt-3 text-xs leading-relaxed ${
+            dark ? "border-line-ink text-paper/45" : "border-line text-slate"
+          }`}
+        >
           {dict.privacyNote}
+          <span className="mt-2 block">{dict.disclaimer}</span>
         </p>
       </div>
     </form>

@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getServices } from "@/config/services";
+import { getSearchIndex } from "@/config/search";
 import { siteConfig, type Locale } from "@/config/site";
 import LanguageSwitch from "./LanguageSwitch";
 
-type NavDict = {
+export type NavDict = {
   about: string;
   practices: string;
   people: string;
@@ -18,6 +19,19 @@ type NavDict = {
   close: string;
   city: string;
   back: string;
+  search: string;
+  openSearch: string;
+  closeSearch: string;
+  searchPlaceholder: string;
+  searchHint: string;
+  searchResults: string;
+  searchNone: string;
+  searchNoneBody: string;
+  searchPractice: string;
+  searchPeople: string;
+  searchInsight: string;
+  searchPage: string;
+  searchGo: string;
 };
 
 export default function SiteHeader({
@@ -31,23 +45,28 @@ export default function SiteHeader({
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const practices = getServices(locale);
+  const index = getSearchIndex(locale);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    document.body.style.overflow = menuOpen || searchOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [menuOpen]);
+  }, [menuOpen, searchOpen]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        setSearchOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
@@ -63,43 +82,29 @@ export default function SiteHeader({
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-          scrolled || menuOpen
-            ? "bg-navy text-ivory shadow-[0_1px_0_var(--color-line-navy)]"
-            : "bg-transparent text-navy"
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+          searchOpen
+            ? "bg-ink text-paper"
+            : menuOpen
+            ? "bg-ink text-paper"
+            : "bg-paper/95 text-ink backdrop-blur-sm border-b border-line"
         }`}
       >
-        <div
-          className={`mx-auto flex max-w-[1360px] items-center justify-between px-gutter transition-[padding] duration-300 ${
-            scrolled ? "h-16" : "h-20"
-          }`}
-        >
-          {/* Logo */}
+        <div className="mx-auto flex h-[72px] max-w-[1360px] items-center justify-between px-gutter">
+          {/* Logo / wordmark */}
           <Link
             href={prefix || "/"}
             className="flex items-center gap-3"
             aria-label={siteConfig.name}
           >
-            <span className="flex h-9 w-9 items-center justify-center border border-current">
-              <span className="font-display text-lg font-semibold leading-none">CCD</span>
-            </span>
-            <span className="leading-tight">
-              <span className="block font-display text-[1.05rem] font-semibold tracking-tight">
-                CCD Legal Group
-              </span>
-              <span
-                className={`block text-[0.58rem] uppercase tracking-[0.24em] ${
-                  scrolled || menuOpen ? "text-ivory/60" : "text-stone/70"
-                }`}
-              >
-                {nav.city} · Legal & Business
-              </span>
+            <span className="font-display text-[1.15rem] font-semibold leading-none tracking-tight">
+              CCD Legal Group
             </span>
           </Link>
 
           {/* Desktop nav */}
           <nav
-            className="hidden items-center gap-7 lg:flex"
+            className="hidden items-center gap-8 lg:flex"
             aria-label="Primary"
             onMouseLeave={() => setMegaOpen(false)}
           >
@@ -110,16 +115,18 @@ export default function SiteHeader({
                   type="button"
                   onMouseEnter={() => setMegaOpen(true)}
                   onFocus={() => setMegaOpen(true)}
-                  className={`relative text-[0.72rem] uppercase tracking-[0.16em] transition-colors duration-200 ${
-                    isActive(item.href) ? "text-oxblood-2 font-semibold" : "opacity-85 hover:opacity-100"
+                  className={`relative pb-1 text-[0.82rem] font-medium transition-colors duration-200 ${
+                    megaOpen || isActive(item.href)
+                      ? "text-burgundy"
+                      : "text-ink hover:text-ink/60"
                   }`}
                   aria-haspopup="true"
                   aria-expanded={megaOpen}
                 >
                   {item.label}
                   <span
-                    className={`absolute -left-0.5 -right-0.5 bottom-[-4px] h-px origin-left scale-x-0 bg-oxblood-2 transition-transform duration-300 ${
-                      megaOpen || isActive(item.href) ? "scale-x-100" : ""
+                    className={`absolute inset-x-0 bottom-0 h-px origin-left bg-burgundy transition-transform duration-300 ${
+                      megaOpen || isActive(item.href) ? "scale-x-100" : "scale-x-0"
                     }`}
                   />
                 </button>
@@ -128,14 +135,16 @@ export default function SiteHeader({
                   key={item.id}
                   href={item.href}
                   onMouseEnter={() => setMegaOpen(false)}
-                  className={`relative text-[0.72rem] uppercase tracking-[0.16em] transition-colors duration-200 ${
-                    isActive(item.href) ? "text-oxblood-2 font-semibold" : "opacity-85 hover:opacity-100"
+                  className={`relative pb-1 text-[0.82rem] font-medium transition-colors duration-200 ${
+                    isActive(item.href)
+                      ? "text-burgundy"
+                      : "text-ink hover:text-ink/60"
                   }`}
                 >
                   {item.label}
                   <span
-                    className={`absolute -left-0.5 -right-0.5 bottom-[-4px] h-px origin-left scale-x-0 bg-oxblood-2 transition-transform duration-300 ${
-                      isActive(item.href) ? "scale-x-100" : ""
+                    className={`absolute inset-x-0 bottom-0 h-px origin-left bg-burgundy transition-transform duration-300 ${
+                      isActive(item.href) ? "scale-x-100" : "scale-x-0"
                     }`}
                   />
                 </Link>
@@ -144,29 +153,47 @@ export default function SiteHeader({
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-4">
-            <LanguageSwitch locale={locale} />
+          <div className="flex items-center gap-5">
+            <button
+              type="button"
+              onClick={() => setSearchOpen((v) => !v)}
+              className="flex items-center gap-2 text-[0.78rem] font-medium transition-colors hover:text-burgundy"
+              aria-label={searchOpen ? nav.closeSearch : nav.openSearch}
+              aria-expanded={searchOpen}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-current">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
+                <path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <span className="hidden sm:inline">{nav.search}</span>
+            </button>
+
+            <div className="hidden lg:block">
+              <LanguageSwitch locale={locale} />
+            </div>
+
             <Link
               href={`${prefix}/contact`}
-              className="hidden items-center gap-2 bg-oxblood px-5 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] font-semibold text-ivory transition-colors duration-300 hover:bg-oxblood-2 md:inline-flex"
+              className="hidden items-center gap-2 bg-ink px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-paper transition-colors duration-300 hover:bg-burgundy md:inline-flex"
             >
               {nav.cta}
             </Link>
+
             <button
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.16em] lg:hidden"
+              className="flex items-center gap-2 lg:hidden"
               aria-label={menuOpen ? nav.close : nav.menu}
               aria-expanded={menuOpen}
             >
-              <span className="relative block h-3 w-5">
+              <span className="relative block h-3.5 w-5">
                 <span
                   className={`absolute left-0 top-0 h-px w-5 bg-current transition-transform duration-300 ${
                     menuOpen ? "translate-y-1.5 rotate-45" : ""
                   }`}
                 />
                 <span
-                  className={`absolute left-0 top-1.5 h-px w-5 bg-current transition-opacity ${
+                  className={`absolute left-0 top-1.5 h-px w-5 bg-current transition-opacity duration-300 ${
                     menuOpen ? "opacity-0" : ""
                   }`}
                 />
@@ -176,43 +203,52 @@ export default function SiteHeader({
                   }`}
                 />
               </span>
-              <span className="hidden sm:inline">{menuOpen ? nav.close : nav.menu}</span>
+              <span className="text-[0.78rem] font-medium">
+                {menuOpen ? nav.close : nav.menu}
+              </span>
             </button>
           </div>
         </div>
 
-        {/* Mega navigation — practices */}
+        {/* Mega menu — practices */}
         {megaOpen && (
           <div
-            className="hidden border-t border-line-navy bg-ivory text-navy lg:block"
+            className="hidden border-t border-line bg-paper text-ink lg:block"
             onMouseLeave={() => setMegaOpen(false)}
           >
-            <div className="mx-auto grid max-w-[1360px] grid-cols-12 gap-x-8 px-gutter py-8">
+            <div className="mx-auto grid max-w-[1360px] grid-cols-12 gap-x-10 px-gutter py-10">
               <div className="col-span-3">
-                <p className="eyebrow text-stone">{nav.practices}</p>
-                <p className="mt-3 max-w-[22ch] text-sm leading-relaxed text-navy/70">
+                <p className="eyebrow">{nav.practices}</p>
+                <p className="mt-4 max-w-[30ch] text-sm leading-relaxed text-slate">
                   {nav.practices}
                 </p>
                 <Link
                   href={`${prefix}/expertise`}
-                  className="link-underline mt-4 inline-flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.16em] font-semibold"
+                  className="link-underline mt-6 inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.12em]"
                 >
-                  {nav.practices} →
+                  {nav.practices} <span aria-hidden="true">→</span>
                 </Link>
               </div>
-              <div className="col-span-9 grid grid-cols-2 gap-x-8">
+              <div className="col-span-9 grid grid-cols-2 gap-x-10">
                 {practices.map((p) => (
                   <Link
                     key={p.id}
                     href={`${prefix}/expertise#${p.id}`}
-                    className="group flex items-baseline gap-4 border-b border-line py-3.5 last:border-b-0"
+                    className="group flex flex-col justify-center border-b border-line py-5 first:border-t"
                   >
-                    <span className="tabular text-[0.7rem] text-stone">{p.no}</span>
-                    <span className="font-display text-xl font-light transition-colors duration-200 group-hover:text-oxblood">
-                      {p.name}
+                    <span className="flex items-baseline gap-3">
+                      <span className="font-display text-[1.35rem] leading-tight transition-colors duration-200 group-hover:text-burgundy">
+                        {p.name}
+                      </span>
+                      <span
+                        className="text-lg opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+                        aria-hidden="true"
+                      >
+                        →
+                      </span>
                     </span>
-                    <span className="ml-auto translate-x-[-4px] opacity-0 transition-all duration-300 font-display group-hover:translate-x-0 group-hover:opacity-100">
-                      →
+                    <span className="mt-1 max-w-[52ch] text-[0.85rem] leading-relaxed text-slate">
+                      {p.summary}
                     </span>
                   </Link>
                 ))}
@@ -222,36 +258,41 @@ export default function SiteHeader({
         )}
       </header>
 
+      {/* Search overlay */}
+      {searchOpen && <SearchOverlay locale={locale} nav={nav} index={index} onClose={() => setSearchOpen(false)} />}
+
       {/* Mobile full-screen menu */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col bg-navy text-ivory lg:hidden">
-          {/* scroll space for header */}
-          <div className="h-20" />
-          <nav className="flex-1 overflow-y-auto px-gutter pt-6 pb-10">
-            <p className="eyebrow text-ivory/50">{nav.menu}</p>
-            <div className="mt-6 border-t border-line-navy">
-              {navItems.map((item, i) => (
-                <div key={item.id} className="border-b border-line-navy">
-                  <Link
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="group flex items-baseline gap-5 py-6"
-                  >
-                    <span className="tabular text-[0.7rem] text-ivory/40">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="font-display text-[clamp(1.8rem,7vw,3rem)] font-light transition-colors group-hover:text-oxblood-2">
-                      {item.label}
-                    </span>
-                  </Link>
+        <div className="fixed inset-0 z-40 flex flex-col bg-ink text-paper lg:hidden">
+          <div className="h-[72px]" />
+          <nav className="flex-1 overflow-y-auto px-gutter pt-4 pb-10">
+            <div className="mt-2 border-t border-line-ink">
+              {navItems.map((item) => (
+                <div key={item.id} className="border-b border-line-ink">
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="group flex items-center gap-3 py-5"
+                    >
+                      <span className="font-display text-[1.7rem] leading-none transition-colors group-hover:text-paper/70">
+                        {item.label}
+                      </span>
+                    </Link>
+                    {item.mega && (
+                      <span className="text-[0.7rem] uppercase tracking-[0.14em] text-paper/40">
+                        {String(practices.length)}
+                      </span>
+                    )}
+                  </div>
                   {item.mega && (
-                    <div className="ml-16 mb-2 flex flex-col gap-1">
+                    <div className="mb-3 flex flex-col gap-1 border-t border-line-ink pt-3">
                       {practices.map((p) => (
                         <Link
                           key={p.id}
                           href={`${prefix}/expertise#${p.id}`}
                           onClick={() => setMenuOpen(false)}
-                          className="text-[0.8rem] text-ivory/60 hover:text-ivory"
+                          className="py-1.5 text-[0.92rem] text-paper/65 transition-colors hover:text-paper"
                         >
                           {p.name}
                         </Link>
@@ -262,21 +303,169 @@ export default function SiteHeader({
               ))}
             </div>
 
-            <div className="mt-10 space-y-1 text-sm text-ivory/70">
-              <a href={`tel:${siteConfig.phones[0].tel}`} className="link-underline inline-block">
+            <div className="mt-10 space-y-2 border-t border-line-ink pt-8 text-sm text-paper/75">
+              <a href={`tel:${siteConfig.phones[0].tel}`} className="link-underline w-fit text-base">
                 {siteConfig.phones[0].label}
               </a>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="link-underline block"
-              >
+              <a href={`tel:${siteConfig.phones[1].tel}`} className="link-underline w-fit text-base">
+                {siteConfig.phones[1].label}
+              </a>
+              <a href={`mailto:${siteConfig.email}`} className="link-underline block w-fit">
                 {siteConfig.email}
               </a>
-              <p className="pt-3 text-ivory/50">{siteConfig.address.primary}</p>
+              <p className="pt-3 text-[0.85rem] text-paper/55">{siteConfig.address.primary}</p>
+              <div className="pt-2">
+                <LanguageSwitch locale={locale} />
+              </div>
             </div>
           </nav>
         </div>
       )}
     </>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Search overlay                                                      */
+/* ------------------------------------------------------------------ */
+
+function SearchOverlay({
+  locale,
+  nav,
+  index,
+  onClose,
+}: {
+  locale: Locale;
+  nav: NavDict;
+  index: ReturnType<typeof getSearchIndex>;
+  onClose: () => void;
+}) {
+  const prefix = locale === "es" ? "" : `/${locale}`;
+  const [q, setQ] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const normalized = q.trim().toLowerCase();
+  const results = normalized
+    ? index.filter((e) => e.query.toLowerCase().includes(normalized)).slice(0, 10)
+    : [];
+
+  const typeLabel = (t: string) => {
+    switch (t) {
+      case "practice":
+        return nav.searchPractice;
+      case "person":
+        return nav.searchPeople;
+      case "insight":
+        return nav.searchInsight;
+      default:
+        return nav.searchPage;
+    }
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-[60] flex flex-col bg-ink text-paper"
+      role="dialog"
+      aria-modal="true"
+      aria-label={nav.search}
+    >
+      <div className="mx-auto w-full max-w-[900px] px-gutter pt-24 md:pt-32">
+        <form
+          role="search"
+          onSubmit={(e) => e.preventDefault()}
+          className="border-b border-line-ink"
+        >
+          <label htmlFor="firm-search" className="eyebrow text-paper/45">
+            {nav.search}
+          </label>
+          <div className="flex items-center gap-4 pb-3 pt-2">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-paper/60">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.5" />
+              <path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            <input
+              id="firm-search"
+              ref={inputRef}
+              type="search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder={nav.searchPlaceholder}
+              className="w-full bg-transparent font-display text-[clamp(1.4rem,4vw,2.4rem)] font-medium text-paper outline-none placeholder:text-paper/30"
+            />
+            <button
+              type="button"
+              onClick={onClose}
+              className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-paper/55 transition-colors hover:text-paper"
+              aria-label={nav.closeSearch}
+            >
+              {nav.close} ✕
+            </button>
+          </div>
+        </form>
+
+        <div className="pb-24 pt-6">
+          {!normalized ? (
+            <p className="text-sm text-paper/50">{nav.searchHint}</p>
+          ) : results.length === 0 ? (
+            <div>
+              <p className="font-display text-xl">{nav.searchNone}</p>
+              <p className="mt-3 max-w-md text-sm text-paper/55">{nav.searchNoneBody}</p>
+              <Link
+                href={`${prefix}/contact`}
+                onClick={onClose}
+                className="mt-6 inline-flex items-center gap-2 bg-paper px-5 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-ink transition-colors hover:bg-paper/85"
+              >
+                {nav.contact} <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <p className="eyebrow text-paper/45">
+                {nav.searchResults} · {results.length}
+              </p>
+              <ul className="mt-4 border-t border-line-ink">
+                {results.map((r) => (
+                  <li key={`${r.type}-${r.label}-${r.href}`} className="border-b border-line-ink py-4">
+                    <Link
+                      href={r.href}
+                      onClick={onClose}
+                      className="group flex items-baseline justify-between gap-6"
+                    >
+                      <span className="min-w-0">
+                        <span className="block truncate font-display text-[1.15rem] transition-colors group-hover:text-paper/75">
+                          {r.label}
+                        </span>
+                        {r.sublabel && (
+                          <span className="mt-0.5 block truncate text-sm text-paper/50">{r.sublabel}</span>
+                        )}
+                      </span>
+                      <span className="flex shrink-0 items-center gap-3">
+                        <span className="text-[0.66rem] font-semibold uppercase tracking-[0.14em] text-paper/40">
+                          {typeLabel(r.type)}
+                        </span>
+                        <span className="text-lg opacity-0 transition-opacity duration-200 group-hover:opacity-100" aria-hidden="true">
+                          →
+                        </span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={onClose}
+        className="absolute right-5 top-5 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-paper/55 transition-colors hover:text-paper"
+      >
+        {nav.closeSearch}
+      </button>
+    </div>
   );
 }
