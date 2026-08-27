@@ -55,27 +55,32 @@ export default async function InsightsPage({
       <section className="bg-paper">
         <div className="mx-auto max-w-[1600px] px-gutter py-16 md:py-24">
           {published.length > 0 ? (
-            <div className="grid grid-cols-1 gap-px overflow-hidden bg-line md:grid-cols-3">
+            <div className="mt-14">
+              <div className="grid grid-cols-12 gap-x-4 border-b border-line pb-4 md:gap-x-8">
+                <span className="col-span-2 md:col-span-1 tech text-basalt/40">nº</span>
+                <span className="hidden md:block md:col-span-2 tech text-basalt/40">Categoría</span>
+                <span className="col-span-8 md:col-span-7 tech text-basalt/40">Perspectiva</span>
+                <span className="col-span-2 md:col-span-2 tech text-basalt/40 text-right">Fecha</span>
+              </div>
+
               {items.map((item, i) => (
-                <Reveal key={item.id} delay={i * 80} className="bg-paper">
-                  <article className="group flex h-full flex-col p-8 transition-colors duration-300 hover:bg-paper-2 md:p-10">
-                    <div className="flex items-baseline justify-between gap-4">
-                      <p className="eyebrow text-stone group-hover:text-oxblood">
-                        {item.category}
-                      </p>
-                      <p className="text-[0.65rem] uppercase tracking-[0.18em] text-stone">
-                        {formatDate(item.date, lc)}
-                      </p>
-                    </div>
-                    <h2 className="mt-10 font-display text-[1.7rem] leading-tight font-light">
+                <Reveal key={item.id} delay={i * 60}>
+                  <div className="group grid grid-cols-12 items-baseline gap-x-4 border-b border-line py-6 md:gap-x-8 md:py-7 transition-colors duration-300 hover:bg-paper-2">
+                    <span className="col-span-2 md:col-span-1 editorial-number text-lg text-basalt/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="hidden md:block md:col-span-2 tech text-basalt/50">
+                      {item.category}
+                    </span>
+                    <span className="col-span-8 md:col-span-7 font-display text-[clamp(1.1rem,2.4vw,1.9rem)] leading-tight font-light">
                       {item.title}
-                    </h2>
-                    <span className="mt-auto pt-10 flex justify-end">
-                      <span className="arrow text-2xl text-ink/40 transition-all duration-300 group-hover:text-oxblood group-hover:translate-x-1">
-                        →
+                    </span>
+                    <span className="col-span-2 md:col-span-2 text-right">
+                      <span className="text-[0.65rem] uppercase tracking-[0.16em] text-basalt/50">
+                        {formatDate(item.date, lc)}
                       </span>
                     </span>
-                  </article>
+                  </div>
                 </Reveal>
               ))}
             </div>
@@ -88,7 +93,7 @@ export default async function InsightsPage({
                   </p>
                 </div>
                 <div className="md:col-span-5 md:col-start-8">
-                  <p className="text-base leading-relaxed text-stone">
+                  <p className="text-base leading-relaxed text-basalt">
                     {p.emptyBody}
                   </p>
                   <a

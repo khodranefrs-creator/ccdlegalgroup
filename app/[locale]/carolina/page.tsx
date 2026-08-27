@@ -74,7 +74,7 @@ export default async function CarolinaPage({
               {/* Roles */}
               <Reveal delay={180}>
                 <div className="mt-12 border-t border-line pt-8">
-                  <p className="eyebrow text-stone">{p.rolesLabel}</p>
+                  <p className="eyebrow text-basalt">{p.rolesLabel}</p>
                   <ul className="mt-6 space-y-4">
                     {roles.map((r) => (
                       <li
@@ -110,12 +110,12 @@ export default async function CarolinaPage({
                 </p>
               </Reveal>
               <Reveal delay={180}>
-                <p className="mt-8 max-w-2xl text-base leading-relaxed text-stone">
+                <p className="mt-8 max-w-2xl text-base leading-relaxed text-basalt">
                   {p.bioBody2}
                 </p>
               </Reveal>
               <Reveal delay={240}>
-                <p className="mt-12 text-[0.65rem] uppercase tracking-[0.25em] text-stone/70">
+                <p className="mt-12 text-[0.65rem] uppercase tracking-[0.25em] text-basalt/70">
                   {p.note}
                 </p>
               </Reveal>

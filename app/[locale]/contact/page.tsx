@@ -61,7 +61,7 @@ export default async function ContactPage({
             {/* Form */}
             <Reveal className="md:col-span-7 lg:col-span-6">
               <ContactForm dict={p} />
-              <p className="mt-10 text-xs text-stone md:hidden">
+              <p className="mt-10 text-xs text-basalt md:hidden">
                 {p.mailtoNote}{" "}
                 <a href={`mailto:${siteConfig.emails.despacho}`} className="link-underline text-oxblood">
                   {siteConfig.emails.despacho}
@@ -76,7 +76,7 @@ export default async function ContactPage({
                 <div className="mt-8 space-y-10">
                   {direct.map((group) => (
                     <div key={group.kind}>
-                      <p className="eyebrow text-stone/70">{group.kind}</p>
+                      <p className="eyebrow text-basalt/70">{group.kind}</p>
                       <div className="mt-3 space-y-1.5">
                         {group.items.map((item) =>
                           item.href ? (
@@ -99,7 +99,7 @@ export default async function ContactPage({
                 </div>
 
                 <div className="mt-12 border-t border-line pt-6">
-                  <p className="text-[0.7rem] uppercase tracking-[0.2em] text-stone">
+                  <p className="text-[0.7rem] uppercase tracking-[0.2em] text-basalt">
                     {siteConfig.instagram}
                   </p>
                   <a

@@ -59,7 +59,7 @@ export default async function ExpertisePage({
                   {String(services.length).padStart(2, "0")}
                   <span className="text-oxblood">.</span>
                 </p>
-                <p className="mt-4 text-[0.7rem] uppercase tracking-[0.2em] text-stone">
+                <p className="mt-4 text-[0.7rem] uppercase tracking-[0.2em] text-basalt">
                   {p.label}
                 </p>
               </div>
@@ -83,7 +83,7 @@ export default async function ExpertisePage({
                       <h2 className="font-display text-[clamp(1.5rem,3.4vw,2.9rem)] leading-none font-light transition-all duration-300 group-hover:italic">
                         {s.name}
                       </h2>
-                      <p className="mt-4 max-w-lg text-base leading-relaxed text-stone">
+                      <p className="mt-4 max-w-lg text-base leading-relaxed text-basalt">
                         {s.description}
                       </p>
                     </div>
@@ -104,7 +104,7 @@ export default async function ExpertisePage({
               <Reveal>
                 <div className="mt-10 flex items-start gap-4">
                   <span className="editorial-number text-oxblood text-lg">i</span>
-                  <p className="max-w-2xl text-sm leading-relaxed text-stone">{p.note}</p>
+                  <p className="max-w-2xl text-sm leading-relaxed text-basalt">{p.note}</p>
                 </div>
               </Reveal>
             </div>

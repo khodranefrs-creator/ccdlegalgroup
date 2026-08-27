@@ -53,7 +53,7 @@ export default function PageHero({
         {lead && (
           <Reveal delay={200}>
             <div className="mt-10 md:mt-14 grid grid-cols-12 gap-x-4 md:gap-x-8">
-              <p className="col-span-12 md:col-span-6 md:col-start-7 max-w-xl text-base leading-relaxed text-stone md:text-lg">
+              <p className="col-span-12 md:col-span-6 md:col-start-7 max-w-xl text-base leading-relaxed text-basalt md:text-lg">
                 {lead}
               </p>
             </div>
