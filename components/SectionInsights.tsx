@@ -3,14 +3,23 @@ import Reveal from "./Reveal";
 import { type Locale } from "@/config/site";
 
 type InsightsDict = {
-  label: string;
+  eyebrow: string;
   heading: string;
+  headingAccent: string;
   viewAll: string;
+  categoryLabel: string;
+  titleLabel: string;
+  dateLabel: string;
+  readLabel: string;
   sourceNote: string;
+  emptyTitle: string;
+  emptyBody: string;
+  emptyCta: string;
 };
 
 type InsightItem = {
   id: string;
+  published: boolean;
   category: string;
   title: string;
   date: string;
@@ -20,83 +29,96 @@ function formatDate(iso: string, locale: Locale) {
   return new Date(iso).toLocaleDateString(locale === "es" ? "es-ES" : "en-GB", {
     year: "numeric",
     month: "short",
+    day: "numeric",
   });
 }
 
 export default function SectionInsights({
   locale,
-  heading,
+  t,
   items,
 }: {
   locale: Locale;
-  heading: InsightsDict;
+  t: InsightsDict;
   items: InsightItem[];
 }) {
   const prefix = locale === "es" ? "" : `/${locale}`;
+  const published = items.filter((i) => i.published);
 
   return (
-    <section className="relative bg-paper-2">
-      <div className="mx-auto max-w-[1600px] px-gutter py-24 md:py-40">
+    <section className="bg-ivory border-t border-line">
+      <div className="mx-auto max-w-[1360px] px-gutter py-20 md:py-28">
         <Reveal>
-          <p className="eyebrow text-oxblood">{heading.label}</p>
-          <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
-            <h2 className="font-display text-[clamp(2rem,4.6vw,4rem)] leading-none font-light">
-              {heading.heading}
-            </h2>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="eyebrow text-oxblood">{t.eyebrow}</p>
+              <h2 className="mt-6 font-display text-[clamp(2.2rem,4.2vw,3.8rem)] leading-[1.02] font-medium">
+                {t.heading} <span className="italic font-normal">{t.headingAccent}</span>
+              </h2>
+            </div>
             <Link
               href={`${prefix}/insights`}
-              className="group-arrow link-underline inline-flex items-center gap-3 text-[0.72rem] uppercase tracking-[0.18em] font-semibold"
+              className="group-sweep inline-flex items-baseline gap-3"
             >
-              <span>{heading.viewAll}</span>
-              <span className="arrow">→</span>
+              <span className="text-[0.72rem] uppercase tracking-[0.16em] font-semibold">{t.viewAll}</span>
+              <span className="font-display text-lg transition-transform duration-300 group-hover:translate-x-1">→</span>
             </Link>
           </div>
         </Reveal>
 
-        {/* Editorial index — ruled rows, not cards */}
-        <div className="mt-14">
-          <div className="grid grid-cols-12 gap-x-4 border-b border-line pb-4 md:gap-x-8">
-            <span className="col-span-2 md:col-span-1 tech text-ink/40">nº</span>
-            <span className="hidden md:block md:col-span-2 tech text-ink/40">Categoría</span>
-            <span className="col-span-8 md:col-span-7 tech text-ink/40">Perspectiva</span>
-            <span className="col-span-2 md:col-span-2 tech text-ink/40 text-right">Fecha</span>
-          </div>
-
-          {items.map((item, i) => (
-            <Reveal key={item.id} delay={i * 60}>
-              <Link
-                href={`${prefix}/insights`}
-                className="group grid grid-cols-12 items-baseline gap-x-4 border-b border-line py-6 md:gap-x-8 md:py-7 transition-colors duration-300 hover:bg-paper"
-              >
-                <span className="col-span-2 md:col-span-1 editorial-number text-lg text-ink/35 transition-colors group-hover:text-oxblood">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="hidden md:block md:col-span-2 tech text-ink/45 group-hover:text-oxblood">
-                  {item.category}
-                </span>
-                <span className="col-span-8 md:col-span-7 font-display text-[clamp(1.1rem,2.4vw,1.9rem)] leading-tight font-light transition-all duration-300 group-hover:italic group-hover:text-oxblood">
-                  {item.title}
-                </span>
-                <span className="col-span-2 md:col-span-2 text-right">
-                  <span className="text-[0.65rem] uppercase tracking-[0.16em] text-ink/45">
+        {published.length > 0 ? (
+          <div className="mt-12">
+            <div className="grid grid-cols-12 gap-x-4 border-b border-line pb-3 md:gap-x-8">
+              <span className="col-span-2 md:col-span-2 eyebrow text-stone">{t.categoryLabel}</span>
+              <span className="col-span-6 md:col-span-7 eyebrow text-stone">{t.titleLabel}</span>
+              <span className="col-span-2 md:col-span-2 eyebrow text-stone text-right">{t.dateLabel}</span>
+              <span className="col-span-2 hidden md:block eyebrow text-stone text-right">{t.readLabel}</span>
+            </div>
+            {published.map((item, i) => (
+              <Reveal delay={i * 60} key={item.id}>
+                <Link
+                  href={`${prefix}/insights`}
+                  className="group grid grid-cols-12 items-baseline gap-x-4 border-b border-line py-6 md:gap-x-8 transition-colors duration-300 hover:bg-ivory-2"
+                >
+                  <span className="col-span-2 md:col-span-2 text-[0.78rem] uppercase tracking-[0.08em] text-stone">
+                    {item.category}
+                  </span>
+                  <span className="col-span-6 md:col-span-7 font-display text-[1.2rem] font-light leading-snug transition-colors duration-200 group-hover:text-oxblood">
+                    {item.title}
+                  </span>
+                  <span className="col-span-2 md:col-span-2 tabular text-[0.7rem] uppercase tracking-[0.12em] text-stone text-right">
                     {formatDate(item.date, locale)}
                   </span>
-                </span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-
-        <div className="mt-8 flex items-center justify-between gap-4">
-          <p className="text-xs text-ink/45">{heading.sourceNote}</p>
-          <Link
-            href={`${prefix}/insights`}
-            className="group inline-flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.18em] font-semibold text-oxblood"
-          >
-            <span>{heading.viewAll}</span>
-            <span className="arrow transition-transform duration-300 group-hover:translate-x-1">→</span>
-          </Link>
-        </div>
+                  <span className="col-span-2 hidden md:flex justify-end text-oxblood opacity-0 transition-all duration-300 group-hover:opacity-100">
+                    →
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+            <p className="mt-6 text-[0.68rem] uppercase tracking-[0.16em] text-stone">
+              {t.sourceNote}
+            </p>
+          </div>
+        ) : (
+          <Reveal delay={100}>
+            <div className="mt-12 grid grid-cols-12 gap-x-4 gap-y-8 border-t border-line md:gap-x-8">
+              <div className="col-span-12 md:col-span-5 pt-8">
+                <h3 className="font-display text-[clamp(1.6rem,2.6vw,2.4rem)] font-medium leading-tight">
+                  {t.emptyTitle}
+                </h3>
+              </div>
+              <div className="col-span-12 md:col-span-5 md:col-start-7 pt-8">
+                <p className="text-sm leading-relaxed text-navy/65">{t.emptyBody}</p>
+                <Link
+                  href={`${prefix}/firm`}
+                  className="link-underline mt-5 inline-flex items-center gap-3 text-[0.72rem] uppercase tracking-[0.16em] font-semibold"
+                >
+                  {t.emptyCta} <span>→</span>
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+        )}
       </div>
     </section>
   );

@@ -1,67 +1,161 @@
 import type { Locale } from "./site";
 
 /**
- * Services / areas of practice.
+ * Practice areas.
  *
- * DATA INTEGRITY: Only items flagged `verified: true` correspond to external
- * classifications we have confirmed (legal services, workplace accidents,
- * traffic accidents). Everything else is an editable placeholder for the client
- * to confirm or replace. Add/remove/rename entries freely — the UI renders the
- * list directly from this array.
+ * DATA INTEGRITY: Each area carries a `verified` flag. Only practices firmly
+ * established in the firm's positioning are marked `verified: true`. Sub‑service
+ * lists are broad, verifiable descriptors of the matter types each area
+ * addresses — not fabricated claims about the firm's volume or outcomes.
+ * Adjust freely — the UI renders directly from this array.
  */
 
-export type Service = {
+export type Practice = {
   id: string;
+  no: string;
   verified: boolean;
   name: { es: string; en: string };
-  /** single short sentence */
-  description: { es: string; en: string };
+  summary: { es: string; en: string };
+  services: { es: string[]; en: string[] };
 };
 
-export const servicesConfig: Service[] = [
+export const practicesConfig: Practice[] = [
   {
-    id: "legal-advisory",
+    id: "civil",
+    no: "01",
     verified: true,
-    name: { es: "Asesoría Legal", en: "Legal Advisory" },
-    description: {
-      es: "Asesoramiento jurídico claro y riguroso para particulares y empresas.",
-      en: "Clear and rigorous legal counsel for individuals and businesses.",
+    name: { es: "Derecho Civil", en: "Civil Law" },
+    summary: {
+      es: "Asesoramiento y defensa en las relaciones jurídicas entre personas y en la tutela de los derechos patrimoniales.",
+      en: "Counsel and defence across the legal relationships between persons and the protection of patrimonial rights.",
+    },
+    services: {
+      es: [
+        "Contratos y obligaciones",
+        "Responsabilidad civil",
+        "Propiedad y reclamaciones",
+        "Derecho de familia patrimonial",
+      ],
+      en: [
+        "Contracts and obligations",
+        "Civil liability",
+        "Property and claims",
+        "Matrimonial property law",
+      ],
     },
   },
   {
-    id: "workplace-accidents",
+    id: "criminal",
+    no: "02",
     verified: true,
-    name: { es: "Accidentes Laborales", en: "Workplace Accidents" },
-    description: {
-      es: "Acompañamiento en reclamaciones derivadas de accidentes de trabajo.",
-      en: "Support with claims arising from workplace accidents.",
+    name: { es: "Derecho Penal", en: "Criminal Law" },
+    summary: {
+      es: "Defensa penal rigurosa y acompañamiento cercano en todas las fases del procedimiento.",
+      en: "Rigorous criminal defence and close support at every stage of proceedings.",
+    },
+    services: {
+      es: [
+        "Defensa en procedimiento penal",
+        "Asistencia al investigado",
+        "Delitos económicos",
+        "Pericia y negociación procesal",
+      ],
+      en: [
+        "Defence in criminal proceedings",
+        "Assistance to the person under investigation",
+        "Economic and financial offences",
+        "Expert evidence and procedural strategy",
+      ],
     },
   },
   {
-    id: "traffic-accidents",
+    id: "family",
+    no: "03",
     verified: true,
-    name: { es: "Accidentes de Tráfico", en: "Traffic Accidents" },
-    description: {
-      es: "Gestión de reclamaciones y defensa en accidentes de circulación.",
-      en: "Management of claims and defence in road traffic accidents.",
+    name: { es: "Derecho de Familia", en: "Family Law" },
+    summary: {
+      es: "Acompañamiento discreto y firme en los asuntos familiares que más afectan a las personas.",
+      en: "Discreet, resolute support on the family matters that matter most to people.",
+    },
+    services: {
+      es: [
+        "Separaciones y divorcios",
+        "Custodia y régimen de visitas",
+        "Pensiones y convenios reguladores",
+        "Mediación familiar",
+      ],
+      en: [
+        "Separation and divorce",
+        "Child custody and access",
+        "Maintenance and regulatory agreements",
+        "Family mediation",
+      ],
     },
   },
   {
-    id: "business-advisory",
-    verified: false,
-    name: { es: "Asesoría de Negocio", en: "Business Advisory" },
-    description: {
-      es: "Consejo estratégico que une lo jurídico con la visión de negocio.",
-      en: "Strategic counsel joining the legal with the business view.",
+    id: "immigration",
+    no: "04",
+    verified: true,
+    name: { es: "Derecho de Extranjería", en: "Immigration Law" },
+    summary: {
+      es: "Gestión rigurosa de procedimientos de extranjería e inmigración, con foco en la persona y en buenos resultados.",
+      en: "Rigorous handling of immigration procedures, focused on the person and on sound outcomes.",
+    },
+    services: {
+      es: [
+        "Residencias y visados",
+        "Nacionalidad y arraigo",
+        "Autorizaciones de trabajo",
+        "Reagrupación familiar",
+      ],
+      en: [
+        "Residence permits and visas",
+        "Nationality and long-term residence",
+        "Work authorisations",
+        "Family reunification",
+      ],
+    },
+  },
+  {
+    id: "advisory",
+    no: "05",
+    verified: true,
+    name: { es: "Asesoría Legal y de Negocio", en: "Business & Legal Advisory" },
+    summary: {
+      es: "Consejo que une lo jurídico con la visión empresarial: decisiones con menos riesgo y más claridad.",
+      en: "Counsel that joins the legal with the business view: better decisions, less risk, more clarity.",
+    },
+    services: {
+      es: [
+        "Contratos mercantiles",
+        "Decisiones y estrategia corporativa",
+        "Gestión del riesgo legal",
+        "Consideraciones transfronterizas",
+      ],
+      en: [
+        "Commercial contracts",
+        "Corporate decisions and strategy",
+        "Legal risk management",
+        "Cross-border considerations",
+      ],
     },
   },
 ];
 
-export function getServices(locale: Locale) {
-  return servicesConfig.map((s) => ({
-    id: s.id,
-    verified: s.verified,
-    name: s.name[locale],
-    description: s.description[locale],
+export type Service = {
+  id: string;
+  no: string;
+  name: string;
+  summary: string;
+  services: string[];
+};
+
+export function getServices(locale: Locale): Service[] {
+  return practicesConfig.map((p) => ({
+    id: p.id,
+    no: p.no,
+    name: p.name[locale],
+    summary: p.summary[locale],
+    services: p.services[locale],
   }));
 }

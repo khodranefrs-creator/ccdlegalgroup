@@ -1,21 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getServices } from "@/config/services";
 import { siteConfig, type Locale } from "@/config/site";
 import LanguageSwitch from "./LanguageSwitch";
 
 type NavDict = {
-  firm: string;
-  expertise: string;
-  carolina: string;
+  about: string;
+  practices: string;
+  people: string;
   insights: string;
   contact: string;
   cta: string;
   menu: string;
   close: string;
   city: string;
+  back: string;
 };
 
 export default function SiteHeader({
@@ -25,179 +27,256 @@ export default function SiteHeader({
   locale: Locale;
   nav: NavDict;
 }) {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-
   const prefix = locale === "es" ? "" : `/${locale}`;
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const practices = getServices(locale);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [open]);
+  }, [menuOpen]);
+
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
 
   const navItems = [
-    { href: `${prefix}/firm`, label: nav.firm, no: "02" },
-    { href: `${prefix}/expertise`, label: nav.expertise, no: "03" },
-    { href: `${prefix}/carolina`, label: nav.carolina, no: "04" },
-    { href: `${prefix}/insights`, label: nav.insights, no: "05" },
+    { href: `${prefix}/firm`, label: nav.about, id: "about" },
+    { href: `${prefix}/expertise`, label: nav.practices, id: "practices", mega: true },
+    { href: `${prefix}/people`, label: nav.people, id: "people" },
+    { href: `${prefix}/insights`, label: nav.insights, id: "insights" },
+    { href: `${prefix}/contact`, label: nav.contact, id: "contact" },
   ];
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "border-b border-line bg-paper/90 backdrop-blur-md py-2.5"
-            : "border-b border-transparent bg-transparent py-5"
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          scrolled || menuOpen
+            ? "bg-navy text-ivory shadow-[0_1px_0_var(--color-line-navy)]"
+            : "bg-transparent text-navy"
         }`}
-        style={{ ["--header-h" as string]: scrolled ? "62px" : "84px" }}
       >
-        <div className="mx-auto flex items-center justify-between px-gutter max-w-[1600px]">
-          {/* Wordmark */}
+        <div
+          className={`mx-auto flex max-w-[1360px] items-center justify-between px-gutter transition-[padding] duration-300 ${
+            scrolled ? "h-16" : "h-20"
+          }`}
+        >
+          {/* Logo */}
           <Link
             href={prefix || "/"}
-            className="group flex items-baseline gap-2"
-            aria-label={`${siteConfig.name} — home`}
+            className="flex items-center gap-3"
+            aria-label={siteConfig.name}
           >
-            <span className="font-display text-[1.7rem] leading-none font-semibold tracking-tight">
-              CCD
+            <span className="flex h-9 w-9 items-center justify-center border border-current">
+              <span className="font-display text-lg font-semibold leading-none">CCD</span>
             </span>
-            <span className="flex flex-col leading-none">
-              <span className="hidden lg:block text-[0.48rem] tracking-[0.3em] uppercase opacity-60">
-                Legal Group
+            <span className="leading-tight">
+              <span className="block font-display text-[1.05rem] font-semibold tracking-tight">
+                CCD Legal Group
               </span>
-              <span className="hidden md:block lg:hidden text-[0.48rem] tracking-[0.3em] uppercase opacity-60">
-                Legal Group
+              <span
+                className={`block text-[0.58rem] uppercase tracking-[0.24em] ${
+                  scrolled || menuOpen ? "text-ivory/60" : "text-stone/70"
+                }`}
+              >
+                {nav.city} · Legal & Business
               </span>
-            </span>
-            <span className="ml-3 hidden xl:block text-[0.55rem] tracking-[0.22em] uppercase opacity-40">
-              Madrid · Chamberí
             </span>
           </Link>
 
-          {/* Desktop nav — editorial, numbered */}
+          {/* Desktop nav */}
           <nav
-            className="hidden lg:flex items-center gap-1"
-            aria-label="Primaria"
+            className="hidden items-center gap-7 lg:flex"
+            aria-label="Primary"
+            onMouseLeave={() => setMegaOpen(false)}
           >
-            {navItems.map((item) => {
-              const active =
-                pathname === item.href ||
-                (item.href !== `${prefix}` && pathname.startsWith(item.href));
-              return (
+            {navItems.map((item) =>
+              item.mega ? (
+                <button
+                  key={item.id}
+                  type="button"
+                  onMouseEnter={() => setMegaOpen(true)}
+                  onFocus={() => setMegaOpen(true)}
+                  className={`relative text-[0.72rem] uppercase tracking-[0.16em] transition-colors duration-200 ${
+                    isActive(item.href) ? "text-oxblood-2 font-semibold" : "opacity-85 hover:opacity-100"
+                  }`}
+                  aria-haspopup="true"
+                  aria-expanded={megaOpen}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute -left-0.5 -right-0.5 bottom-[-4px] h-px origin-left scale-x-0 bg-oxblood-2 transition-transform duration-300 ${
+                      megaOpen || isActive(item.href) ? "scale-x-100" : ""
+                    }`}
+                  />
+                </button>
+              ) : (
                 <Link
-                  key={item.href}
+                  key={item.id}
                   href={item.href}
-                  className={`group flex items-baseline gap-1.5 px-3 py-2 text-[0.74rem] uppercase tracking-[0.16em] transition-colors duration-300 ${
-                    active ? "text-oxblood font-semibold" : "opacity-75 hover:opacity-100"
+                  onMouseEnter={() => setMegaOpen(false)}
+                  className={`relative text-[0.72rem] uppercase tracking-[0.16em] transition-colors duration-200 ${
+                    isActive(item.href) ? "text-oxblood-2 font-semibold" : "opacity-85 hover:opacity-100"
                   }`}
                 >
-                  <span className="opacity-40 text-[0.55rem] transition-colors group-hover:text-oxblood">
-                    {item.no}
-                  </span>
-                  <span className="link-underline">{item.label}</span>
+                  {item.label}
+                  <span
+                    className={`absolute -left-0.5 -right-0.5 bottom-[-4px] h-px origin-left scale-x-0 bg-oxblood-2 transition-transform duration-300 ${
+                      isActive(item.href) ? "scale-x-100" : ""
+                    }`}
+                  />
                 </Link>
-              );
-            })}
+              )
+            )}
           </nav>
 
-          {/* Right cluster */}
-          <div className="flex items-center gap-6">
+          {/* Right actions */}
+          <div className="flex items-center gap-4">
             <LanguageSwitch locale={locale} />
-
             <Link
               href={`${prefix}/contact`}
-              className="hidden md:inline-flex items-center gap-2 bg-ink text-paper rounded-full px-5 py-2.5 text-[0.7rem] uppercase tracking-[0.18em] font-semibold transition-all duration-300 hover:bg-oxblood"
+              className="hidden items-center gap-2 bg-oxblood px-5 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] font-semibold text-ivory transition-colors duration-300 hover:bg-oxblood-2 md:inline-flex"
             >
               {nav.cta}
             </Link>
-
-            {/* Mobile toggle */}
             <button
               type="button"
-              onClick={() => setOpen((v) => !v)}
-              className="lg:hidden flex flex-col items-end gap-1.5 p-2 -mr-2"
-              aria-label={open ? nav.close : nav.menu}
-              aria-expanded={open}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="flex items-center gap-2 text-[0.72rem] uppercase tracking-[0.16em] lg:hidden"
+              aria-label={menuOpen ? nav.close : nav.menu}
+              aria-expanded={menuOpen}
             >
-              <span
-                className={`block h-px bg-current transition-all duration-400 ${
-                  open ? "w-6 rotate-45 translate-y-[3.5px]" : "w-6"
-                }`}
-              />
-              <span
-                className={`block h-px bg-current transition-all duration-400 ${
-                  open ? "w-6 -rotate-45 -translate-y-[3.5px]" : "w-4"
-                }`}
-              />
+              <span className="relative block h-3 w-5">
+                <span
+                  className={`absolute left-0 top-0 h-px w-5 bg-current transition-transform duration-300 ${
+                    menuOpen ? "translate-y-1.5 rotate-45" : ""
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-1.5 h-px w-5 bg-current transition-opacity ${
+                    menuOpen ? "opacity-0" : ""
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 top-3 h-px w-5 bg-current transition-transform duration-300 ${
+                    menuOpen ? "-translate-y-1.5 -rotate-45" : ""
+                  }`}
+                />
+              </span>
+              <span className="hidden sm:inline">{menuOpen ? nav.close : nav.menu}</span>
             </button>
           </div>
         </div>
+
+        {/* Mega navigation — practices */}
+        {megaOpen && (
+          <div
+            className="hidden border-t border-line-navy bg-ivory text-navy lg:block"
+            onMouseLeave={() => setMegaOpen(false)}
+          >
+            <div className="mx-auto grid max-w-[1360px] grid-cols-12 gap-x-8 px-gutter py-8">
+              <div className="col-span-3">
+                <p className="eyebrow text-stone">{nav.practices}</p>
+                <p className="mt-3 max-w-[22ch] text-sm leading-relaxed text-navy/70">
+                  {nav.practices}
+                </p>
+                <Link
+                  href={`${prefix}/expertise`}
+                  className="link-underline mt-4 inline-flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.16em] font-semibold"
+                >
+                  {nav.practices} →
+                </Link>
+              </div>
+              <div className="col-span-9 grid grid-cols-2 gap-x-8">
+                {practices.map((p) => (
+                  <Link
+                    key={p.id}
+                    href={`${prefix}/expertise#${p.id}`}
+                    className="group flex items-baseline gap-4 border-b border-line py-3.5 last:border-b-0"
+                  >
+                    <span className="tabular text-[0.7rem] text-stone">{p.no}</span>
+                    <span className="font-display text-xl font-light transition-colors duration-200 group-hover:text-oxblood">
+                      {p.name}
+                    </span>
+                    <span className="ml-auto translate-x-[-4px] opacity-0 transition-all duration-300 font-display group-hover:translate-x-0 group-hover:opacity-100">
+                      →
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
-      {/* Full-screen mobile menu — document index */}
-      <div
-        className={`fixed inset-0 z-40 lg:hidden bg-ink text-paper transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          open ? "translate-y-0" : "-translate-y-full"
-        }`}
-        aria-hidden={!open}
-      >
-        <div className="flex h-full flex-col">
-          <nav
-            className="flex h-full flex-col justify-center px-gutter"
-            aria-label="Móvil"
-          >
-            <p className="tech text-paper/40 mb-8">{nav.city} — {nav.cta}</p>
-            <div className="space-y-0">
+      {/* Mobile full-screen menu */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col bg-navy text-ivory lg:hidden">
+          {/* scroll space for header */}
+          <div className="h-20" />
+          <nav className="flex-1 overflow-y-auto px-gutter pt-6 pb-10">
+            <p className="eyebrow text-ivory/50">{nav.menu}</p>
+            <div className="mt-6 border-t border-line-navy">
               {navItems.map((item, i) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="group flex items-baseline gap-5 border-b border-line-ink py-5"
-                  style={{
-                    transitionDelay: open ? `${120 + i * 60}ms` : "0ms",
-                  }}
-                >
-                  <span className="tech text-beige/50">{item.no}</span>
-                  <span className="font-display text-4xl font-light leading-none transition-colors duration-300 group-hover:text-beige">
-                    {item.label}
-                  </span>
-                </Link>
+                <div key={item.id} className="border-b border-line-navy">
+                  <Link
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="group flex items-baseline gap-5 py-6"
+                  >
+                    <span className="tabular text-[0.7rem] text-ivory/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="font-display text-[clamp(1.8rem,7vw,3rem)] font-light transition-colors group-hover:text-oxblood-2">
+                      {item.label}
+                    </span>
+                  </Link>
+                  {item.mega && (
+                    <div className="ml-16 mb-2 flex flex-col gap-1">
+                      {practices.map((p) => (
+                        <Link
+                          key={p.id}
+                          href={`${prefix}/expertise#${p.id}`}
+                          onClick={() => setMenuOpen(false)}
+                          className="text-[0.8rem] text-ivory/60 hover:text-ivory"
+                        >
+                          {p.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
-          </nav>
 
-          <div className="px-gutter pb-12">
-            <div className="border-t border-line-ink pt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <span className="tech text-paper/40">Contacto</span>
-              <a
-                href={`tel:${siteConfig.phones[0].tel}`}
-                className="text-sm text-paper hover:text-beige"
-              >
+            <div className="mt-10 space-y-1 text-sm text-ivory/70">
+              <a href={`tel:${siteConfig.phones[0].tel}`} className="link-underline inline-block">
                 {siteConfig.phones[0].label}
               </a>
               <a
-                href={`mailto:${siteConfig.emails.despacho}`}
-                className="link-underline text-sm text-paper/80 hover:text-paper"
+                href={`mailto:${siteConfig.email}`}
+                className="link-underline block"
               >
-                {siteConfig.emails.despacho}
+                {siteConfig.email}
               </a>
-              <LanguageSwitch locale={locale} />
+              <p className="pt-3 text-ivory/50">{siteConfig.address.primary}</p>
             </div>
-          </div>
+          </nav>
         </div>
-      </div>
+      )}
     </>
   );
 }

@@ -1,60 +1,58 @@
 @import "tailwindcss";
 
 /* ============================================================
-   CCD LEGAL GROUP — «El Despacho» / The Law of Detail
-   A modern legal document read as a city.
-   Precision · Restraint · Human judgement.
+   CCD LEGAL GROUP — Corporate Law Firm
+   "Counsel built around the matter."
+   Institutional · Architectural · Restrained · Information-dense
    ============================================================ */
 
 @theme {
   /* --- Typography --- */
-  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-display: var(--font-newsreader), "Newsreader", Georgia, serif;
   --font-sans: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
 
-  /* --- Palette (authoritative, away from generic beige+burgundy) --- */
-  --color-ink: #191512;          /* deep espresso / near-black */
-  --color-ink-soft: #26201b;     /* softened espresso surface */
-  --color-paper: #f4efe6;        /* warm bone / document paper */
-  --color-paper-2: #ece6da;      /* settled paper */
-  --color-paper-3: #e2dbcc;      /* deeper document surface */
-  --color-oxblood: #6d2230;      /* the seal — deep oxblood */
-  --color-oxblood-deep: #521b26; /* pressed seal */
-  --color-pine: #2f3d33;         /* baize / tact — deep green-grey */
-  --color-pine-soft: #3a4a3f;
-  --color-sand: #c7b78e;         /* muted parchment/gold — used sparingly */
-  --color-beige: #c7b78e;        /* alias for sand (legacy/utility) */
-  --color-basalt: #6d655a;       /* body text on paper */
-  --color-basalt-dark: #98907f;  /* muted text on ink */
-  --color-line: rgba(25, 21, 18, 0.16);     /* rule on paper */
-  --color-line-deep: rgba(25, 21, 18, 0.28);/* stronger rule on paper */
-  --color-line-ink: rgba(244, 239, 230, 0.18); /* rule on ink */
+  /* --- Palette (law firm: deep navy / warm white / restrained oxblood) --- */
+  --color-navy: #151b20;            /* deep near-black navy — primary ink */
+  --color-navy-2: #1d242b;          /* softened navy surface */
+  --color-navy-3: #2a333c;          /* elevated navy surface */
+  --color-ivory: #fbf9f5;           /* warm white — base */
+  --color-ivory-2: #f2eee6;         /* warm gray surface */
+  --color-ivory-3: #e7e2d8;         /* deeper field */
+  --color-oxblood: #7a2636;         /* restrained accent — used sparingly */
+  --color-oxblood-2: #8c3044;       /* lifted accent */
+  --color-stone: #666b71;           /* muted body text on light */
+  --color-stone-2: #979ca2;         /* muted text on dark / labels */
+  --color-mist: #eef0ef;            /* light steel field */
+
+  /* --- Rules --- */
+  --color-line: rgba(21, 27, 32, 0.14);        /* rule on light */
+  --color-line-strong: rgba(21, 27, 32, 0.32); /* stronger rule on light */
+  --color-line-navy: rgba(251, 249, 245, 0.16);/* rule on navy */
 
   /* --- Spacing rhythm --- */
   --spacing-gutter: clamp(1.25rem, 4vw, 3.5rem);
+
+  /* --- Container width --- */
+  --container-firm: 1360px;
 
   /* --- Easing --- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* --- Animation tokens --- */
+  /* --- Motion --- */
   --animate-fade-up: fade-up 0.9s var(--ease-out-expo) both;
-  --animate-fade-in: fade-in 1s var(--ease-out-soft) both;
-  --animate-clip-in: clip-in 1.1s var(--ease-out-expo) both;
-  --animate-reveal-rule: reveal-rule 1.4s var(--ease-out-expo) both;
+  --animate-fade-in: fade-in 1.1s var(--ease-out-soft) both;
+  --animate-rule-in: rule-in 1.2s var(--ease-out-expo) both;
 
   @keyframes fade-up {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(22px); }
     to   { opacity: 1; transform: translateY(0); }
   }
   @keyframes fade-in {
     from { opacity: 0; }
     to   { opacity: 1; }
   }
-  @keyframes clip-in {
-    from { clip-path: inset(0 0 100% 0); }
-    to   { clip-path: inset(0 0 0% 0); }
-  }
-  @keyframes reveal-rule {
+  @keyframes rule-in {
     from { transform: scaleX(0); }
     to   { transform: scaleX(1); }
   }
@@ -63,107 +61,63 @@
 /* ---------- Base ---------- */
 
 :root {
-  --header-h: 84px;
+  --header-h: 76px;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-h) + 8px);
+  scroll-padding-top: calc(var(--header-h) + 12px);
 }
 
 body {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
+  background-color: var(--color-ivory);
+  color: var(--color-navy);
   font-family: var(--font-sans);
+  font-feature-settings: "kern", "liga";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
   background: var(--color-oxblood);
-  color: var(--color-paper);
+  color: var(--color-ivory);
 }
 
-/* Focus visibility (accessibility) */
 :focus-visible {
   outline: 2px solid var(--color-oxblood);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-/* ============================================================
-   DOCUMENT SYSTEM — the recurring, recognizable identity.
-   ============================================================ */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+/* ---------- Reusable primitives ---------- */
+
+/* Uppercase label / metadata eyebrow */
+.eyebrow {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+
+/* Tabular numerals for directories and metadata */
+.tabular {
+  font-feature-settings: "tnum", "lnum";
+}
 
 /* Thin rule */
 .hairline {
   height: 1px;
   background: currentColor;
-  opacity: 0.18;
+  opacity: 0.16;
 }
 
-/* Oversized editorial number / clause index */
-.editorial-number {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-feature-settings: "lnum", "tnum";
-  line-height: 1;
-}
-
-/* Eyebrow / uppercase technical metadata */
-.eyebrow {
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  font-weight: 600;
-}
-
-/* Small technical label (very tight tracking, document footnote) */
-.tech {
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-size: 0.62rem;
-  font-weight: 500;
-}
-
-/* The "stamp" — like a filed/registered document mark */
-.stamp {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 1px solid currentColor;
-  padding: 0.4rem 0.8rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-size: 0.6rem;
-  font-weight: 600;
-  border-radius: 999px;
-}
-
-/* Marginal annotation column label (document margin notes) */
-.marginalia {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-}
-
-/* Ruled list row — used across expertise/matters/ledgers */
-.document-row {
-  border-bottom: 1px solid var(--color-line);
-  transition: background-color 0.35s var(--ease-out-soft), color 0.35s;
-}
-
-/* Grid-paper texture used behind hero/case-file fields (very faint) */
-.paper-ruled {
-  background-image: linear-gradient(
-    to bottom,
-    transparent calc(100% - 1px),
-    rgba(25, 21, 18, 0.05) calc(100% - 1px)
-  );
-  background-size: 100% 3.5rem;
-}
-
-/* ---------- Interactive underline link ---------- */
+/* Interactive underline link (mega-nav, inline links) */
 .link-underline {
   position: relative;
 }
@@ -177,7 +131,7 @@ body {
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.5s var(--ease-out-soft);
+  transition: transform 0.4s var(--ease-out-soft);
 }
 .link-underline:hover::after,
 .link-underline:focus-visible::after {
@@ -185,33 +139,25 @@ body {
   transform-origin: left;
 }
 
-/* ---------- Arrow move on hover ---------- */
-.group-arrow .arrow {
-  transition: transform 0.45s var(--ease-out-soft);
-}
-.group-arrow:hover .arrow {
-  transform: translateX(6px);
-}
-
-/* ---------- Scroll indicator ---------- */
-.scroll-line {
+/* Underline sweep that injects oxblood on hover (no bg change) */
+.group-sweep {
   position: relative;
-  overflow: hidden;
 }
-.scroll-line::after {
+.group-sweep::after {
   content: "";
   position: absolute;
   left: 0;
-  top: -100%;
-  height: 100%;
-  width: 1px;
-  background: var(--color-oxblood);
-  animation: scroll-drip 2.4s var(--ease-out-soft) infinite;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease-out-soft);
 }
-@keyframes scroll-drip {
-  0%   { top: -100%; }
-  60%  { top: 100%; }
-  100% { top: 100%; }
+.group:hover .group-sweep::after,
+.group:focus-within .group-sweep::after {
+  transform: scaleX(1);
 }
 
 /* ---------- Reduced motion ---------- */

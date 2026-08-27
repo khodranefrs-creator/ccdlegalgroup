@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Newsreader, Manrope } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 
@@ -12,14 +12,15 @@ export const locales = ["es", "en"] as const;
 export const defaultLocale: Locale = "es";
 
 export const viewport: Viewport = {
-  themeColor: "#f5f1e8",
+  themeColor: "#151b20",
   width: "device-width",
   initialScale: 1,
 };
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -92,40 +93,44 @@ export default async function RootLayout({
   return (
     <html
       lang={locale === "es" ? "es" : "en"}
-      className={`${cormorant.variable} ${manrope.variable} antialiased`}
+      className={`${newsreader.variable} ${manrope.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col bg-paper text-ink">
+      <body className="min-h-screen flex flex-col bg-ivory text-navy">
         <SiteHeader locale={locale} nav={dict.nav} />
         <main className="flex-1">{children}</main>
-        <SiteFooter locale={locale} footer={dict.footer} />
+        <SiteFooter locale={locale} footer={dict.footer} nav={dict.nav} />
 
-        {/* Structured data — LegalService / Organization */}
+        {/* Structured data — Organization / LegalService / LocalBusiness */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LegalService",
+              "@type": ["LegalService", "LocalBusiness"],
               name: siteConfig.legalName,
               alternateName: siteConfig.name,
+              legalName: siteConfig.legalName,
+              slogan: siteConfig.tagline,
               founder: {
                 "@type": "Person",
                 name: siteConfig.founder,
-                jobTitle: siteConfig.founderRoles.join(", "),
+                jobTitle: siteConfig.founderRoles[0],
               },
-              description: siteConfig.positioning,
+              description: dict.meta.homeDescription,
               areaServed: { "@type": "City", name: "Madrid" },
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Madrid",
-                addressCountry: "ES",
+                streetAddress: siteConfig.address.street,
+                addressLocality: siteConfig.address.locality,
+                postalCode: siteConfig.address.postalCode,
+                addressCountry: siteConfig.address.country,
               },
+              geo: { "@type": "GeoCoordinates", latitude: 40.432, longitude: -3.678 },
               url: siteConfig.canonicalUrl,
-              email: siteConfig.emails.despacho,
-              telephone: siteConfig.phones
-                .map((p) => p.label)
-                .join(", "),
+              email: siteConfig.email,
+              telephone: siteConfig.phones.map((p) => p.label).join(", "),
               sameAs: [siteConfig.instagramUrl],
+              priceRange: "€€",
             }),
           }}
         />

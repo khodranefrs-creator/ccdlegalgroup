@@ -1,137 +1,85 @@
-import Link from "next/link";
 import Reveal from "./Reveal";
-import { MediaField } from "./VisualBlock";
-import { imagesConfig } from "@/config/images";
+import ContactForm from "./ContactForm";
 import { siteConfig, type Locale } from "@/config/site";
 
 type ContactDict = {
-  label: string;
+  eyebrow: string;
   heading1: string;
   heading2: string;
-  sub: string;
-  call: string;
-  email: string;
-  location: string;
-  ctaPrimary: string;
-  ctaSecondary: string;
+  body: string;
+  callLabel: string;
+  emailLabel: string;
+  locationLabel: string;
+  locationValue: string;
+  formTitle: string;
+  note: string;
+};
+type FormDict = {
+  nameLabel: string;
+  emailLabel: string;
+  phoneLabel: string;
+  matterLabel: string;
+  messageLabel: string;
+  submit: string;
+  privacyNote: string;
 };
 
 export default function SectionContact({
-  locale,
   t,
+  form,
 }: {
   locale: Locale;
   t: ContactDict;
+  form: FormDict;
 }) {
-  const prefix = locale === "es" ? "" : `/${locale}`;
-
-  const rows = [
-    {
-      kind: t.call,
-      items: siteConfig.phones.map((p) => ({
-        href: `tel:${p.tel}`,
-        label: p.label,
-      })),
-    },
-    {
-      kind: t.email,
-      items: [
-        { href: `mailto:${siteConfig.emails.despacho}`, label: siteConfig.emails.despacho },
-      ],
-    },
-    {
-      kind: t.location,
-      items: [{ href: null, label: `${siteConfig.city}, ${siteConfig.country}` }],
-    },
-  ];
-
   return (
-    <section id="contacto" className="relative bg-ink text-paper">
-      <div className="mx-auto max-w-[1600px] px-gutter py-24 md:py-40">
+    <section id="contact" className="bg-navy text-ivory border-t border-line-navy">
+      <div className="mx-auto max-w-[1360px] px-gutter py-20 md:py-32">
         <Reveal>
-          <p className="eyebrow text-beige">{t.label}</p>
-        </Reveal>
+          <div className="grid grid-cols-12 gap-x-4 gap-y-12 md:gap-x-8">
+            {/* Heading + direct contact */}
+            <div className="col-span-12 lg:col-span-5">
+              <p className="eyebrow text-ivory/50">{t.eyebrow}</p>
+              <h2 className="mt-6 font-display text-[clamp(2.4rem,4.6vw,4.2rem)] leading-[1.0] font-medium">
+                {t.heading1} <span className="italic font-normal text-ivory/80">{t.heading2}</span>
+              </h2>
+              <p className="mt-6 max-w-sm text-base leading-relaxed text-ivory/70">{t.body}</p>
 
-        {/* Huge heading */}
-        <Reveal delay={100}>
-          <h2 className="mt-8 font-display text-[clamp(2.6rem,10vw,9.5rem)] leading-[0.9] font-light tracking-[-0.02em]">
-            <span className="block">{t.heading1}</span>
-            <span className="block italic text-beige">{t.heading2}</span>
-          </h2>
-        </Reveal>
-
-        <Reveal delay={160}>
-          <p className="mt-8 max-w-md text-base leading-relaxed text-paper/70 md:text-lg">
-            {t.sub}
-          </p>
-        </Reveal>
-
-        {/* Direct-contact ledger — ruled rows, not cards */}
-        <div className="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-2">
-          {rows.map((row, i) => (
-            <Reveal
-              key={row.kind}
-              delay={i * 90}
-              className={`py-8 md:py-10 border-b border-line-ink ${
-                i % 2 === 0 ? "md:pr-10" : "md:pl-10 md:border-l"
-              }`}
-            >
-              <p className="tech text-beige/70">{row.kind}</p>
-              <div className="mt-3 space-y-2">
-                {row.items.map((item) =>
-                  item.href ? (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      className="link-underline block font-display text-xl md:text-2xl font-light text-paper hover:text-beige"
-                    >
-                      {item.label}
-                    </a>
-                  ) : (
-                    <p key={item.label} className="font-display text-xl md:text-2xl font-light">
-                      {item.label}
-                    </p>
-                  )
-                )}
+              <div className="mt-12 space-y-6 border-t border-line-navy pt-6">
+                <div className="flex items-baseline gap-6">
+                  <span className="w-24 eyebrow text-ivory/40">{t.callLabel}</span>
+                  <span className="flex flex-col">
+                    {siteConfig.phones.map((ph) => (
+                      <a key={ph.tel} href={`tel:${ph.tel}`} className="link-underline font-display text-xl font-light">
+                        {ph.label}
+                      </a>
+                    ))}
+                  </span>
+                </div>
+                <div className="flex items-baseline gap-6">
+                  <span className="w-24 eyebrow text-ivory/40">{t.emailLabel}</span>
+                  <a href={`mailto:${siteConfig.email}`} className="link-underline font-display text-lg font-light">
+                    {siteConfig.email}
+                  </a>
+                </div>
+                <div className="flex items-baseline gap-6">
+                  <span className="w-24 eyebrow text-ivory/40">{t.locationLabel}</span>
+                  <span className="font-display text-lg font-light leading-snug">{t.locationValue}</span>
+                </div>
               </div>
-            </Reveal>
-          ))}
-          <Reveal
-            delay={240}
-            className="py-8 md:py-10 border-b border-line-ink md:pl-10 md:border-l"
-          >
-            <p className="tech text-beige/70">{t.ctaPrimary}</p>
-            <div className="mt-4 flex flex-wrap items-center gap-4">
-              <Link
-                href={`${prefix}/contact`}
-                className="group inline-flex items-center gap-3 bg-paper text-ink rounded-full px-8 py-3.5 text-[0.72rem] uppercase tracking-[0.18em] font-semibold transition-all duration-300 hover:bg-beige"
-              >
-                {t.ctaPrimary}
-                <span className="transition-transform duration-400 group-hover:translate-x-1">→</span>
-              </Link>
-              <a
-                href={`mailto:${siteConfig.emails.despacho}`}
-                className="link-underline inline-block text-[0.72rem] uppercase tracking-[0.18em] font-semibold text-paper/90"
-              >
-                {t.ctaSecondary}
-              </a>
             </div>
-          </Reveal>
-        </div>
-      </div>
 
-      {/* Madrid photo — bleeds at the base of the band */}
-      <div className="relative mx-auto max-w-[1600px] px-gutter pb-8">
-        <Reveal>
-          <MediaField
-            src={imagesConfig.cityWide}
-            alt="Madrid — CCD Legal Group"
-            label={`${t.location} · España`}
-            index="06"
-            sizes="100vw"
-            className="aspect-[21/9] md:aspect-[24/7] w-full"
-            tone="ink"
-          />
+            {/* Enquiry form */}
+            <div className="col-span-12 lg:col-span-6 lg:col-start-7">
+              <div className="border border-line-navy bg-navy-2 p-6 md:p-10">
+                <p className="eyebrow text-ivory/40">{t.formTitle}</p>
+                <div className="mt-6">
+                  <ContactForm dict={form} dark />
+                </div>
+              </div>
+              <p className="mt-4 text-[0.68rem] uppercase tracking-[0.16em] text-ivory/40">{t.note}</p>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>

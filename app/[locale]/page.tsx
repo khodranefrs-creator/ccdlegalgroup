@@ -4,15 +4,13 @@ import { getInsights } from "@/config/insights";
 import { type Locale } from "@/config/site";
 
 import Hero from "@/components/Hero";
-import SectionIntro from "@/components/SectionIntro";
-import SectionFirm from "@/components/SectionFirm";
-import SectionPositioning from "@/components/SectionPositioning";
-import SectionExpertise from "@/components/SectionExpertise";
-import SectionMatters from "@/components/SectionMatters";
-import SectionProcess from "@/components/SectionProcess";
-import SectionCarolina from "@/components/SectionCarolina";
-import SectionTrust from "@/components/SectionTrust";
+import SectionFirmIntro from "@/components/SectionFirmIntro";
+import PracticeDirectory from "@/components/PracticeDirectory";
+import SectionAdvisory from "@/components/SectionAdvisory";
+import SectionPeople from "@/components/SectionPeople";
+import SectionWhy from "@/components/SectionWhy";
 import SectionInsights from "@/components/SectionInsights";
+import SectionMadrid from "@/components/SectionMadrid";
 import SectionContact from "@/components/SectionContact";
 
 export default async function HomePage({
@@ -29,16 +27,14 @@ export default async function HomePage({
   return (
     <>
       <Hero locale={lc} t={t.hero} />
-      <SectionIntro t={t.intro} />
-      <SectionFirm locale={lc} t={t.firm} />
-      <SectionPositioning t={t.positioning} />
-      <SectionExpertise locale={lc} heading={t.expertise} services={services} />
-      <SectionMatters t={t.matters} />
-      <SectionProcess t={t.process} />
-      <SectionCarolina locale={lc} t={t.carolina} />
-      <SectionTrust t={t.trust} />
-      <SectionInsights locale={lc} heading={t.insights} items={insights} />
-      <SectionContact locale={lc} t={t.contact} />
+      <SectionFirmIntro locale={lc} t={t.firmIntro} />
+      <PracticeDirectory locale={lc} t={t.practices} practices={services} />
+      <SectionAdvisory locale={lc} t={t.advisory} />
+      <SectionPeople locale={lc} t={t.people} />
+      <SectionWhy t={t.why} />
+      <SectionInsights locale={lc} t={t.insights} items={insights} />
+      <SectionMadrid locale={lc} t={t.madrid} />
+      <SectionContact locale={lc} t={t.contact} form={t.form} />
     </>
   );
 }

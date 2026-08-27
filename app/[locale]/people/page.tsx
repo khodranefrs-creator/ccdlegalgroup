@@ -1,6 +1,7 @@
 import { getDictionary } from "@/config/translations";
 import { siteConfig, type Locale } from "@/config/site";
 import PageHero from "@/components/PageHero";
+import SectionPeople from "@/components/SectionPeople";
 import SectionMadrid from "@/components/SectionMadrid";
 import SectionContact from "@/components/SectionContact";
 import type { Metadata } from "next";
@@ -14,17 +15,17 @@ export async function generateMetadata({
   const lc = locale as Locale;
   const t = getDictionary(lc);
   return {
-    title: t.meta.contactTitle,
-    description: t.meta.contactDescription,
-    alternates: { canonical: lc === "es" ? "/contact" : "/en/contact" },
+    title: t.meta.peopleTitle,
+    description: t.meta.peopleDescription,
+    alternates: { canonical: lc === "es" ? "/people" : "/en/people" },
     openGraph: {
-      title: `${siteConfig.name} — ${t.meta.contactTitle}`,
-      description: t.meta.contactDescription,
+      title: `${siteConfig.name} — ${t.meta.peopleTitle}`,
+      description: t.meta.peopleDescription,
     },
   };
 }
 
-export default async function ContactPage({
+export default async function PeoplePage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -32,13 +33,14 @@ export default async function ContactPage({
   const { locale } = await params;
   const lc = locale as Locale;
   const t = getDictionary(lc);
-  const p = t.contactPage;
+  const p = t.peoplePage;
 
   return (
     <>
       <PageHero eyebrow={p.eyebrow} titleLines={p.titleLines} lead={p.lead} />
-      <SectionContact locale={lc} t={t.contact} form={t.form} />
+      <SectionPeople locale={lc} t={t.people} />
       <SectionMadrid locale={lc} t={t.madrid} />
+      <SectionContact locale={lc} t={t.contact} form={t.form} />
     </>
   );
 }

@@ -6,8 +6,8 @@ export default function NotFound() {
       <body
         style={{
           margin: 0,
-          background: "#f5f1e8",
-          color: "#16130f",
+          background: "#151b20",
+          color: "#fbf9f5",
           fontFamily: "ui-sans-serif, system-ui, sans-serif",
         }}
       >
@@ -23,19 +23,19 @@ export default function NotFound() {
             textAlign: "center",
           }}
         >
-          <p style={{ letterSpacing: "0.25em", textTransform: "uppercase", fontSize: "0.8rem", color: "#6d2230" }}>
+          <p style={{ letterSpacing: "0.25em", textTransform: "uppercase", fontSize: "0.8rem", color: "#8c3044" }}>
             Error 404
           </p>
           <h1
             style={{
-              fontFamily: "Georgia, serif",
-              fontWeight: 300,
+              fontFamily: "Georgia, 'Times New Roman', serif",
+              fontWeight: 400,
               fontSize: "clamp(2.5rem, 8vw, 5rem)",
-              lineHeight: 0.95,
+              lineHeight: 1,
               margin: 0,
             }}
           >
-            Página no
+            Materia no
             <br />
             encontrada
           </h1>
@@ -47,7 +47,7 @@ export default function NotFound() {
               letterSpacing: "0.18em",
               textTransform: "uppercase",
               fontWeight: 600,
-              color: "#6d2230",
+              color: "#8c3044",
             }}
           >
             Volver al inicio →

@@ -1,7 +1,9 @@
 import { getDictionary } from "@/config/translations";
 import { siteConfig, type Locale } from "@/config/site";
 import PageHero from "@/components/PageHero";
-import FirmPhilosophy from "@/components/FirmPhilosophy";
+import SectionFirmIntro from "@/components/SectionFirmIntro";
+import SectionWhy from "@/components/SectionWhy";
+import SectionMadrid from "@/components/SectionMadrid";
 import SectionContact from "@/components/SectionContact";
 import type { Metadata } from "next";
 
@@ -16,9 +18,7 @@ export async function generateMetadata({
   return {
     title: t.meta.firmTitle,
     description: t.meta.firmDescription,
-    alternates: {
-      canonical: lc === "es" ? "/firm" : "/en/firm",
-    },
+    alternates: { canonical: lc === "es" ? "/firm" : "/en/firm" },
     openGraph: {
       title: `${siteConfig.name} — ${t.meta.firmTitle}`,
       description: t.meta.firmDescription,
@@ -36,26 +36,13 @@ export default async function FirmPage({
   const t = getDictionary(lc);
   const p = t.firmPage;
 
-  const pillars = [
-    { no: p.philosophyNo, title: p.philosophyTitle, body: p.philosophyBody },
-    { no: p.approachNo, title: p.approachTitle, body: p.approachBody },
-    { no: p.commitmentNo, title: p.commitmentTitle, body: p.commitmentBody },
-  ];
-
   return (
     <>
-      <PageHero eyebrow={p.eyebrow} titleLines={p.titleLines} lead={p.lead} number="02" />
-      <FirmPhilosophy
-        pillars={pillars}
-        dict={{
-          quote: p.quote,
-          quoteLabel: p.quoteLabel,
-          methodLabel: p.methodLabel,
-          methodHeading: p.methodHeading,
-          methodSub: p.methodSub,
-        }}
-      />
-      <SectionContact locale={lc} t={t.contact} />
+      <PageHero eyebrow={p.eyebrow} titleLines={p.titleLines} lead={p.lead} />
+      <SectionFirmIntro locale={lc} t={t.firmIntro} />
+      <SectionWhy t={t.why} />
+      <SectionMadrid locale={lc} t={t.madrid} />
+      <SectionContact locale={lc} t={t.contact} form={t.form} />
     </>
   );
 }

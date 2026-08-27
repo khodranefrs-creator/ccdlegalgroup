@@ -1,684 +1,635 @@
 import type { Locale } from "./site";
 
 /**
- * Global translation dictionary.
+ * CCD Legal Group — translation dictionary.
  *
- * Spanish (es) is primary and written at native level; English (en) is provided
- * as a faithful counterpart. Everything user-facing resolves through this
- * dictionary — components never hard-code strings.
- *
- * Voice: restrained, precise, human. No generic marketing fluff. The firm
- * speaks with the authority of a well-drafted document, never a sales pitch.
+ * Spanish (es) is primary and written at native, professional level; English
+ * (en) is a faithful legal/business translation. No marketing fluff — precise,
+ * concise, authoritative. Every user-facing string resolves through this file.
  */
 
 export const translations = {
   es: {
-    // ---------- Metadata / SEO ----------
     meta: {
-      homeTitle: "CCD Legal Group — Abogados y Asesoría de Negocio en Madrid",
+      homeTitle: "CCD Legal Group — Abogados en Madrid | Asesoría Legal y de Negocio",
       homeDescription:
-        "CCD Legal Group · Cutilla Díaz & Cons Abogados. Despacho boutique de asesoría legal y de negocio en Madrid. Rigor jurídico, mirada estratégica.",
-      firmTitle: "El Despacho — CCD Legal Group",
+        "CCD Legal Group · Cutilla Díaz & Cons Abogados. Despacho de abogados en Madrid, Príncipe de Vergara. Asesoría legal y de negocio en derecho civil, penal, familia y extranjería.",
+      firmTitle: "El Despacho — CCD Legal Group | Abogados en Madrid",
       firmDescription:
-        "La filosofía de CCD Legal Group: una firma boutique de asesoría legal y de negocio en Madrid. Pocas voces, claridad y estrategia.",
-      expertiseTitle: "Áreas de Práctica — CCD Legal Group",
-      expertiseDescription:
-        "Áreas de práctica de CCD Legal Group: asesoría legal, accidentes de trabajo y accidentes de tráfico, con la mirada puesta en el negocio.",
-      carolinaTitle: "Carolina Cutilla Díaz — Abogada · Criminóloga · Fundadora",
-      carolinaDescription:
-        "Carolina Cutilla Díaz, abogada, criminóloga y fundadora de CCD Legal Group, Madrid.",
-      insightsTitle: "Perspectivas — CCD Legal Group",
+        "Conozca CCD Legal Group, despacho de abogados boutique en Madrid. Consejo legal y de negocio con rigor, discreción y perspectiva estratégica.",
+      practicesTitle: "Áreas de Práctica — CCD Legal Group | Abogados en Madrid",
+      practicesDescription:
+        "Derecho civil, penal, de familia, extranjería y asesoría legal y de negocio en Madrid. Conozca las áreas de práctica de CCD Legal Group.",
+      peopleTitle: "Abogados — CCD Legal Group | Carolina Cutilla Díaz",
+      peopleDescription:
+        "Carolina Cutilla Díaz, abogada, criminóloga y fundadora de CCD Legal Group, despacho en Madrid.",
+      insightsTitle: "Perspectivas — CCD Legal Group | Abogados en Madrid",
       insightsDescription:
-        "Perspectivas editoriales sobre derecho, criminología y estrategia de negocio, escritas desde la práctica.",
-      contactTitle: "Contacto — Solicita una consulta | CCD Legal Group",
+        "Perspectivas sobre derecho, criminología y estrategia de negocio escritas desde la práctica de CCD Legal Group en Madrid.",
+      contactTitle: "Contacto — CCD Legal Group | Abogados en Madrid",
       contactDescription:
-        "Contacta con CCD Legal Group en Madrid. Solicita una consulta, llama o escribe por email.",
+        "Contacte con CCD Legal Group en Madrid, Príncipe de Vergara 132. Solicite una consulta, llámenos o escríbanos por email.",
+      legalTitle: "Aviso Legal — CCD Legal Group",
+      legalDescription: "Aviso legal del sitio web de CCD Legal Group.",
+      privacyTitle: "Política de Privacidad — CCD Legal Group",
+      privacyDescription: "Política de privacidad de CCD Legal Group.",
     },
 
-    // ---------- Navigation ----------
     nav: {
-      firm: "El Despacho",
-      expertise: "Áreas de Práctica",
-      carolina: "Carolina",
+      about: "El Despacho",
+      practices: "Áreas de Práctica",
+      people: "Abogados",
       insights: "Perspectivas",
       contact: "Contacto",
-      cta: "Hablar con el despacho",
+      cta: "Contactar",
       menu: "Menú",
       close: "Cerrar",
       city: "Madrid",
+      back: "Volver",
     },
 
-    // ---------- Hero (case-file opening) ----------
+    footer: {
+      desc: "Despacho de abogados y asesoría de negocio en Madrid. Consejo riguroso, mirada estratégica y atención directa.",
+      office: "Oficina",
+      contactHeading: "Contacto",
+      legalHeading: "Legal",
+      addressLine1: "Príncipe de Vergara 132",
+      addressLine2: "28002 Madrid, España",
+      instagram: "Instagram",
+      emailLabel: "Email",
+      legalNote: "Despacho legal inscrito y sujeto a la normativa española de colegiación.",
+      copyright: "CCD Legal Group — Cutilla Díaz & Cons Abogados.",
+      rights: "Todos los derechos reservados.",
+      legalNotice: "Aviso Legal",
+      privacy: "Política de Privacidad",
+      toTop: "Volver arriba",
+      practiceAreas: [
+        "Derecho Civil",
+        "Derecho Penal",
+        "Derecho de Familia",
+        "Derecho de Extranjería",
+        "Asesoría Legal y de Negocio",
+      ],
+    },
+
     hero: {
-      filed: "Expediente nº 001",
-      city: "Madrid",
-      district: "Chamberí · Serrano",
-      est: "Despacho boutique",
-      line1: "El derecho,",
-      line2: "bien ejercido,",
-      line3: "aporta",
-      line4: "claridad.",
+      eyebrow: "Abogados y Asesoría de Negocio — Madrid",
+      headline1: "Consejo jurídico",
+      headline2: "para decisiones complejas.",
+      headlineAccent: "para decisiones complejas.",
+      body: "CCD Legal Group es un despacho boutique en Madrid que combina rigor legal con una perspectiva de negocio: claridad, discreción y estrategia en cada asunto.",
       ctaPrimary: "Solicitar una consulta",
       ctaSecondary: "Conocer el despacho",
-      scroll: "Leer el expediente",
-      legal: "Legal",
-      business: "Business",
-      advisory: "& Advisory Firm",
+      location: "Príncipe de Vergara 132 · Madrid",
+      scroll: "Descubrir",
     },
 
-    // ---------- Opening statement ----------
-    intro: {
-      number: "001",
-      statement:
-        "Los asuntos legales rara vez existen de forma aislada. Detrás de cada expediente hay una persona, una empresa y una decisión que importa.",
-      body: "Afrontamos cada asunto con rigor jurídico y una lectura estratégica: entendemos el contexto, fijamos el objetivo y construimos una respuesta clara, precisa y a medida de tu realidad.",
-      note: "Madrid — Legal & Business Advisory",
+    firmIntro: {
+      eyebrow: "El Despacho",
+      heading: "Consejo construido",
+      headingAccent: "alrededor de la materia.",
+      body1:
+        "CCD Legal Group es un despacho de abogados y asesoría de negocio con sede en Madrid. Prestamos consejo en asuntos de derecho civil, penal, de familia y extranjería, a la vez que acompañamos a personas y empresas en sus decisiones legales y de negocio más relevantes.",
+      body2:
+        "Trabajamos con pocos asuntos y mucha atención: cada cliente recibe un interlocutor directo, un análisis claro y una respuesta orientada a resultados.",
+      metaTitle: "Madrid · España",
+      meta1: "Legal",
+      meta2: "Business",
+      meta3: "& Advisory",
+      cta: "Conocer el despacho",
+      ctaHref: "/firm",
     },
 
-    // ---------- The Firm / founder (home) ----------
-    firm: {
-      label: "El Despacho",
-      title: "Carolina Cutilla Díaz",
-      roles: "Abogada · Criminóloga",
-      founder: "Fundadora",
-      body: "Carolina Cutilla Díaz es abogada, criminóloga y fundadora de CCD Legal Group, un despacho boutique de asesoría legal y de negocio en Madrid. Une el rigor del derecho con la comprensión humana de cada caso.",
-      link: "Perfil completo",
-      rooms: "Pocas voces",
-      roomsSub: "relación directa, sin intermediarios",
-      chambers: "El despacho",
-      chambersSub: "Chamberí · Madrid",
-    },
-
-    // ---------- Positioning ----------
-    positioning: {
-      label: "Posicionamiento",
-      heading1: "Dos disciplinas,",
-      heading2: "una sola respuesta.",
-      legalNo: "01",
-      businessNo: "02",
-      legalTitle: "Legal · El rigor",
-      businessTitle: "Business · La mirada",
-      legalBody:
-        "Un conocimiento jurídico sólido que convierte lo complejo en claro, en cada fase del asunto.",
-      businessBody:
-        "Una perspectiva de negocio que entiende lo que está en juego, más allá del papel.",
-      note: "Legal & Business Advisory Firm",
-      chambersNote:
-        "Dirección, estrategia y conocimiento jurídico al servicio de tu decisión.",
-    },
-
-    // ---------- Expertise (clauses) ----------
-    expertise: {
-      label: "Áreas de Práctica",
-      headingTop: "Áreas de",
-      headingBottom: "Práctica",
-      intro: "Un asesoramiento claro, cercano y riguroso, en constante evolución.",
-      clauseLabel: "Cláusula",
-      consult: "Consultar",
-    },
-
-    // ---------- Matters / scope (ledger) ----------
-    matters: {
-      label: "Alcance",
-      heading1: "Asuntos que exigen",
-      heading2: "más que una respuesta.",
-      legend: "Personal · Profesional · Business",
-      col1Title: "Personal",
-      col1Body:
-        "Asuntos que tocan tu vida, tu familia y tu tranquilidad. Tratados con discreción y cercanía.",
-      col2Title: "Profesional",
-      col2Body:
-        "Cuestiones que afectan a tu ejercicio profesional y a las personas que trabajan contigo.",
-      col3Title: "Business",
-      col3Body:
-        "Decisiones que definen tu negocio. Derecho al servicio de lo que quieres construir.",
-      footnote: "Cada asunto se estudia con profundidad estratégica.",
-    },
-
-    // ---------- Carolina (human authority) ----------
-    carolina: {
-      label: "Fundadora",
-      titleLine1: "Carolina",
-      titleLine2: "Cutilla Díaz",
-      role1: "Abogada",
-      role2: "Criminóloga",
-      role3: "Fundadora",
-      body: "Abogada, criminóloga y fundadora de CCD Legal Group. Dirige una práctica boutique en Madrid donde la precisión jurídica se une a una comprensión humana de cada caso.",
-      link: "Ver perfil",
-    },
-
-    // ---------- Process (how we work) ----------
-    process: {
-      label: "Método",
-      heading1: "Cómo",
-      heading2: "trabajamos.",
-      intro: "Un proceso claro en cada etapa, para que siempre sepas en qué punto está tu asunto.",
-      steps: [
-        {
-          no: "01",
-          title: "Escuchamos",
-          body: "Toda defensa comienza por entender. Primero el contexto y la persona, después la letra.",
-        },
-        {
-          no: "02",
-          title: "Estudiamos",
-          body: "Analizamos el asunto a fondo: derecho aplicable, riesgos y las opciones reales sobre la mesa.",
-        },
-        {
-          no: "03",
-          title: "Decidimos juntos",
-          body: "Fijamos juntos la estrategia y la comunicamos con claridad, en cada fase del expediente.",
-        },
-        {
-          no: "04",
-          title: "Respondemos",
-          body: "Ejecutamos con rigor y presencia, manteniéndote informado hasta el desenlace.",
-        },
-      ] as const,
-    },
-
-    // ---------- Trust (credential ledger) ----------
-    trust: {
-      label: "Confianza",
-      heading: "La confianza no se declara; se demuestra.",
+    practices: {
+      eyebrow: "Áreas de Práctica",
+      heading: "Áreas de práctica",
+      headingAccent: "representativas",
       intro:
-        "Lo que puedes verificar de nosotros, sin adornos: una formación dual, una práctica boutique y una relación directa y responsable.",
-      rows: [
-        {
-          no: "01",
-          title: "Abogada colegiada",
-          body: "Ejercicio profesional del derecho, colegiada y en activo en Madrid.",
-        },
-        {
-          no: "02",
-          title: "Criminóloga",
-          body: "Una formación que lee personas y situaciones, no solo expedientes.",
-        },
-        {
-          no: "03",
-          title: "Fundadora",
-          body: "Un despacho propio: una sola firma, una sola responsabilidad, contigo enfrente.",
-        },
-      ] as const,
-      footnote: "Datos verificables — sin estadísticas inventadas ni logotipos de clientes.",
+        "Nuestro trabajo se organiza en cinco grandes áreas. Cada una responde a una necesidad real de nuestros clientes.",
+      servicesLabel: "Ámbitos de actuación",
+      consult: "Consultar un asunto",
+      explore: "Explorar",
+      slideLabel: "Práctica",
+      note:
+        "Los ámbitos de actuación descritos son orientativos y pueden ajustarse a las circunstancias concretas de cada asunto.",
     },
 
-    // ---------- Insights ----------
+    advisory: {
+      eyebrow: "Asesoría de Negocio",
+      heading: "El consejo legal",
+      headingAccent: "con perspectiva de negocio.",
+      body1:
+        "CCD Legal Group combina el consejo jurídico con una lectura empresarial de cada situación. No nos limitamos a valorar la legalidad: entendemos la decisión, el riesgo y el contexto comercial.",
+      body2:
+        "Este enfoque permite anticipar problemas, estructurar mejor los acuerdos y tomar decisiones con mayor seguridad.",
+      cta: "Plantear una cuestión de negocio",
+      points: [
+        { no: "01", title: "Decisiones de negocio", body: "Contrastamos la viabilidad jurídica con el impacto comercial antes de actuar." },
+        { no: "02", title: "Contratos", body: "Redacción y revisión de contratos orientada a prevenir controversias." },
+        { no: "03", title: "Asuntos mercantiles", body: "Acompañamiento en operaciones y relaciones comerciales." },
+        { no: "04", title: "Riesgo legal", body: "Identificación temprana del riesgo para reducir incertidumbre." },
+        { no: "05", title: "Consejo estratégico", body: "Una lectura a medio plazo de los asuntos legales y de negocio." },
+        { no: "06", title: "Perspectiva transfronteriza", body: "Sensibilidad internacional para clientes y asuntos multinacionales." },
+      ],
+    },
+
+    people: {
+      eyebrow: "Abogados",
+      heading: "Las personas",
+      headingAccent: "detrás del consejo.",
+      sub: "Una firma boutique se define por la calidad de sus profesionales. Nuestra fundadora lidera cada asunto personalmente.",
+      name: "Carolina Cutilla Díaz",
+      role: "Abogada · Criminóloga · Fundadora",
+      roleLabel1: "Abogada",
+      roleLabel2: "Criminóloga",
+      roleLabel3: "Fundadora",
+      practiceLabel: "Áreas",
+      practiceValue: "Civil · Penal · Familia · Extranjería · Asesoría",
+      locationLabel: "Ubicación",
+      locationValue: "Madrid, España",
+      bio:
+        "Carolina Cutilla Díaz es abogada y criminóloga, fundadora de CCD Legal Group. Dirige el despacho con un enfoque en el consejo directo, el rigor técnico y la comprensión profunda de cada cliente.",
+      bio2:
+        "Su recorrido combina el ejercicio del derecho con la mirada criminológica, lo que aporta una lectura distinta de los conflictos y de la estrategia procesal.",
+      cta: "Solicitar una consulta",
+      profileNote:
+        "Perfil profesional. Los datos de formación y colegiación se actualizarán de forma verificada.",
+    },
+
+    why: {
+      eyebrow: "Por qué CCD",
+      heading: "Un despacho",
+      headingAccent: "pensado para el cliente.",
+      intro:
+        "La diferencia no está en el número de asuntos, sino en la calidad del consejo y en la relación que establecemos con cada cliente.",
+      note: "Sin cifras ni promesas vacías: el valor está en el trabajo.",
+      items: [
+        { no: "01", title: "Consejo directo", body: "Habla siempre con el abogado, no con un intermediario." },
+        { no: "02", title: "Perspectiva de negocio", body: "Comprendemos lo que está en juego más allá de lo jurídico." },
+        { no: "03", title: "Atención personal", body: "Pocos asuntos, trato cercano y seguimiento continuo." },
+        { no: "04", title: "Pensamiento estratégico", body: "Anticipamos escenarios y planificamos la decisión." },
+        { no: "05", title: "Confidencialidad", body: "Discreción absoluta en todo lo que nos confías." },
+        { no: "06", title: "Perspectiva internacional", body: "Sensibilidad para clientes y asuntos transfronterizos." },
+      ],
+    },
+
     insights: {
-      label: "Perspectivas",
-      heading: "Últimas perspectivas",
-      viewAll: "Ver todas",
-      sourceNote: "Contenido editorial sobre derecho, criminología y estrategia.",
+      eyebrow: "Perspectivas",
+      heading: "Perspectivas",
+      headingAccent: "del despacho",
+      viewAll: "Ver todas las perspectivas",
+      categoryLabel: "Categoría",
+      titleLabel: "Perspectiva",
+      dateLabel: "Fecha",
+      readLabel: "Leer",
+      sourceNote: "Contenido editorial del despacho.",
+      emptyTitle: "Perspectivas próximamente",
+      emptyBody:
+        "Publicaremos artículos y análisis sobre derecho, criminología y negocio escritos desde la práctica. Hasta entonces, puede conocer cómo trabajamos.",
+      emptyCta: "Conocer el despacho",
     },
 
-    // ---------- Contact (footer band) ----------
+    madrid: {
+      eyebrow: "Madrid",
+      heading: "El despacho,",
+      headingAccent: "en Madrid.",
+      body:
+        "Madrid forma parte de nuestra identidad. Desde Chamberí ofrecemos consejo local con sensibilidad internacional.",
+      addressLabel: "Oficina",
+      street: "Príncipe de Vergara 132",
+      cityCountry: "28002 Madrid, España",
+      phoneLabel: "Teléfono",
+      emailLabel: "Email",
+      ctaContact: "Contactar con el despacho",
+      ctaMap: "Ver en el mapa",
+      mapsUrl: "https://maps.google.com/?q=Príncipe+de+Vergara+132,+Madrid",
+    },
+
     contact: {
-      label: "Contacto",
-      heading1: "Hablemos de",
-      heading2: "tu asunto.",
-      sub: "Solicita una consulta con CCD Legal Group. Te responderemos con la mayor brevedad.",
-      call: "Llamar",
-      email: "Email",
-      location: "Madrid",
-      ctaPrimary: "Solicitar una consulta",
-      ctaSecondary: "Escribir un email",
+      eyebrow: "Contacto",
+      heading1: "Hablemos",
+      heading2: "de su asunto.",
+      body:
+        "Puede escribirnos mediante el formulario o contactar directamente con el despacho. Respondemos con la máxima confidencialidad.",
+      callLabel: "Teléfono",
+      emailLabel: "Email",
+      locationLabel: "Oficina",
+      locationValue: "Príncipe de Vergara 132, 28002 Madrid",
+      directLabel: "Contacto directo",
+      cta: "Contactar con CCD Legal Group",
+      ctaSecondary: "despacho@abogadoscutilladiaz.es",
+      formTitle: "Solicitar una consulta",
+      note: "Sus datos se tratan de forma confidencial y únicamente para responder a su consulta.",
     },
 
-    // ---------- Footer ----------
-    footer: {
-      tagline: "Legal & Business Advisory Firm",
-      firm: "El Despacho",
-      expertise: "Áreas de Práctica",
-      carolina: "Carolina",
-      insights: "Perspectivas",
-      contact: "Contacto",
-      city: "Madrid",
-      country: "España",
-      instagram: "@ccd_legalgroup",
-      copyright: "© CCD Legal Group",
-      legalNote: "Cutilla Díaz & Cons Abogados",
-      privacy: "Privacidad",
-      legalNotice: "Aviso Legal",
-      office: "El despacho",
-      district: "Chamberí · Madrid",
+    form: {
+      nameLabel: "Nombre",
+      emailLabel: "Email",
+      phoneLabel: "Teléfono (opcional)",
+      matterLabel: "Materia / consulta",
+      messageLabel: "Mensaje",
+      submit: "Contactar con CCD Legal Group",
+      privacyNote: "Al enviar, acepta el tratamiento de sus datos conforme a nuestra política de privacidad.",
     },
 
-    // ---------- Firm page ----------
     firmPage: {
       eyebrow: "El Despacho",
-      titleLines: ["El Despacho", "& su filosofía"],
-      lead: "CCD Legal Group es un despacho boutique de asesoría legal y de negocio en Madrid. Pocas voces, claridad y estrategia: así trabajamos.",
-      philosophyNo: "01",
-      philosophyTitle: "Menos ruido, más claridad",
-      philosophyBody:
-        "Creemos que el derecho, bien ejercido, aporta claridad. Cada asunto se aborda con rigor y con una visión estratégica, entendiendo el contexto antes de responder.",
-      approachNo: "02",
-      approachTitle: "Estrategia antes que formulismos",
-      approachBody:
-        "Lo legal no debe frenar lo que quieres construir. Combinamos conocimiento jurídico con una perspectiva de negocio para que cada decisión tenga un fundamento sólido.",
-      commitmentNo: "03",
-      commitmentTitle: "Un compromiso centrado en ti",
-      commitmentBody:
-        "Cada asunto recibe una atención directa, discreta y responsable, con una comunicación clara en cada etapa.",
-      quote: "El derecho, bien ejercido, aporta claridad.",
-      quoteLabel: "Filosofía",
-      methodLabel: "Cómo trabajamos",
-      methodHeading: "Claridad en cada etapa",
-      methodSub: "Tres principios que definen cada asunto que asumimos.",
-      ctaTitle: "¿Hablamos de tu asunto?",
-      ctaBody: "Solicita una consulta con CCD Legal Group.",
-      ctaLabel: "Solicitar una consulta",
-      chambersTitle: "Las salas",
-      chambersIntro:
-        "Un despacho boutique: una relación directa con la abogada que lleva tu asunto, de principio a fin.",
+      titleLines: ["Consejo construido", "alrededor de la materia."],
+      lead:
+        "CCD Legal Group es un despacho de abogados y asesoría de negocio con sede en Madrid. Trabajamos con pocos asuntos y mucha atención.",
+      philosophyHeading: "Una forma de ejercer",
+      philosophyHeadingAccent: "la abogacía",
+      philosophyIntro:
+        "Nuestra manera de trabajar se apoya en principios sencillos que aplicamos a cada asunto.",
+      philosophyItems: [
+        { no: "01", title: "Rigor técnico", body: "Fundamento jurídico sólido en cada consejo y en cada escrito." },
+        { no: "02", title: "Claridad", body: "Explicamos el asunto en un lenguaje que se entiende y se actúa." },
+        { no: "03", title: "Discreción", body: "Confidencialidad y prudencia en toda relación profesional." },
+        { no: "04", title: "Compromiso", body: "Asumimos cada asunto como propio y respondemos con celeridad." },
+      ],
+      cta: "Hablar con el despacho",
     },
 
-    // ---------- Expertise page ----------
-    expertisePage: {
+    practicesPage: {
       eyebrow: "Áreas de Práctica",
-      titleLines: ["Áreas", "de Práctica"],
-      lead: "Un asesoramiento claro, cercano y riguroso, pensado para personas y para empresas.",
-      note: "Las áreas se actualizan conforme se confirman nuevas líneas de trabajo.",
-      label: "Servicios",
-      askLabel: "Consultar",
-      indexLabel: "Índice",
+      titleLines: ["Áreas de práctica", "representativas"],
+      lead:
+        "Nuestro trabajo se organiza en cinco áreas que responden a necesidades reales de personas y empresas en Madrid.",
     },
 
-    // ---------- Carolina page ----------
-    carolinaPage: {
-      eyebrow: "El Despacho",
-      titleLines: ["Carolina", "Cutilla Díaz"],
-      lead: "Abogada, criminóloga y fundadora de CCD Legal Group. Un perfil que une el rigor del derecho con la comprensión humana de cada caso.",
-      positioningLabel: "Posicionamiento",
-      positioningTitle: "Legal & Business",
-      rolesLabel: "Perfil",
-      role1: "Abogada",
-      role2: "Criminóloga",
-      role3: "Fundadora",
-      bioLabel: "Carolina",
-      bioTitle: "Rigor jurídico, mirada humana",
-      bioBody1:
-        "Carolina Cutilla Díaz es abogada, criminóloga y fundadora de CCD Legal Group, un despacho boutique de asesoría legal y de negocio en Madrid.",
-      bioBody2:
-        "Su trabajo se caracteriza por una lectura estratégica de cada asunto: entender el contexto, identificar el objetivo y construir una respuesta clara, precisa y adecuada a la realidad de cada persona o empresa.",
-      note: "Perfil profesional — contenidos verificados",
-      chambersTitle: "El despacho",
-      chambersSub: "Rigor jurídico, cercanía y discreción en el centro de Madrid.",
+    peoplePage: {
+      eyebrow: "Abogados",
+      titleLines: ["Las personas", "detrás del consejo."],
+      lead:
+        "Una firma boutique se define por la calidad de sus profesionales. Conozca quién lidera CCD Legal Group.",
     },
 
-    // ---------- Insights page ----------
     insightsPage: {
       eyebrow: "Perspectivas",
-      titleLines: ["Perspectivas", "recientes"],
-      lead: "Una mirada editorial sobre derecho, criminología y estrategia de negocio, escrita desde la práctica.",
-      emptyTitle: "Contenido en preparación",
-      emptyBody:
-        "Las primeras perspectivas se publicarán próximamente. Mientras tanto, puedes contactar con el despacho para cualquier consulta.",
-      emptyCta: "Contactar",
+      titleLines: ["Perspectivas", "del despacho"],
+      lead:
+        "Análisis y comentarios sobre derecho, criminología y negocio, escritos desde la práctica diaria.",
     },
 
-    // ---------- Contact page ----------
     contactPage: {
       eyebrow: "Contacto",
-      titleLines: ["Hablemos", "de tu asunto"],
-      lead: "Solicita una consulta con CCD Legal Group. Te responderemos con la mayor brevedad.",
-      formName: "Nombre",
-      formEmail: "Email",
-      formPhone: "Teléfono (opcional)",
-      formMessage: "¿En qué podemos ayudarte?",
-      formSubmit: "Enviar consulta",
-      formNote: "Al enviar, aceptas el tratamiento de tus datos para responder a tu consulta.",
+      titleLines: ["Hablemos de", "su asunto."],
+      lead:
+        "Complete el formulario o contacte directamente. Atendemos su consulta con la máxima confidencialidad.",
       directLabel: "Contacto directo",
-      callLabel: "Llamar",
+      callLabel: "Teléfono",
       emailLabel: "Email",
-      locationLabel: "Madrid",
-      mailtoNote: "o escribe directamente a",
-      officeLabel: "El despacho",
+      locationLabel: "Oficina",
+      mapTitle: "Encuéntranos en Madrid",
+      mapAddress: "Príncipe de Vergara 132, 28002 Madrid",
     },
 
-    // ---------- Interstitial / UI ----------
-    ui: {
-      arrow: "Seguir",
-      filed: "Expediente",
-      pagedIn: "pág.",
+    legal: {
+      eyebrow: "Aviso Legal",
+      titleLines: ["Aviso", "Legal"],
+      bodyTitle: "Identificación",
+      body1:
+        "El presente aviso legal regula el uso del sitio web de CCD Legal Group — Cutilla Díaz & Cons Abogados.",
+      bodyTitle2: "Datos del titular",
+      body2:
+        "Cutilla Díaz & Cons Abogados, con domicilio profesional en Príncipe de Vergara 132, 28002 Madrid, España.",
+      bodyTitle3: "Propiedad intelectual",
+      body3:
+        "Todos los contenidos de este sitio web son titularidad del despacho y no pueden reproducirse sin autorización.",
+      bodyTitle4: "Responsabilidad",
+      body4:
+        "La información publicada tiene carácter general y no constituye asesoramiento jurídico. No establece relación profesional entre abogado y cliente.",
+    },
+
+    privacy: {
+      eyebrow: "Privacidad",
+      titleLines: ["Política de", "Privacidad"],
+      bodyTitle: "Responsable del tratamiento",
+      body1:
+        "Cutilla Díaz & Cons Abogados, Príncipe de Vergara 132, 28002 Madrid, España.",
+      bodyTitle2: "Finalidad",
+      body2:
+        "Los datos recogidos a través de este sitio se utilizan únicamente para atender consultas y, en su caso, prestar los servicios solicitados.",
+      bodyTitle3: "Legitimación",
+      body3: "El tratamiento se basa en el consentimiento del interesado y, en su caso, en la relación contractual.",
+      bodyTitle4: "Derechos",
+      body4:
+        "Puede ejercer sus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo al despacho.",
     },
   },
 
   en: {
-    // ---------- Metadata / SEO ----------
     meta: {
-      homeTitle: "CCD Legal Group — Lawyers & Business Advisory in Madrid",
+      homeTitle: "CCD Legal Group — Law Firm in Madrid | Legal & Business Advisory",
       homeDescription:
-        "CCD Legal Group · Cutilla Díaz & Cons Abogados. Boutique legal and business advisory firm in Madrid. Legal rigour, a strategic view.",
-      firmTitle: "The Chambers — CCD Legal Group",
+        "CCD Legal Group · Cutilla Díaz & Cons Abogados. Law firm in Madrid, Príncipe de Vergara. Legal and business advisory across civil, criminal, family and immigration law.",
+      firmTitle: "The Firm — CCD Legal Group | Law Firm in Madrid",
       firmDescription:
-        "The philosophy of CCD Legal Group: a boutique legal and business advisory firm in Madrid. Few voices, clarity and strategy.",
-      expertiseTitle: "Practice Areas — CCD Legal Group",
-      expertiseDescription:
-        "Practice areas at CCD Legal Group: legal advisory, workplace accidents and traffic accidents, with a business view.",
-      carolinaTitle: "Carolina Cutilla Díaz — Lawyer · Criminologist · Founder",
-      carolinaDescription:
-        "Carolina Cutilla Díaz, lawyer, criminologist and founder of CCD Legal Group, Madrid.",
-      insightsTitle: "Perspectives — CCD Legal Group",
+        "Meet CCD Legal Group, a boutique law firm in Madrid. Legal and business counsel delivered with rigour, discretion and strategic perspective.",
+      practicesTitle: "Practice Areas — CCD Legal Group | Law Firm in Madrid",
+      practicesDescription:
+        "Civil, criminal, family and immigration law plus business and legal advisory in Madrid. Explore CCD Legal Group's practice areas.",
+      peopleTitle: "Lawyers — CCD Legal Group | Carolina Cutilla Díaz",
+      peopleDescription:
+        "Carolina Cutilla Díaz, lawyer, criminologist and founder of CCD Legal Group, a law firm in Madrid.",
+      insightsTitle: "Insights — CCD Legal Group | Law Firm in Madrid",
       insightsDescription:
-        "Editorial perspectives on law, criminology and business strategy, written from practice.",
-      contactTitle: "Contact — Book a consultation | CCD Legal Group",
+        "Perspectives on law, criminology and business strategy written from the practice of CCD Legal Group in Madrid.",
+      contactTitle: "Contact — CCD Legal Group | Law Firm in Madrid",
       contactDescription:
-        "Contact CCD Legal Group in Madrid. Request a consultation, call or email us.",
+        "Contact CCD Legal Group in Madrid, Príncipe de Vergara 132. Request a consultation, call or email us.",
+      legalTitle: "Legal Notice — CCD Legal Group",
+      legalDescription: "Legal notice for the CCD Legal Group website.",
+      privacyTitle: "Privacy Policy — CCD Legal Group",
+      privacyDescription: "Privacy policy of CCD Legal Group.",
     },
 
-    // ---------- Navigation ----------
     nav: {
-      firm: "The Chambers",
-      expertise: "Practice Areas",
-      carolina: "Carolina",
-      insights: "Perspectives",
+      about: "About",
+      practices: "Practices",
+      people: "People",
+      insights: "Insights",
       contact: "Contact",
-      cta: "Talk to the firm",
+      cta: "Contact us",
       menu: "Menu",
       close: "Close",
       city: "Madrid",
+      back: "Back",
     },
 
-    // ---------- Hero (case-file opening) ----------
+    footer: {
+      desc: "A law and business advisory firm in Madrid. Rigorous counsel, a strategic view and direct attention.",
+      office: "Office",
+      contactHeading: "Contact",
+      legalHeading: "Legal",
+      addressLine1: "Príncipe de Vergara 132",
+      addressLine2: "28002 Madrid, Spain",
+      instagram: "Instagram",
+      emailLabel: "Email",
+      legalNote: "A legal practice governed by Spanish professional regulations.",
+      copyright: "CCD Legal Group — Cutilla Díaz & Cons Abogados.",
+      rights: "All rights reserved.",
+      legalNotice: "Legal Notice",
+      privacy: "Privacy Policy",
+      toTop: "Back to top",
+      practiceAreas: [
+        "Civil Law",
+        "Criminal Law",
+        "Family Law",
+        "Immigration Law",
+        "Business & Legal Advisory",
+      ],
+    },
+
     hero: {
-      filed: "File nº 001",
-      city: "Madrid",
-      district: "Chamberí · Serrano",
-      est: "Boutique chambers",
-      line1: "The law,",
-      line2: "well practised,",
-      line3: "brings",
-      line4: "clarity.",
+      eyebrow: "Legal & Business Advisory — Madrid",
+      headline1: "Legal counsel",
+      headline2: "for complex decisions.",
+      headlineAccent: "for complex decisions.",
+      body: "CCD Legal Group is a boutique firm in Madrid combining legal rigour with a business perspective: clarity, discretion and strategy in every matter.",
       ctaPrimary: "Request a consultation",
-      ctaSecondary: "Meet the chambers",
-      scroll: "Read the file",
-      legal: "Legal",
-      business: "Business",
-      advisory: "& Advisory Firm",
+      ctaSecondary: "About the firm",
+      location: "Príncipe de Vergara 132 · Madrid",
+      scroll: "Discover",
     },
 
-    // ---------- Opening statement ----------
-    intro: {
-      number: "001",
-      statement:
-        "Legal matters rarely exist in isolation. Behind every file there is a person, a business and a decision that matters.",
-      body: "We approach every matter with legal rigour and a strategic reading: we understand the context, set the objective and build a clear, precise response shaped around your reality.",
-      note: "Madrid — Legal & Business Advisory",
+    firmIntro: {
+      eyebrow: "The Firm",
+      heading: "Counsel built",
+      headingAccent: "around the matter.",
+      body1:
+        "CCD Legal Group is a law and business advisory firm based in Madrid. We provide counsel across civil, criminal, family and immigration law while supporting people and businesses in their wider legal and business decisions.",
+      body2:
+        "We take on a limited number of matters and give them undivided attention: every client works with a direct contact, a clear analysis and a response focused on outcomes.",
+      metaTitle: "Madrid · Spain",
+      meta1: "Legal",
+      meta2: "Business",
+      meta3: "& Advisory",
+      cta: "About the firm",
+      ctaHref: "/firm",
     },
 
-    // ---------- The Firm / founder (home) ----------
-    firm: {
-      label: "The Chambers",
-      title: "Carolina Cutilla Díaz",
-      roles: "Lawyer · Criminologist",
-      founder: "Founder",
-      body: "Carolina Cutilla Díaz is a lawyer, criminologist and founder of CCD Legal Group, a boutique legal and business advisory firm in Madrid. She joins the rigour of law with a human understanding of every case.",
-      link: "Full profile",
-      rooms: "Few voices",
-      roomsSub: "direct access, no intermediaries",
-      chambers: "The chambers",
-      chambersSub: "Chamberí · Madrid",
-    },
-
-    // ---------- Positioning ----------
-    positioning: {
-      label: "Positioning",
-      heading1: "Two disciplines,",
-      heading2: "one answer.",
-      legalNo: "01",
-      businessNo: "02",
-      legalTitle: "Legal · The rigour",
-      businessTitle: "Business · The view",
-      legalBody:
-        "A solid legal foundation that turns the complex into the clear, at every stage of the matter.",
-      businessBody:
-        "A business perspective that understands what is at stake, beyond the document.",
-      note: "Legal & Business Advisory Firm",
-      chambersNote:
-        "Direction, strategy and legal knowledge in the service of your decision.",
-    },
-
-    // ---------- Expertise (clauses) ----------
-    expertise: {
-      label: "Practice Areas",
-      headingTop: "Areas of",
-      headingBottom: "Practice",
-      intro: "Clear, close and rigorous counsel, in constant evolution.",
-      clauseLabel: "Clause",
-      consult: "Enquire",
-    },
-
-    // ---------- Matters / scope (ledger) ----------
-    matters: {
-      label: "Scope",
-      heading1: "Matters that require",
-      heading2: "more than an answer.",
-      legend: "Personal · Professional · Business",
-      col1Title: "Personal",
-      col1Body:
-        "Matters that touch your life, your family and your peace of mind. Handled with discretion and warmth.",
-      col2Title: "Professional",
-      col2Body:
-        "Issues affecting your professional practice and the people who work with you.",
-      col3Title: "Business",
-      col3Body:
-        "Decisions that define your business. Law in the service of what you want to build.",
-      footnote: "Every matter is studied with strategic depth.",
-    },
-
-    // ---------- Carolina (human authority) ----------
-    carolina: {
-      label: "Founder",
-      titleLine1: "Carolina",
-      titleLine2: "Cutilla Díaz",
-      role1: "Lawyer",
-      role2: "Criminologist",
-      role3: "Founder",
-      body: "Lawyer, criminologist and founder of CCD Legal Group. She leads a boutique practice in Madrid where legal precision meets a human understanding of every case.",
-      link: "View profile",
-    },
-
-    // ---------- Process (how we work) ----------
-    process: {
-      label: "Method",
-      heading1: "How we",
-      heading2: "work.",
-      intro: "A clear process at every stage, so you always know where your matter stands.",
-      steps: [
-        {
-          no: "01",
-          title: "We listen",
-          body: "Every case begins with understanding. First the person and the context, then the letter of the law.",
-        },
-        {
-          no: "02",
-          title: "We study",
-          body: "We examine the matter in depth: applicable law, risk and the realistic options on the table.",
-        },
-        {
-          no: "03",
-          title: "We decide together",
-          body: "We set the strategy together and communicate it clearly, at every stage of the file.",
-        },
-        {
-          no: "04",
-          title: "We act",
-          body: "We execute with rigour and presence, keeping you informed to the resolution.",
-        },
-      ] as const,
-    },
-
-    // ---------- Trust (credential ledger) ----------
-    trust: {
-      label: "Trust",
-      heading: "Trust is demonstrated, not declared.",
+    practices: {
+      eyebrow: "Practice Areas",
+      heading: "Practice areas",
+      headingAccent: "representative",
       intro:
-        "What you can verify about us, without embellishment: a dual training, a boutique practice and a direct, accountable relationship.",
-      rows: [
-        {
-          no: "01",
-          title: "Practising lawyer",
-          body: "Professional legal practice, registered and active in Madrid.",
-        },
-        {
-          no: "02",
-          title: "Criminologist",
-          body: "Training that reads people and situations, not only files.",
-        },
-        {
-          no: "03",
-          title: "Founder",
-          body: "Your own firm: one name, one responsibility, with you in front of us.",
-        },
-      ] as const,
-      footnote: "Verifiable facts — no invented statistics or client logos.",
+        "Our work is organised across five principal areas, each responding to a real need of our clients.",
+      servicesLabel: "Areas of work",
+      consult: "Consult a matter",
+      explore: "Explore",
+      slideLabel: "Practice",
+      note:
+        "The areas described are indicative and can be adjusted to the specific circumstances of each matter.",
     },
 
-    // ---------- Insights ----------
+    advisory: {
+      eyebrow: "Business Advisory",
+      heading: "Legal counsel",
+      headingAccent: "with a business view.",
+      body1:
+        "CCD Legal Group combines legal counsel with a business reading of each situation. We do not simply assess legality — we understand the decision, the risk and the commercial context.",
+      body2:
+        "This approach lets us anticipate issues, structure agreements better and make decisions with greater confidence.",
+      cta: "Raise a business question",
+      points: [
+        { no: "01", title: "Business decisions", body: "We weigh legal feasibility against commercial impact before acting." },
+        { no: "02", title: "Contracts", body: "Drafting and review of contracts designed to prevent disputes." },
+        { no: "03", title: "Commercial matters", body: "Support across transactions and commercial relationships." },
+        { no: "04", title: "Legal risk", body: "Early identification of risk to reduce uncertainty." },
+        { no: "05", title: "Strategic counsel", body: "A medium-term reading of legal and business matters." },
+        { no: "06", title: "Cross-border perspective", body: "International sensitivity for clients and multinational matters." },
+      ],
+    },
+
+    people: {
+      eyebrow: "People",
+      heading: "The people",
+      headingAccent: "behind the counsel.",
+      sub: "A boutique firm is defined by the calibre of its professionals. Our founder leads every matter personally.",
+      name: "Carolina Cutilla Díaz",
+      role: "Lawyer · Criminologist · Founder",
+      roleLabel1: "Lawyer",
+      roleLabel2: "Criminologist",
+      roleLabel3: "Founder",
+      practiceLabel: "Practice",
+      practiceValue: "Civil · Criminal · Family · Immigration · Advisory",
+      locationLabel: "Location",
+      locationValue: "Madrid, Spain",
+      bio:
+        "Carolina Cutilla Díaz is a lawyer and criminologist and the founder of CCD Legal Group. She leads the firm with a focus on direct counsel, technical rigour and a deep understanding of each client.",
+      bio2:
+        "Her career combines the practice of law with a criminological perspective, bringing a distinct reading of conflicts and of procedural strategy.",
+      cta: "Request a consultation",
+      profileNote:
+        "Professional profile. Verified details of education and bar membership will be added as they are confirmed.",
+    },
+
+    why: {
+      eyebrow: "Why CCD",
+      heading: "A firm",
+      headingAccent: "designed for the client.",
+      intro:
+        "The difference lies not in the number of matters, but in the quality of the counsel and the relationship we build with each client.",
+      note: "No figures, no empty promises — the value is in the work.",
+      items: [
+        { no: "01", title: "Direct counsel", body: "You always speak with the lawyer, not an intermediary." },
+        { no: "02", title: "Business perspective", body: "We understand what is at stake beyond the legal." },
+        { no: "03", title: "Personal attention", body: "A limited number of matters and continuous follow-up." },
+        { no: "04", title: "Strategic thinking", body: "We anticipate scenarios and plan the decision." },
+        { no: "05", title: "Confidentiality", body: "Absolute discretion in all that you entrust to us." },
+        { no: "06", title: "International outlook", body: "Sensitivity for cross-border clients and matters." },
+      ],
+    },
+
     insights: {
-      label: "Perspectives",
-      heading: "Latest perspectives",
-      viewAll: "View all",
-      sourceNote: "Editorial content on law, criminology and strategy.",
+      eyebrow: "Insights",
+      heading: "Insights",
+      headingAccent: "from the firm",
+      viewAll: "View all insights",
+      categoryLabel: "Category",
+      titleLabel: "Perspective",
+      dateLabel: "Date",
+      readLabel: "Read",
+      sourceNote: "Editorial content of the firm.",
+      emptyTitle: "Insights coming soon",
+      emptyBody:
+        "We will publish articles and analysis on law, criminology and business written from practice. In the meantime, you can learn how we work.",
+      emptyCta: "About the firm",
     },
 
-    // ---------- Contact (footer band) ----------
+    madrid: {
+      eyebrow: "Madrid",
+      heading: "The firm,",
+      headingAccent: "in Madrid.",
+      body:
+        "Madrid is part of our identity. From Chamberí we offer local counsel with an international sensibility.",
+      addressLabel: "Office",
+      street: "Príncipe de Vergara 132",
+      cityCountry: "28002 Madrid, Spain",
+      phoneLabel: "Telephone",
+      emailLabel: "Email",
+      ctaContact: "Contact the firm",
+      ctaMap: "View on the map",
+      mapsUrl: "https://maps.google.com/?q=Príncipe+de+Vergara+132,+Madrid",
+    },
+
     contact: {
-      label: "Contact",
+      eyebrow: "Contact",
       heading1: "Let's discuss",
       heading2: "your matter.",
-      sub: "Request a consultation with CCD Legal Group. We will reply as soon as possible.",
-      call: "Call",
-      email: "Email",
-      location: "Madrid",
-      ctaPrimary: "Request a consultation",
-      ctaSecondary: "Send an email",
+      body:
+        "You can write to us via the form or contact the firm directly. We respond with complete confidentiality.",
+      callLabel: "Telephone",
+      emailLabel: "Email",
+      locationLabel: "Office",
+      locationValue: "Príncipe de Vergara 132, 28002 Madrid",
+      directLabel: "Direct contact",
+      cta: "Contact CCD Legal Group",
+      ctaSecondary: "despacho@abogadoscutilladiaz.es",
+      formTitle: "Request a consultation",
+      note: "Your details are treated confidentially and used only to respond to your enquiry.",
     },
 
-    // ---------- Footer ----------
-    footer: {
-      tagline: "Legal & Business Advisory Firm",
-      firm: "The Chambers",
-      expertise: "Practice Areas",
-      carolina: "Carolina",
-      insights: "Perspectives",
-      contact: "Contact",
-      city: "Madrid",
-      country: "Spain",
-      instagram: "@ccd_legalgroup",
-      copyright: "© CCD Legal Group",
-      legalNote: "Cutilla Díaz & Cons Abogados",
-      privacy: "Privacy",
-      legalNotice: "Legal Notice",
-      office: "The chambers",
-      district: "Chamberí · Madrid",
+    form: {
+      nameLabel: "Name",
+      emailLabel: "Email",
+      phoneLabel: "Phone (optional)",
+      matterLabel: "Matter / enquiry",
+      messageLabel: "Message",
+      submit: "Contact CCD Legal Group",
+      privacyNote: "By sending, you accept the processing of your data in accordance with our privacy policy.",
     },
 
-    // ---------- Firm page ----------
     firmPage: {
-      eyebrow: "The Chambers",
-      titleLines: ["The Chambers", "and its philosophy"],
-      lead: "CCD Legal Group is a boutique legal and business advisory firm in Madrid. Few voices, clarity and strategy: that is how we work.",
-      philosophyNo: "01",
-      philosophyTitle: "Less noise, more clarity",
-      philosophyBody:
-        "We believe that law, well practised, brings clarity. Every matter is approached with rigour and a strategic view, understanding the context before responding.",
-      approachNo: "02",
-      approachTitle: "Strategy before formulas",
-      approachBody:
-        "The legal should not hold back what you want to build. We combine legal knowledge with a business perspective so every decision has a solid foundation.",
-      commitmentNo: "03",
-      commitmentTitle: "A commitment focused on you",
-      commitmentBody:
-        "Every matter receives direct, discreet and accountable attention, with clear communication at every stage.",
-      quote: "The law, well practised, brings clarity.",
-      quoteLabel: "Philosophy",
-      methodLabel: "How we work",
-      methodHeading: "Clarity at every stage",
-      methodSub: "Three principles that define every matter we take on.",
-      ctaTitle: "Shall we discuss your matter?",
-      ctaBody: "Request a consultation with CCD Legal Group.",
-      ctaLabel: "Request a consultation",
-      chambersTitle: "The rooms",
-      chambersIntro:
-        "A boutique chambers: a direct relationship with the lawyer handling your matter, from start to finish.",
+      eyebrow: "The Firm",
+      titleLines: ["Counsel built", "around the matter."],
+      lead:
+        "CCD Legal Group is a law and business advisory firm based in Madrid. We take on a limited number of matters and give them undivided attention.",
+      philosophyHeading: "A way of practising",
+      philosophyHeadingAccent: "the law",
+      philosophyIntro:
+        "Our way of working rests on simple principles applied to every matter.",
+      philosophyItems: [
+        { no: "01", title: "Technical rigour", body: "Solid legal foundation in every piece of advice and every submission." },
+        { no: "02", title: "Clarity", body: "We explain the matter in language that is understood and acted upon." },
+        { no: "03", title: "Discretion", body: "Confidentiality and prudence in every professional relationship." },
+        { no: "04", title: "Commitment", body: "We treat each matter as our own and respond with speed." },
+      ],
+      cta: "Talk to the firm",
     },
 
-    // ---------- Expertise page ----------
-    expertisePage: {
+    practicesPage: {
       eyebrow: "Practice Areas",
-      titleLines: ["Areas of", "Practice"],
-      lead: "Clear, close and rigorous counsel, designed for individuals and businesses.",
-      note: "Areas are updated as new lines of work are confirmed.",
-      label: "Services",
-      askLabel: "Enquire",
-      indexLabel: "Index",
+      titleLines: ["Practice areas", "representative"],
+      lead:
+        "Our work is organised across five areas that respond to the real needs of individuals and companies in Madrid.",
     },
 
-    // ---------- Carolina page ----------
-    carolinaPage: {
-      eyebrow: "The Chambers",
-      titleLines: ["Carolina", "Cutilla Díaz"],
-      lead: "Lawyer, criminologist and founder of CCD Legal Group. A profile that joins the rigour of law with a human understanding of every case.",
-      positioningLabel: "Positioning",
-      positioningTitle: "Legal & Business",
-      rolesLabel: "Profile",
-      role1: "Lawyer",
-      role2: "Criminologist",
-      role3: "Founder",
-      bioLabel: "Carolina",
-      bioTitle: "Legal rigour, human view",
-      bioBody1:
-        "Carolina Cutilla Díaz is a lawyer, criminologist and founder of CCD Legal Group, a boutique legal and business advisory firm in Madrid.",
-      bioBody2:
-        "Her work is defined by a strategic reading of every matter: understanding the context, identifying the objective and building a clear, precise response suited to the reality of each person or company.",
-      note: "Professional profile — verified content",
-      chambersTitle: "The chambers",
-      chambersSub: "Legal rigour, warmth and discretion in the centre of Madrid.",
+    peoplePage: {
+      eyebrow: "People",
+      titleLines: ["The people", "behind the counsel."],
+      lead:
+        "A boutique firm is defined by the calibre of its professionals. Meet who leads CCD Legal Group.",
     },
 
-    // ---------- Insights page ----------
     insightsPage: {
-      eyebrow: "Perspectives",
-      titleLines: ["Recent", "Perspectives"],
-      lead: "An editorial view on law, criminology and business strategy, written from practice.",
-      emptyTitle: "Content in preparation",
-      emptyBody:
-        "The first perspectives will be published shortly. In the meantime, you can contact the chambers for any query.",
-      emptyCta: "Contact us",
+      eyebrow: "Insights",
+      titleLines: ["Insights", "from the firm"],
+      lead:
+        "Analysis and commentary on law, criminology and business, written from daily practice.",
     },
 
-    // ---------- Contact page ----------
     contactPage: {
       eyebrow: "Contact",
-      titleLines: ["Let's discuss", "your matter"],
-      lead: "Request a consultation with CCD Legal Group. We will reply as soon as possible.",
-      formName: "Name",
-      formEmail: "Email",
-      formPhone: "Phone (optional)",
-      formMessage: "How can we help you?",
-      formSubmit: "Send consultation",
-      formNote: "By sending, you accept the processing of your data to respond to your query.",
+      titleLines: ["Let's discuss", "your matter."],
+      lead:
+        "Complete the form or contact us directly. We handle your enquiry with complete confidentiality.",
       directLabel: "Direct contact",
-      callLabel: "Call",
+      callLabel: "Telephone",
       emailLabel: "Email",
-      locationLabel: "Madrid",
-      mailtoNote: "or write directly to",
-      officeLabel: "The chambers",
+      locationLabel: "Office",
+      mapTitle: "Find us in Madrid",
+      mapAddress: "Príncipe de Vergara 132, 28002 Madrid",
     },
 
-    // ---------- Interstitial / UI ----------
-    ui: {
-      arrow: "Continue",
-      filed: "File",
-      pagedIn: "p.",
+    legal: {
+      eyebrow: "Legal Notice",
+      titleLines: ["Legal", "Notice"],
+      bodyTitle: "Identification",
+      body1:
+        "This legal notice governs the use of the website of CCD Legal Group — Cutilla Díaz & Cons Abogados.",
+      bodyTitle2: "Owner details",
+      body2:
+        "Cutilla Díaz & Cons Abogados, registered at Príncipe de Vergara 132, 28002 Madrid, Spain.",
+      bodyTitle3: "Intellectual property",
+      body3:
+        "All content on this website is owned by the firm and may not be reproduced without authorisation.",
+      bodyTitle4: "Liability",
+      body4:
+        "The information published is general in nature and does not constitute legal advice. It creates no professional relationship between lawyer and client.",
+    },
+
+    privacy: {
+      eyebrow: "Privacy",
+      titleLines: ["Privacy", "Policy"],
+      bodyTitle: "Data controller",
+      body1:
+        "Cutilla Díaz & Cons Abogados, Príncipe de Vergara 132, 28002 Madrid, Spain.",
+      bodyTitle2: "Purpose",
+      body2:
+        "Data collected through this site is used solely to respond to enquiries and, where applicable, to provide the requested services.",
+      bodyTitle3: "Legal basis",
+      body3: "Processing is based on the data subject's consent and, where applicable, on the contractual relationship.",
+      bodyTitle4: "Rights",
+      body4:
+        "You may exercise your rights of access, rectification, erasure, objection, restriction and portability by writing to the firm.",
     },
   },
-} as const;
+};
 
-export type Translation = typeof translations[Locale];
+export type Dictionary = typeof translations.es;
 
-export function getDictionary(locale: Locale) {
+export function getDictionary(locale: Locale): Dictionary {
   return translations[locale];
 }

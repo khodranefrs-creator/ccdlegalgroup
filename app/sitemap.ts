@@ -5,7 +5,7 @@ const basePaths = [
   "",
   "/firm",
   "/expertise",
-  "/carolina",
+  "/people",
   "/insights",
   "/contact",
 ];

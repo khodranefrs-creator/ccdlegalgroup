@@ -16,15 +16,21 @@
 export const siteConfig = {
   name: "CCD Legal Group",
   legalName: "Cutilla Díaz & Cons Abogados",
-  positioning: "Legal & Business Advisory Firm",
+  positioning: "Legal & Business Advisory | Madrid",
+  tagline: "Counsel built around the matter.",
   founder: "Carolina Cutilla Díaz",
-  founderRoles: ["Abogada", "Criminóloga", "Fundadora"],
+  founderRoles: ["Abogada", "Criminóloga", "Founder"],
   city: "Madrid",
-  country: "España",
+  country: "Spain",
+  street: "Príncipe de Vergara 132",
+  district: "Chamberí",
+  postalCode: "28002",
+  province: "Madrid",
   domain: "abogadoscutilladiaz.es",
   canonicalUrl: "https://abogadoscutilladiaz.es",
   instagram: "@ccd_legalgroup",
   instagramUrl: "https://instagram.com/ccd_legalgroup",
+  email: "despacho@abogadoscutilladiaz.es",
   emails: {
     despacho: "despacho@abogadoscutilladiaz.es",
   },
@@ -32,28 +38,14 @@ export const siteConfig = {
     { label: "+34 639 694 387", tel: "+34639694387" },
     { label: "+34 722 472 462", tel: "+34722472462" },
   ],
-  /**
-   * Addresses.
-   * Public sources conflict (one listing shows C. de Hilarión Eslava 51 /
-   * Chamberí; Instagram currently shows Príncipe de Vergara 132). Neither is
-   * treated as unquestionably current. Update `primary` here whenever the
-   * verified current address is confirmed.
-   */
+  /** Verified address per brand brief: Príncipe de Vergara 132, Madrid. */
   address: {
-    primary: null as string | null, // e.g. "Príncipe de Vergara 132, 28002 Madrid, España"
-    alt: null as string | null,
-    postalCode: "28015", // Chamberí, Madrid
+    primary: "Príncipe de Vergara 132, 28002 Madrid, España",
+    street: "Príncipe de Vergara 132",
+    postalCode: "28002",
+    locality: "Madrid",
+    country: "ES",
   },
-} as const;
-
-export const navigationConfig = {
-  links: [
-    { id: "firm", href: "/firm" },
-    { id: "expertise", href: "/expertise" },
-    { id: "carolina", href: "/carolina" },
-    { id: "insights", href: "/insights" },
-    { id: "contact", href: "/contact" },
-  ],
 } as const;
 
 export type Locale = "es" | "en";
