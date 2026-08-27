@@ -1,40 +1,46 @@
 @import "tailwindcss";
 
 /* ============================================================
-   CCD LEGAL GROUP — Design System
-   Editorial · Architectural · Minimal · Sophisticated
+   CCD LEGAL GROUP — «El Despacho» / The Law of Detail
+   A modern legal document read as a city.
+   Precision · Restraint · Human judgement.
    ============================================================ */
 
 @theme {
-  /* Typography */
+  /* --- Typography --- */
   --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   --font-sans: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
 
-  /* Palette */
-  --color-ink: #16130f;          /* deep warm charcoal / near-black */
-  --color-ink-soft: #2a251e;     /* softened charcoal */
-  --color-paper: #f5f1e8;        /* warm ivory / paper */
-  --color-paper-2: #ece6da;      /* slightly deeper ivory */
-  --color-paper-3: #e3dccd;      /* deeper ivory for surfaces */
-  --color-oxblood: #6d2230;      /* deep burgundy / oxblood */
-  --color-oxblood-deep: #4f1a24; /* darker oxblood, hover */
-  --color-beige: #c8b893;        /* metallic beige (subtle) */
-  --color-stone: #6e675c;        /* muted body text on paper */
-  --color-stone-dark: #8b8375;   /* muted text on ink */
-  --color-line: rgba(22, 19, 15, 0.16);  /* thin rule on paper */
-  --color-line-ink: rgba(245, 241, 232, 0.18); /* thin rule on ink */
+  /* --- Palette (authoritative, away from generic beige+burgundy) --- */
+  --color-ink: #191512;          /* deep espresso / near-black */
+  --color-ink-soft: #26201b;     /* softened espresso surface */
+  --color-paper: #f4efe6;        /* warm bone / document paper */
+  --color-paper-2: #ece6da;      /* settled paper */
+  --color-paper-3: #e2dbcc;      /* deeper document surface */
+  --color-oxblood: #6d2230;      /* the seal — deep oxblood */
+  --color-oxblood-deep: #521b26; /* pressed seal */
+  --color-pine: #2f3d33;         /* baize / tact — deep green-grey */
+  --color-pine-soft: #3a4a3f;
+  --color-sand: #c7b78e;         /* muted parchment/gold — used sparingly */
+  --color-beige: #c7b78e;        /* alias for sand (legacy/utility) */
+  --color-basalt: #6d655a;       /* body text on paper */
+  --color-basalt-dark: #98907f;  /* muted text on ink */
+  --color-line: rgba(25, 21, 18, 0.16);     /* rule on paper */
+  --color-line-deep: rgba(25, 21, 18, 0.28);/* stronger rule on paper */
+  --color-line-ink: rgba(244, 239, 230, 0.18); /* rule on ink */
 
-  /* Spacing rhythm */
+  /* --- Spacing rhythm --- */
   --spacing-gutter: clamp(1.25rem, 4vw, 3.5rem);
 
-  /* Easing */
+  /* --- Easing --- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
-  /* Animations */
+  /* --- Animation tokens --- */
   --animate-fade-up: fade-up 0.9s var(--ease-out-expo) both;
-  --animate-fade-in: fade-in 0.9s var(--ease-out-soft) both;
+  --animate-fade-in: fade-in 1s var(--ease-out-soft) both;
   --animate-clip-in: clip-in 1.1s var(--ease-out-expo) both;
+  --animate-reveal-rule: reveal-rule 1.4s var(--ease-out-expo) both;
 
   @keyframes fade-up {
     from { opacity: 0; transform: translateY(24px); }
@@ -47,6 +53,10 @@
   @keyframes clip-in {
     from { clip-path: inset(0 0 100% 0); }
     to   { clip-path: inset(0 0 0% 0); }
+  }
+  @keyframes reveal-rule {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
   }
 }
 
@@ -81,27 +91,76 @@ body {
   border-radius: 2px;
 }
 
-/* Thin hairline utility */
+/* ============================================================
+   DOCUMENT SYSTEM — the recurring, recognizable identity.
+   ============================================================ */
+
+/* Thin rule */
 .hairline {
   height: 1px;
   background: currentColor;
   opacity: 0.18;
 }
 
-/* Oversized editorial number */
+/* Oversized editorial number / clause index */
 .editorial-number {
   font-family: var(--font-display);
-  font-weight: 300;
-  font-feature-settings: "lnum";
+  font-weight: 400;
+  font-feature-settings: "lnum", "tnum";
   line-height: 1;
 }
 
-/* Eyebrow / overline label */
+/* Eyebrow / uppercase technical metadata */
 .eyebrow {
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* Small technical label (very tight tracking, document footnote) */
+.tech {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.62rem;
   font-weight: 500;
+}
+
+/* The "stamp" — like a filed/registered document mark */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid currentColor;
+  padding: 0.4rem 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+/* Marginal annotation column label (document margin notes) */
+.marginalia {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Ruled list row — used across expertise/matters/ledgers */
+.document-row {
+  border-bottom: 1px solid var(--color-line);
+  transition: background-color 0.35s var(--ease-out-soft), color 0.35s;
+}
+
+/* Grid-paper texture used behind hero/case-file fields (very faint) */
+.paper-ruled {
+  background-image: linear-gradient(
+    to bottom,
+    transparent calc(100% - 1px),
+    rgba(25, 21, 18, 0.05) calc(100% - 1px)
+  );
+  background-size: 100% 3.5rem;
 }
 
 /* ---------- Interactive underline link ---------- */
@@ -169,5 +228,3 @@ body {
     scroll-behavior: auto !important;
   }
 }
-
-/* Hide scrollbar in reveal containers handled inline */

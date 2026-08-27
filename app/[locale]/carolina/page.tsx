@@ -3,7 +3,7 @@ import { imagesConfig } from "@/config/images";
 import { siteConfig, type Locale } from "@/config/site";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
-import { VisualBlock } from "@/components/VisualBlock";
+import { MediaField } from "@/components/VisualBlock";
 import SectionContact from "@/components/SectionContact";
 import type { Metadata } from "next";
 
@@ -49,15 +49,14 @@ export default async function CarolinaPage({
           <div className="grid grid-cols-12 gap-x-4 md:gap-x-8">
             {/* Portrait */}
             <Reveal from="left" className="col-span-12 lg:col-span-7">
-              <div className="relative aspect-[4/5] lg:aspect-[3/4]">
-                <VisualBlock
-                  src={imagesConfig.founderPortrait}
-                  alt={`${p.titleLines[0]} ${p.titleLines[1]}`}
-                  variant="dark"
-                  sizes="(min-width: 1024px) 55vw, 100vw"
-                  className="absolute inset-0 h-full w-full"
-                />
-              </div>
+              <MediaField
+                src={imagesConfig.founderPortrait ?? imagesConfig.officeInterior}
+                alt={`${p.titleLines[0]} ${p.titleLines[1]} — CCD Legal Group`}
+                label={p.chambersTitle}
+                index="04"
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="relative aspect-[4/5] lg:aspect-[3/4]"
+              />
             </Reveal>
 
             {/* Text */}

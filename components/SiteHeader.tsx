@@ -15,6 +15,7 @@ type NavDict = {
   cta: string;
   menu: string;
   close: string;
+  city: string;
 };
 
 export default function SiteHeader({
@@ -37,7 +38,6 @@ export default function SiteHeader({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -46,11 +46,10 @@ export default function SiteHeader({
   }, [open]);
 
   const navItems = [
-    { href: `${prefix}/firm`, label: nav.firm },
-    { href: `${prefix}/expertise`, label: nav.expertise },
-    { href: `${prefix}/carolina`, label: nav.carolina },
-    { href: `${prefix}/insights`, label: nav.insights },
-    { href: `${prefix}/contact`, label: nav.contact },
+    { href: `${prefix}/firm`, label: nav.firm, no: "02" },
+    { href: `${prefix}/expertise`, label: nav.expertise, no: "03" },
+    { href: `${prefix}/carolina`, label: nav.carolina, no: "04" },
+    { href: `${prefix}/insights`, label: nav.insights, no: "05" },
   ];
 
   return (
@@ -58,28 +57,39 @@ export default function SiteHeader({
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "border-b border-line bg-paper/85 backdrop-blur-sm py-3"
+            ? "border-b border-line bg-paper/90 backdrop-blur-md py-2.5"
             : "border-b border-transparent bg-transparent py-5"
         }`}
-        style={{ ["--header-h" as string]: scrolled ? "64px" : "84px" }}
+        style={{ ["--header-h" as string]: scrolled ? "62px" : "84px" }}
       >
         <div className="mx-auto flex items-center justify-between px-gutter max-w-[1600px]">
-          {/* Logo */}
+          {/* Wordmark */}
           <Link
             href={prefix || "/"}
             className="group flex items-baseline gap-2"
             aria-label={`${siteConfig.name} — home`}
           >
-            <span className="font-display text-[1.6rem] leading-none font-semibold tracking-tight">
+            <span className="font-display text-[1.7rem] leading-none font-semibold tracking-tight">
               CCD
             </span>
-            <span className="hidden sm:block text-[0.55rem] tracking-[0.28em] uppercase opacity-55 leading-none w-24">
-              Legal Group
+            <span className="flex flex-col leading-none">
+              <span className="hidden lg:block text-[0.48rem] tracking-[0.3em] uppercase opacity-60">
+                Legal Group
+              </span>
+              <span className="hidden md:block lg:hidden text-[0.48rem] tracking-[0.3em] uppercase opacity-60">
+                Legal Group
+              </span>
+            </span>
+            <span className="ml-3 hidden xl:block text-[0.55rem] tracking-[0.22em] uppercase opacity-40">
+              Madrid · Chamberí
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Primary">
+          {/* Desktop nav — editorial, numbered */}
+          <nav
+            className="hidden lg:flex items-center gap-1"
+            aria-label="Primaria"
+          >
             {navItems.map((item) => {
               const active =
                 pathname === item.href ||
@@ -88,11 +98,14 @@ export default function SiteHeader({
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`link-underline text-[0.78rem] uppercase tracking-[0.16em] transition-colors duration-300 ${
+                  className={`group flex items-baseline gap-1.5 px-3 py-2 text-[0.74rem] uppercase tracking-[0.16em] transition-colors duration-300 ${
                     active ? "text-oxblood font-semibold" : "opacity-75 hover:opacity-100"
                   }`}
                 >
-                  {item.label}
+                  <span className="opacity-40 text-[0.55rem] transition-colors group-hover:text-oxblood">
+                    {item.no}
+                  </span>
+                  <span className="link-underline">{item.label}</span>
                 </Link>
               );
             })}
@@ -104,7 +117,7 @@ export default function SiteHeader({
 
             <Link
               href={`${prefix}/contact`}
-              className="hidden md:inline-flex items-center gap-2 border border-ink/25 rounded-full px-5 py-2 text-[0.72rem] uppercase tracking-[0.18em] font-semibold transition-all duration-400 hover:border-oxblood hover:text-oxblood hover:tracking-[0.2em]"
+              className="hidden md:inline-flex items-center gap-2 bg-ink text-paper rounded-full px-5 py-2.5 text-[0.7rem] uppercase tracking-[0.18em] font-semibold transition-all duration-300 hover:bg-oxblood"
             >
               {nav.cta}
             </Link>
@@ -132,51 +145,58 @@ export default function SiteHeader({
         </div>
       </header>
 
-      {/* Full-screen mobile menu */}
+      {/* Full-screen mobile menu — document index */}
       <div
         className={`fixed inset-0 z-40 lg:hidden bg-ink text-paper transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           open ? "translate-y-0" : "-translate-y-full"
         }`}
         aria-hidden={!open}
       >
-        <nav className="flex h-full flex-col justify-center px-gutter" aria-label="Mobile">
-          <div className="space-y-1">
-            {navItems.map((item, i) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="group flex items-baseline gap-5 border-b border-line-ink py-5"
-                style={{
-                  transitionDelay: open ? `${120 + i * 60}ms` : "0ms",
-                }}
-              >
-                <span className="text-[0.65rem] text-beige/70">
-                  0{i + 1}
-                </span>
-                <span className="font-display text-5xl font-light leading-none transition-colors duration-300 group-hover:text-beige">
-                  {item.label}
-                </span>
-              </Link>
-            ))}
-          </div>
+        <div className="flex h-full flex-col">
+          <nav
+            className="flex h-full flex-col justify-center px-gutter"
+            aria-label="Móvil"
+          >
+            <p className="tech text-paper/40 mb-8">{nav.city} — {nav.cta}</p>
+            <div className="space-y-0">
+              {navItems.map((item, i) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="group flex items-baseline gap-5 border-b border-line-ink py-5"
+                  style={{
+                    transitionDelay: open ? `${120 + i * 60}ms` : "0ms",
+                  }}
+                >
+                  <span className="tech text-beige/50">{item.no}</span>
+                  <span className="font-display text-4xl font-light leading-none transition-colors duration-300 group-hover:text-beige">
+                    {item.label}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </nav>
 
-          <div className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <a
-              href={`tel:${siteConfig.phones[0].tel}`}
-              className="text-sm text-beige"
-            >
-              {siteConfig.phones[0].label}
-            </a>
-            <a
-              href={`mailto:${siteConfig.emails.despacho}`}
-              className="text-sm text-beige"
-            >
-              {siteConfig.emails.despacho}
-            </a>
-            <LanguageSwitch locale={locale} />
+          <div className="px-gutter pb-12">
+            <div className="border-t border-line-ink pt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <span className="tech text-paper/40">Contacto</span>
+              <a
+                href={`tel:${siteConfig.phones[0].tel}`}
+                className="text-sm text-paper hover:text-beige"
+              >
+                {siteConfig.phones[0].label}
+              </a>
+              <a
+                href={`mailto:${siteConfig.emails.despacho}`}
+                className="link-underline text-sm text-paper/80 hover:text-paper"
+              >
+                {siteConfig.emails.despacho}
+              </a>
+              <LanguageSwitch locale={locale} />
+            </div>
           </div>
-        </nav>
+        </div>
       </div>
     </>
   );

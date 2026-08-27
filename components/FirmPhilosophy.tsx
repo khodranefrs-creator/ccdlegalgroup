@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { VisualBlock } from "./VisualBlock";
+import { imagesConfig } from "@/config/images";
+import { MediaField } from "./VisualBlock";
 
 export type Pillar = {
   no: string;
@@ -17,7 +18,11 @@ type Dict = {
   methodSub: string;
 };
 
-const artVariants = ["dark", "oxblood", "beige"] as const;
+const PILLAR_IMAGES = [
+  imagesConfig.officeInterior,
+  imagesConfig.stairInterior,
+  imagesConfig.cityWide,
+];
 
 export default function FirmPhilosophy({
   pillars,
@@ -60,27 +65,36 @@ export default function FirmPhilosophy({
                 <h2 className="mt-6 font-display text-[clamp(2rem,4.6vw,3.8rem)] leading-[1.0] font-light max-w-xs">
                   {dict.methodHeading}
                 </h2>
-                <p className="mt-6 max-w-xs text-sm leading-relaxed text-stone">
+                <p className="mt-6 max-w-xs text-sm leading-relaxed text-ink/60">
                   {dict.methodSub}
                 </p>
+
+                {/* Changing photographic field */}
+                <div className="relative mt-10 aspect-[4/3] hidden md:block">
+                  <MediaField
+                    src={PILLAR_IMAGES[active] ?? imagesConfig.officeInterior}
+                    alt={pillars[active]?.title ?? ""}
+                    label={dict.methodLabel}
+                    index={`0${active + 1}`}
+                    sizes="(min-width: 768px) 32vw, 100vw"
+                    className="absolute inset-0 h-full w-full"
+                  />
+                </div>
               </div>
             </div>
 
             {/* Interactive pillars */}
             <div className="col-span-12 md:col-span-8">
-              {/* Changing art block */}
-              <div className="relative mb-8 aspect-[16/9] overflow-hidden transition-all duration-700">
-                <VisualBlock
-                  variant={artVariants[active]}
-                  label={`0${active + 1}`}
-                  sizes="(min-width: 768px) 60vw, 100vw"
-                  className="absolute inset-0 h-full w-full transition-all duration-700"
+              {/* Mobile photographic field */}
+              <div className="relative mb-8 aspect-[16/9] md:hidden">
+                <MediaField
+                  src={PILLAR_IMAGES[active] ?? imagesConfig.officeInterior}
+                  alt={pillars[active]?.title ?? ""}
+                  label={dict.methodLabel}
+                  index={`0${active + 1}`}
+                  sizes="100vw"
+                  className="absolute inset-0 h-full w-full"
                 />
-                <div className="absolute top-6 right-6">
-                  <span className="font-display text-[3rem] font-light italic text-paper/40">
-                    0{active + 1}
-                  </span>
-                </div>
               </div>
 
               {/* Rows */}
@@ -92,6 +106,7 @@ export default function FirmPhilosophy({
                       <button
                         type="button"
                         onClick={() => setActive(isActive ? active : i)}
+                        onMouseEnter={() => setActive(i)}
                         className="group flex w-full items-baseline gap-5 py-6 text-left md:py-7"
                         aria-expanded={isActive}
                       >
@@ -99,7 +114,7 @@ export default function FirmPhilosophy({
                           className={`editorial-number text-[1.4rem] transition-all duration-400 ${
                             isActive
                               ? "text-oxblood translate-x-1"
-                              : "text-stone group-hover:translate-x-1"
+                              : "text-ink/40 group-hover:translate-x-1"
                           }`}
                         >
                           {pillar.no}
@@ -122,7 +137,7 @@ export default function FirmPhilosophy({
                       >
                         <div className="overflow-hidden">
                           <p
-                            className={`max-w-xl pb-8 pl-[3.4rem] text-base leading-relaxed text-stone transition-opacity duration-500 ${
+                            className={`max-w-xl pb-8 pl-[3.4rem] text-base leading-relaxed text-ink/60 transition-opacity duration-500 ${
                               isActive ? "opacity-100" : "opacity-0"
                             }`}
                           >

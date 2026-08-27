@@ -53,32 +53,33 @@ export default function SectionInsights({
           </div>
         </Reveal>
 
-        {/* Cards */}
-        <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden bg-line md:grid-cols-3">
+        {/* Editorial index — ruled rows, not cards */}
+        <div className="mt-14">
+          <div className="grid grid-cols-12 gap-x-4 border-b border-line pb-4 md:gap-x-8">
+            <span className="col-span-2 md:col-span-1 tech text-ink/40">nº</span>
+            <span className="hidden md:block md:col-span-2 tech text-ink/40">Categoría</span>
+            <span className="col-span-8 md:col-span-7 tech text-ink/40">Perspectiva</span>
+            <span className="col-span-2 md:col-span-2 tech text-ink/40 text-right">Fecha</span>
+          </div>
+
           {items.map((item, i) => (
-            <Reveal
-              key={item.id}
-              delay={i * 100}
-              className="group bg-paper"
-            >
+            <Reveal key={item.id} delay={i * 60}>
               <Link
                 href={`${prefix}/insights`}
-                className="group flex h-full flex-col p-8 transition-all duration-300 hover:bg-paper md:p-10 md:hover:-translate-y-1"
+                className="group grid grid-cols-12 items-baseline gap-x-4 border-b border-line py-6 md:gap-x-8 md:py-7 transition-colors duration-300 hover:bg-paper"
               >
-                <div className="flex items-baseline justify-between">
-                  <p className="eyebrow text-stone group-hover:text-oxblood transition-colors duration-300">
-                    {item.category}
-                  </p>
-                  <p className="text-[0.65rem] uppercase tracking-[0.18em] text-stone">
-                    {formatDate(item.date, locale)}
-                  </p>
-                </div>
-                <h3 className="mt-10 font-display text-[1.7rem] leading-tight font-light">
+                <span className="col-span-2 md:col-span-1 editorial-number text-lg text-ink/35 transition-colors group-hover:text-oxblood">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="hidden md:block md:col-span-2 tech text-ink/45 group-hover:text-oxblood">
+                  {item.category}
+                </span>
+                <span className="col-span-8 md:col-span-7 font-display text-[clamp(1.1rem,2.4vw,1.9rem)] leading-tight font-light transition-all duration-300 group-hover:italic group-hover:text-oxblood">
                   {item.title}
-                </h3>
-                <span className="mt-auto pt-10 flex justify-end">
-                  <span className="arrow text-2xl text-ink/40 transition-all duration-300 group-hover:text-oxblood group-hover:translate-x-1">
-                    →
+                </span>
+                <span className="col-span-2 md:col-span-2 text-right">
+                  <span className="text-[0.65rem] uppercase tracking-[0.16em] text-ink/45">
+                    {formatDate(item.date, locale)}
                   </span>
                 </span>
               </Link>
@@ -86,8 +87,15 @@ export default function SectionInsights({
           ))}
         </div>
 
-        <div className="mt-6 flex items-center justify-between gap-4">
-          <p className="text-xs text-stone">{heading.sourceNote}</p>
+        <div className="mt-8 flex items-center justify-between gap-4">
+          <p className="text-xs text-ink/45">{heading.sourceNote}</p>
+          <Link
+            href={`${prefix}/insights`}
+            className="group inline-flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.18em] font-semibold text-oxblood"
+          >
+            <span>{heading.viewAll}</span>
+            <span className="arrow transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </Link>
         </div>
       </div>
     </section>

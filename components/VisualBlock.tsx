@@ -1,79 +1,91 @@
 import Image from "next/image";
-import { imagesConfig } from "@/config/images";
 
 /**
- * Art-directed CSS "architectural" composition.
- * Used as imagery when no photograph is available. Built from gradients,
- * hairlines and typography — reads premium and intentional rather than empty.
+ * MediaField — the firm's imagery primitive.
+ *
+ * Renders an art-directed photograph with an optional "document" treatment:
+ * a fine ruled border, a corner index, an overline label and a bottom caption
+ * bar — the recurring visual vocabulary of «El Despacho». Every visible photo
+ * on the site runs through this component so the framing is always consistent.
  */
-export function ArtBlock({
-  variant = "dark",
-  label,
-  className = "",
-}: {
-  variant?: "dark" | "oxblood" | "beige";
-  label?: string;
-  className?: string;
-}) {
-  const bg =
-    variant === "oxblood"
-      ? "bg-gradient-to-br from-oxblood via-[#5a1d28] to-ink"
-      : variant === "beige"
-      ? "bg-gradient-to-br from-beige via-[#b8a884] to-[#8f7f5f]"
-      : "bg-gradient-to-br from-[#211c16] via-ink to-[#0e0c0a]";
-
-  return (
-    <div
-      className={`relative overflow-hidden ${bg} ${className}`}
-      aria-hidden="true"
-    >
-      {/* hairline grid */}
-      <div
-        className="absolute inset-0 opacity-[0.14]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, #f5f1e8 1px, transparent 1px), linear-gradient(to bottom, #f5f1e8 1px, transparent 1px)",
-          backgroundSize: "16.666% 20%",
-        }}
-      />
-      {/* large corner index */}
-      <div className="absolute top-6 right-6 font-display text-6xl font-light italic text-paper/30 leading-none">
-        {label ? "“" : ""}
-      </div>
-      {/* subtle radial light */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(120% 120% at 100% 0%, rgba(245,241,232,0.10), transparent 55%)",
-        }}
-      />
-      {/* bottom hairline + signature */}
-      <div className="absolute inset-0 flex flex-col justify-end p-6">
-        {label && (
-          <p className="text-[0.6rem] tracking-[0.3em] uppercase text-paper/60">
-            {label}
-          </p>
-        )}
-      </div>
-    </div>
-  );
-}
-
-/**
- * Renders real photography when configured, otherwise the CSS art block.
- * All parents must set an explicit aspect-ratio so layout is stable.
- */
-export function VisualBlock({
+export function MediaField({
   src,
   alt = "",
-  variant = "dark",
   label,
+  index,
   sizes = "100vw",
   priority = false,
   className = "",
-  imgClassName = "",
+  tone = "paper",
+  aspect,
 }: {
+  src?: string | null;
+  alt?: string;
+  /** Overline label — e.g. "Madrid — Chamberí" */
+  label?: string;
+  /** Corner index — e.g. "01" */
+  index?: string;
+  sizes?: string;
+  priority?: boolean;
+  className?: string;
+  /** Border tone */
+  tone?: "paper" | "ink";
+  /** Optional aspect ratio as Tailwind class, e.g. "aspect-[3/4]" */
+  aspect?: string;
+}) {
+  const borderColor = tone === "ink" ? "border-line-ink" : "border-line";
+  const textColor = tone === "ink" ? "text-paper/70" : "text-ink/60";
+
+  return (
+    <figure className={`relative overflow-hidden ${className}`}>
+      {src ? (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          className="object-cover"
+        />
+      ) : (
+        /* Fallback when no photograph is provided — a quiet tonal field */
+        <div className={`absolute inset-0 bg-paper-3 ${aspect ? "" : ""}`} />
+      )}
+
+      {/* Document frame */}
+      <div
+        className={`pointer-events-none absolute inset-0 border ${borderColor}`}
+        aria-hidden="true"
+      />
+      {/* Corner index */}
+      {index && (
+        <span
+          className={`pointer-events-none absolute top-4 left-4 font-display text-2xl font-light leading-none ${textColor}`}
+        >
+          {index}
+        </span>
+      )}
+      {/* Overline label */}
+      {label && (
+        <span
+          className={`pointer-events-none absolute top-4 right-5 tech ${textColor}`}
+        >
+          {label}
+        </span>
+      )}
+      {/* Bottom caption bar — faint, not a heavy overlay */}
+      {label && (
+        <div
+          className={`pointer-events-none absolute inset-x-0 bottom-0 border-t ${borderColor}`}
+          aria-hidden="true"
+        />
+      )}
+    </figure>
+  );
+}
+
+/* Backwards-compatible aliases used by legacy call sites */
+export function VisualBlock(props: {
   src?: string | null;
   alt?: string;
   variant?: "dark" | "oxblood" | "beige";
@@ -83,21 +95,13 @@ export function VisualBlock({
   className?: string;
   imgClassName?: string;
 }) {
-  if (src) {
-    return (
-      <div className={`relative overflow-hidden ${className}`}>
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes={sizes}
-          priority={priority}
-          className={`object-cover ${imgClassName}`}
-        />
-      </div>
-    );
-  }
-  return <ArtBlock variant={variant} label={label} className={className} />;
+  const { variant, imgClassName, ...rest } = props;
+  const tone = variant === "dark" ? "ink" : "paper";
+  return (
+    <MediaField
+      tone={tone}
+      className={`${props.className ?? ""} ${imgClassName ? "" : ""}`}
+      {...rest}
+    />
+  );
 }
-
-export { imagesConfig };

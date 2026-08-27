@@ -1,5 +1,5 @@
 import Reveal from "./Reveal";
-import { VisualBlock } from "./VisualBlock";
+import { MediaField } from "./VisualBlock";
 import { imagesConfig } from "@/config/images";
 
 type MattersDict = {
@@ -17,26 +17,23 @@ type MattersDict = {
 };
 
 export default function SectionMatters({ t }: { t: MattersDict }) {
-  const cols = [
+  const rows = [
     {
       title: t.col1Title,
       body: t.col1Body,
       img: imagesConfig.mattersGrid.personal,
-      variant: "dark" as const,
       n: "01",
     },
     {
       title: t.col2Title,
       body: t.col2Body,
       img: imagesConfig.mattersGrid.professional,
-      variant: "oxblood" as const,
       n: "02",
     },
     {
       title: t.col3Title,
       body: t.col3Body,
       img: imagesConfig.mattersGrid.business,
-      variant: "beige" as const,
       n: "03",
     },
   ];
@@ -45,7 +42,7 @@ export default function SectionMatters({ t }: { t: MattersDict }) {
     <section className="relative bg-ink text-paper">
       <div className="mx-auto max-w-[1600px] px-gutter py-24 md:py-40">
         {/* Heading */}
-        <div className="grid grid-cols-12 gap-x-4 md:gap-x-8">
+        <div className="grid grid-cols-12 gap-x-4 md:gap-x-8 md:items-end">
           <Reveal className="col-span-12 md:col-span-9">
             <p className="eyebrow text-beige">{t.label}</p>
             <h2 className="mt-8 font-display text-[clamp(2.2rem,6vw,5.6rem)] leading-[0.95] font-light">
@@ -53,44 +50,47 @@ export default function SectionMatters({ t }: { t: MattersDict }) {
               <span className="block italic text-beige">{t.heading2}</span>
             </h2>
           </Reveal>
-          <Reveal delay={120} className="col-span-12 md:col-span-3 md:flex md:items-end md:justify-end mt-8 md:mt-0">
-            <p className="text-[0.7rem] uppercase tracking-[0.2em] text-paper/50">
-              {t.legend}
-            </p>
+          <Reveal delay={120} className="col-span-12 md:col-span-3 mt-8 md:mt-0 md:flex md:justify-end">
+            <p className="tech text-paper/50">{t.legend}</p>
           </Reveal>
         </div>
 
-        {/* Visual grid */}
-        <div className="mt-14 md:mt-20 grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-line-ink">
-          {cols.map((c, i) => (
-            <Reveal
-              key={c.n}
-              delay={i * 120}
-              className="group md:px-6 first:md:pl-0 last:md:pr-0"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <VisualBlock
-                  src={c.img}
-                  alt={c.title}
-                  variant={c.variant}
-                  sizes="(min-width: 768px) 32vw, 100vw"
-                  className="absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                />
+        {/* Ledger rows — not cards */}
+        <div className="mt-16 md:mt-24">
+          {rows.map((r, i) => (
+            <Reveal key={r.n} delay={i * 90}>
+              <div className="group grid grid-cols-12 items-center gap-x-4 gap-y-4 border-t border-line-ink py-8 md:py-10">
+                <div className="col-span-2 md:col-span-1">
+                  <span className="editorial-number text-[1.8rem] leading-none text-oxblood transition-transform duration-500 ease-out group-hover:translate-x-1">
+                    {r.n}
+                  </span>
+                </div>
+                <p className="col-span-4 md:col-span-2 font-display text-[clamp(1.4rem,3vw,2.4rem)] leading-none font-light transition-colors duration-300 group-hover:text-beige">
+                  {r.title}
+                </p>
+                <p className="col-span-6 md:col-span-5 text-sm leading-relaxed text-paper/60">
+                  {r.body}
+                </p>
+                <div className="col-span-12 md:col-span-4 mt-4 md:mt-0">
+                  <MediaField
+                    src={r.img}
+                    alt={r.title}
+                    label={`${t.label} — ${r.n}`}
+                    sizes="(min-width: 768px) 30vw, 100vw"
+                    className="aspect-[16/9] md:aspect-[2/1] w-full"
+                    tone="ink"
+                  />
+                </div>
               </div>
-              <div className="mt-6 flex items-baseline justify-between">
-                <h3 className="font-display text-2xl font-light">{c.title}</h3>
-                <span className="editorial-number text-beige/70 text-sm">{c.n}</span>
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-paper/60">{c.body}</p>
             </Reveal>
           ))}
+          <div className="hairline !bg-line-ink" />
         </div>
 
+        {/* Footnote */}
         <div className="mt-10 flex items-center gap-4">
           <div className="hairline !bg-line-ink flex-1" />
-          <p className="text-[0.72rem] uppercase tracking-[0.22em] text-beige/80 text-right">
-            {t.footnote}
-          </p>
+          <p className="tech text-beige/70 text-right">{t.footnote}</p>
         </div>
       </div>
     </section>

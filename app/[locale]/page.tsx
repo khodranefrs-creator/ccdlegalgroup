@@ -9,6 +9,7 @@ import SectionFirm from "@/components/SectionFirm";
 import SectionPositioning from "@/components/SectionPositioning";
 import SectionExpertise from "@/components/SectionExpertise";
 import SectionMatters from "@/components/SectionMatters";
+import SectionProcess from "@/components/SectionProcess";
 import SectionCarolina from "@/components/SectionCarolina";
 import SectionTrust from "@/components/SectionTrust";
 import SectionInsights from "@/components/SectionInsights";
@@ -33,6 +34,7 @@ export default async function HomePage({
       <SectionPositioning t={t.positioning} />
       <SectionExpertise locale={lc} heading={t.expertise} services={services} />
       <SectionMatters t={t.matters} />
+      <SectionProcess t={t.process} />
       <SectionCarolina locale={lc} t={t.carolina} />
       <SectionTrust t={t.trust} />
       <SectionInsights locale={lc} heading={t.insights} items={insights} />
